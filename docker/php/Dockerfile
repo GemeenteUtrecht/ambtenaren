@@ -85,10 +85,10 @@ RUN set -eux; \
 	chmod +x bin/console; sync
 VOLUME /srv/api/var
 
-COPY docker/php/docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
-RUN chmod +x /usr/local/bin/docker-entrypoint.sh
-RUN dos2unix /usr/local/bin/docker-entrypoint.sh #this is a fix just in case the image was build on a windows machine
+COPY docker/php/docker-entrypoint.sh /usr/local/bin/docker-entrypoint
+RUN chmod +x /usr/local/bin/docker-entrypoint
+RUN dos2unix /usr/local/bin/docker-entrypoint #this is a fix just in case the image was build on a windows machine
 
-ENTRYPOINT ["sh","docker-entrypoint.sh"] 
+ENTRYPOINT ["docker-entrypoint"]
 CMD ["php-fpm"]
 
