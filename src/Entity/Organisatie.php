@@ -14,7 +14,7 @@ use ActivityLogBundle\Entity\Interfaces\StringableInterface;
 /**
  * Organisatie
  * 
- * Een orginisatie of deeld daarvan dat deelneemt aan Commen Grounds, organisatie objecten worden gebruikt voor het opslaan van configuratie instellingen
+ * Een orginisatie of deeld daarvan dat deelneemt aan Common Ground, organisatie objecten worden gebruikt voor het opslaan van configuratie instellingen
  * 
  * @category   	Entity
  *

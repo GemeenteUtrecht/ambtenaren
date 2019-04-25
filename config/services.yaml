@@ -16,7 +16,7 @@ parameters:
                 Fijn dat je de tijd en moeite hebt genomen om je te verdiepen in dit component. 
                 
                 # Introductie                
-                Het "Ambtenaren" component is ontwikkeld voor de gemeente Utrecht en heeft als doel een ambtenaren te koppelen aan objecten uit andere componenten. Dit stelt je in staat om aan deze objecten ambtenaren te koppelen en zo activiteiten te kunnen beheren.
+                Het "Ambtenaren" component is ontwikkeld voor de gemeente Utrecht en heeft als doel een ambtenaren te koppelen aan objecten uit andere componenten. Dit stelt je in staat om aan deze objecten ambtenaren te koppelen en zo hun activiteiten te kunnen beheren.
               
                 # Common ground en open source
                 Om het voor alle partijen zo makkelijk mogenlijk te maken bieden we zo veel mogenlijk informatie openbaar aan over dit component.  
@@ -57,28 +57,19 @@ parameters:
             url: 'https://github.com/ConductionNL/zaakonline'
         tags:
               # The general endpoints  
-            - name: Agenda
-              description: "De agenda wordt gebruikt om een momenten in de tijd of een tijdspanne weer tegeven."
-            - name: Taak
-              description: "En taak of 'to do' binnen een agenda."
-            - name: Afspraak
-              description: "Een afspraak behorende bij een of meerdere agendas."
-            - name: Beschikbaar
-              description: "Een moment van beschikbaarheid behorende bij een of meerdere agendas, totale beschikbaarheid wordt berekend op agenda niveau door beschikbaarheid en afspraken met elkaar te vergelijken."
-            - name: Organisatie
-              description: "De Organisatie wordt gebruikt om standaard configuraties in te regelen."  
-            - name: User
-              description: "Een gebruiker, of in dit geval een applicatie gebonden aan een JWT token behorende tot een organisatie."
+            - name: Ambtenaar
+              description: "De ambtenaar is de actor binnen de gemeente die zaken behandeld."
+            # - name: Organisatie
+            #   description: "De Organisatie wordt gebruikt om standaard configuraties in te regelen."  
+            # - name: User
+            #   description: "Een gebruiker, of in dit geval een applicatie gebonden aan een JWT token behorende tot een organisatie."
               # Grouping the endopoint  
         x-tagGroups:
-            - name: Agenda
+            - name: Ambtenaar
               tags:
-              - Agenda
-              - Taak
-              - Afspraak
-              - Beschikbaar
-              - Organisatie
-              - User
+              - Ambtenaar
+              # - Organisatie
+              # - User
               
         
 services:
