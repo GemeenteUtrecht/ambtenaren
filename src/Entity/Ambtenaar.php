@@ -523,7 +523,7 @@ class Ambtenaar implements StringableInterface
 	}
 	
 	/**
-	 * Add Product
+	 * Koppel een Ambtenaar aan een Product
 	 *
 	 * @param  \App\Entity\Product $product
 	 * @return Order
@@ -546,7 +546,7 @@ class Ambtenaar implements StringableInterface
 	}
 	
 	/**
-	 * Get Product
+	 * Haal een lijst met Producten op waar aan de Ambtenaar te koppelen is
 	 *
 	 * @return \Doctrine\Common\Collections\Collection
 	 */
