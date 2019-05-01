@@ -41,7 +41,8 @@ use ActivityLogBundle\Entity\Interfaces\StringableInterface;
  *  		"denormalizationContext"={"groups"={"write"}},
  *      	"path"="/ambtenaren",
  *  		"openapi_context" = {
- * 				"summary" = "Haalt een verzameling van ambtenaren op",
+ * 				"summary" = "Verzameling",
+ *         		"description" = "Haal een verzameling van ambtenaren op",
  *             	"responses" = {
  *         			"200" = {
  *         				"description" = "Een overzicht van ambtenaren"
@@ -60,7 +61,8 @@ use ActivityLogBundle\Entity\Interfaces\StringableInterface;
  *  		"denormalizationContext"={"groups"={"write"}},
  *      	"path"="/ambtenaren",
  *  		"openapi_context" = {
- * 				"summary" = "Maak een ambtenaar aan",
+ * 				"summary" = "Maak aan",
+ *         		"description" = "Maak een specifieke ambtenaar aan",
  *             	"responses" = {
  *         			"200" = {
  *         				"description" = "Ambtenaar aangemaakt"
@@ -78,7 +80,8 @@ use ActivityLogBundle\Entity\Interfaces\StringableInterface;
  *  		"denormalizationContext"={"groups"={"write"}},
  *      	"path"="/ambtenaren/{id}",
  *  		"openapi_context" = {
- * 				"summary" = "Haalt een specifieke ambtenaar op",
+ * 				"summary" = "Bekijk",
+ *         		"description" = "Bekijk een specifieke ambtenaar",
  *             	"responses" = {
  *         			"200" = {
  *         				"description" = "Een specifieke ambtenaar"
@@ -97,7 +100,8 @@ use ActivityLogBundle\Entity\Interfaces\StringableInterface;
  *  		"denormalizationContext"={"groups"={"write"}},
  *      	"path"="/ambtenaren/{id}",
  *  		"openapi_context" = {
- * 				"summary" = "Vervang een specifieke ambtenaar",
+ * 				"summary" = "Vervang",
+ *         		"description" = "Vervang een specifieke ambtenaar",
  *             	"responses" = {
  *         			"200" = {
  *         				"description" = "Ambtenaar bijgewerkt"
@@ -135,8 +139,8 @@ use ActivityLogBundle\Entity\Interfaces\StringableInterface;
  *     		"normalization_context"={"groups"={"read"}},
  *     		"denormalization_context"={"groups"={"write"}},
  *         	"openapi_context" = {
- *         		"summary" = "Logboek inzien",
- *         		"description" = "Geeft een array van eerdere versies en wijzigingen van dit ambtenaren object",
+ *         		"summary" = "Logboek",
+ *         		"description" = "Geeft een lijst van eerdere versies en wijzigingen van dit ambtenaren object",
  *          	"consumes" = {
  *              	"application/json",
  *               	"text/html",
