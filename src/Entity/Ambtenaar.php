@@ -42,7 +42,7 @@ use ActivityLogBundle\Entity\Interfaces\StringableInterface;
  *      	"path"="/ambtenaren",
  *  		"openapi_context" = {
  * 				"summary" = "Verzameling",
- *         		"description" = "Haal een verzameling van ambtenaren op",
+ *         		"description" = "Haal een verzameling van ambtenaren op, het is mogelijk om deze resultaten te filteren aan de hand van query parameters. <br><br>Lees meer over het filteren van resulaten onder [filteren](/#section/Filteren).",
  *             	"responses" = {
  *         			"200" = {
  *         				"description" = "Een overzicht van ambtenaren"
@@ -168,7 +168,7 @@ use ActivityLogBundle\Entity\Interfaces\StringableInterface;
  *     		"normalization_context"={"groups"={"read"}},
  *     		"denormalization_context"={"groups"={"herstel"}},
  *         	"openapi_context" = {
- *         		"summary" = "Versie terugdraaien",
+ *         		"summary" = "Herstel",
  *         		"description" = "Herstel een eerdere versie van dit ambtenaren object. Dit is een destructieve actie die niet ongedaan kan worden gemaakt",
  *          	"consumes" = {
  *              	"application/json",
@@ -248,7 +248,7 @@ class Ambtenaar implements StringableInterface
 	public $identificatie;
 	
 	/**
-	 * Het RSIN van de organisatie waartoe dit object behoord. Dit moet een geldig RSIN zijn van 9 nummers en voldoen aan https://nl.wikipedia.org/wiki/Burgerservicenummer#11-proef
+	 * Het RSIN van de organisatie waartoe dit object behoord. Dit moet een geldig RSIN zijn van 9 nummers en voldoen aan https://nl.wikipedia.org/wiki/Burgerservicenummer#11-proef. <br> Het RSIN word bepaald aan de hand van de gauthenticeerde aplicatie en kan niet worden overschreven
 	 *
 	 * @var integer
 	 * @ORM\Column(
@@ -261,7 +261,7 @@ class Ambtenaar implements StringableInterface
 	 *      minMessage = "Het RSIN moet ten minste {{ limit }} karakters lang zijn",
 	 *      maxMessage = "Het RSIN kan niet langer dan {{ limit }} karakters zijn"
 	 * )
-	 * @Groups({"read", "write"})
+	 * @Groups({"read"})
 	 * @ApiProperty(
 	 *     attributes={
 	 *         "openapi_context"={
@@ -270,8 +270,7 @@ class Ambtenaar implements StringableInterface
 	 *             "example"="123456789",
 	 *             "required"="true",
 	 *             "maxLength"=9,
-	 *             "minLength"=8,
-	 *             "description"="Het RSIN van deze organisatie. Dit moet een geldig RSIN zijn van 9 nummers en voldoen aan https://nl.wikipedia.org/wiki/Burgerservicenummer#11-proef"
+	 *             "minLength"=8
 	 *         }
 	 *     }
 	 * )
@@ -555,7 +554,7 @@ class Ambtenaar implements StringableInterface
 	public $wijzigingsdatum;
 	
 	/**
-	 * De contactpersoon voor deze ambtenaar.
+	 * Het contact persoon voor deze ambtenaar
 	 *
 	 * @ORM\Column(
 	 *     type     = "string",
@@ -570,14 +569,24 @@ class Ambtenaar implements StringableInterface
 	 *             "example"="https://ref.tst.vng.cloud/zrc/api/v1/zaken/24524f1c-1c14-4801-9535-22007b8d1b65",
 	 *             "required"="true",
 	 *             "maxLength"=255,
-	 *             "format"="uri",
-	 *             "description"="URL-referentie naar de BRP inschrijving van dit persoon"
+	 *             "format"="uri"
 	 *         }
 	 *     }
 	 * )
 	 * @Gedmo\Versioned
 	 */
 	public $contactPersoon;
+	
+	/**
+	 * De eigenaar (aplicatie) van dit object, wordt bepaald aan de hand van de geathenticeerde applicatie die de ambtenaar heeft aangemaakt
+	 * 
+	 * @var App\Entity\User $eigenaar
+	 *
+     * @Gedmo\Blameable(on="create")
+	 * @ORM\ManyToOne(targetEntity="App\Entity\User")
+	 * @Groups({"read"})
+	 */
+	public $eigenaar;
 	
 	/**
 	 * API Specifieke parameters
@@ -627,38 +636,5 @@ class Ambtenaar implements StringableInterface
 	{
 		return $this->id;
 	}
-	
-	/**
-	 * Koppel een Ambtenaar aan een Product
-	 *
-	 * @param  \App\Entity\Product $product
-	 * @return Order
-	 */
-	public function addProduct(\App\Entity\Product $product)
-	{
-		$this->products[] = $product;
 		
-		return $this;
-	}
-	
-	/**
-	 * Remove Product
-	 *
-	 * @param \App\Entity\Product $product
-	 */
-	public function removeProduct(\App\Entity\Product $product)
-	{
-		$this->products->removeElement($product);
-	}
-	
-	/**
-	 * Haal een lijst met Producten op waar aan de Ambtenaar te koppelen is
-	 *
-	 * @return \Doctrine\Common\Collections\Collection
-	 */
-	public function getProducts()
-	{
-		return $this->products;
-	}
-	
 }

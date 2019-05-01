@@ -35,12 +35,12 @@ use App\Controller\UserController;
  *  @ApiResource(
  *  collectionOperations={
  *  	"get"={
- *  		"normalizationContext"={"groups"={"read"}},
- *  		"denormalizationContext"={"groups"={"write"}},
+ *  		"normalizationContext"={"groups"={"applicatie:lezen"}},
+ *  		"denormalizationContext"={"groups"={"applicatie:schrijven"}},
  *      	"path"="/applicaties",
  *  		"openapi_context" = {
  * 				"summary" = "Verzameling",
- *         		"description" = "Haalt een verzameling van applicaties op",
+ *         		"description" = "Haal een verzameling van applicaties op, het is mogelijk om deze resultaten te filteren aan de hand van query parameters. <br><br>Lees meer over het filteren van resulaten onder [filteren](/#section/Filteren).",
  *             	"responses" = {
  *         			"200" = {
  *         				"description" = "Een overzicht van applicaties"
@@ -58,8 +58,8 @@ use App\Controller\UserController;
  *         "method"="POST",
  *         "path"="/registreer",
  *         "controller"= UserController::class,
- *     	   "normalization_context"={"groups"={"user"}},
- *     	   "denormalization_context"={"groups"={"register"}},
+ *     	   "normalization_context"={"groups"={"applicatie:lezen"}},
+ *     	   "denormalization_context"={"groups"={"applicatie:maken"}},
  *
  *         "openapi_context" = {
  *         		"summary" = "Registreren",
@@ -85,8 +85,8 @@ use App\Controller\UserController;
  *         "method"="POST",
  *         "path"="/login_check",
  *         "controller"= UserController::class,
- *     	   "normalization_context"={"groups"={"login_check"}},
- *     	   "denormalization_context"={"groups"={"login"}}, *
+ *     	   "normalization_context"={"groups"={"applicatie:lezen"}},
+ *     	   "denormalization_context"={"groups"={"applicatie:schrijven"}}, 
  *         "openapi_context" = {
  *         		"summary" = "Login",
  *         		"description" = "Inloggen als applicatie",
@@ -110,8 +110,8 @@ use App\Controller\UserController;
  *  },
  * 	itemOperations={
  *     "get"={
- *  		"normalizationContext"={"groups"={"read"}},
- *  		"denormalizationContext"={"groups"={"write"}},
+ *  		"normalizationContext"={"groups"={"applicatie:lezen"}},
+ *  		"denormalizationContext"={"groups"={"applicatie:schrijven"}},
  *      	"path"="/appplicatie/{id}",
  *  		"openapi_context" = {
  * 				"summary" = "Haal op",
@@ -130,8 +130,8 @@ use App\Controller\UserController;
  *  		}
  *  	},
  *     "put"={
- *  		"normalizationContext"={"groups"={"read"}},
- *  		"denormalizationContext"={"groups"={"write"}},
+ *  		"normalizationContext"={"groups"={"applicatie:lezen"}},
+ *  		"denormalizationContext"={"groups"={"applicatie:schrijven"}},
  *      	"path"="/appplicatie/{id}",
  *  		"openapi_context" = {
  * 				"summary" = "Werk bij",
@@ -153,8 +153,8 @@ use App\Controller\UserController;
  *         	"method"="GET",
  *         	"path"="/appplicatie/{id}/log",
  *          "controller"= UserController::class,
- *     		"normalization_context"={"groups"={"read"}},
- *     		"denormalization_context"={"groups"={"write"}},
+ *     		"normalization_context"={"groups"={"applicatie:lezen"}},
+ *     		"denormalization_context"={"groups"={"applicatie:schrijven"}},
  *         	"openapi_context" = {
  *         		"summary" = "Logboek",
  *         		"description" = "Bekijk de wijzigingen op dit object",
@@ -199,13 +199,13 @@ class User implements UserInterface, StringableInterface
 	 * @ORM\Id
 	 * @ORM\Column(type="integer")
 	 * @ORM\GeneratedValue(strategy="AUTO")
-	 * @Groups({"read"})
+	 * @Groups({"applicatie:lezen"})
 	 */
 	public $id;
 	
 	/**
 	 * @Gedmo\Versioned
-	 * @Groups({"user:write","read","register","login"})
+	 * @Groups({"applicatie:schrijven","applicatie:lezen","applicatie:maken","applicatie:inloggen"})
 	 *
 	 * @ORM\Column(
 	 *     type     = "string",
@@ -240,7 +240,7 @@ class User implements UserInterface, StringableInterface
 	/**
 	 * Een door de organisatie opgegeven sleutel waarmee deze applicatie zich identificeerd bij het ophalen van en JWT token.
 	 * 
-	 * @Groups({"user:write","register","login"})
+	 * @Groups({"applicatie:schrijven","applicatie:maken","applicatie:inloggen"})
 	 * @ORM\Column(type="string", length=500)
 	 * @Assert\Length(
 	 *      min = 5,
@@ -265,7 +265,7 @@ class User implements UserInterface, StringableInterface
 	/**
 	 * De scopes (rechten) die deze applicatie heeft.
 	 *
-	 * @Groups({"user:write","register"})
+	 * @Groups({"applicatie:schrijven","applicatie:maken"})
 	 * @ORM\Column(type="string", length=500)
 	 * @ApiProperty(
 	 *     attributes={
@@ -292,7 +292,7 @@ class User implements UserInterface, StringableInterface
 	 *      minMessage = "Het RSIN moet ten minste {{ limit }} karakters lang zijn",
 	 *      maxMessage = "Het RSIN kan niet langer dan {{ limit }} karakters zijn"
 	 * )
-	 * @Groups({"read", "register"})
+	 * @Groups({"applicatie:lezen", "applicatie:maken"})
 	 * @ApiProperty(
 	 *     attributes={
 	 *         "openapi_context"={
@@ -309,10 +309,10 @@ class User implements UserInterface, StringableInterface
 	public $organisatie;	
 	
 	/**
-	 * @Groups({"user:write","user"})
+	 * @Groups({"applicatie:lezen","applicatie:schrijven"})
 	 * @ORM\Column(name="is_active", type="boolean")
 	 */
-	protected $isActief;
+	public $isActief;
 	
 	/**
 	 * Het tijdstip waarop deze entiteit is aangemaakt
@@ -323,7 +323,7 @@ class User implements UserInterface, StringableInterface
 	 * @ORM\Column(
 	 *     type     = "datetime"
 	 * )
-	 * @Groups({"read"})
+	 * @Groups({"applicatie:lezen"})
 	 */
 	public $registratiedatum;
 	
@@ -337,7 +337,7 @@ class User implements UserInterface, StringableInterface
 	 *     type     = "datetime",
 	 *     nullable	= true
 	 * )
-	 * @Groups({"read"})
+	 * @Groups({"applicatie:lezen"})
 	 */
 	public $wijzigingsdatum;
 	
@@ -348,11 +348,11 @@ class User implements UserInterface, StringableInterface
 	 *     type     = "string",
 	 *     nullable = true
 	 * )
-	 * @Groups({"read", "write"})
+	 * @Groups({"applicatie:lezen", "applicatie:schrijven","applicatie:maken"})
 	 * @ApiProperty(
 	 *     attributes={
 	 *         "openapi_context"={
-	 *             "title"="Contactpersoon",
+	 *             "title"="Ambtenaar",
 	 *             "type"="url",
 	 *             "example"="https://ref.tst.vng.cloud/zrc/api/v1/zaken/24524f1c-1c14-4801-9535-22007b8d1b65",
 	 *             "required"="true",
@@ -373,6 +373,13 @@ class User implements UserInterface, StringableInterface
 	 * De onderstaande parameters worden alleen gebruikt bij api specifieke calls en hebben geen context tot het overige datamodel
 	 */
 	
+	/**
+	 * Username wordt door symfony gebruikt voor de gebruikersnaam maar in de context commonground component api gebruken we hem niet en onderdruken we hem door hem aan geen groupen toe te wijzen
+	 *
+	 * @Groups({"none"})
+	 */
+	private $username;
+		
 	/**
 	 * Een JWT Token waarmee de applicatie zich kan identificeren op de API
 	 * 
