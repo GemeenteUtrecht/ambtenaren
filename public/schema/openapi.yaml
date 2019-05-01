@@ -33,7 +33,7 @@ info:
     
     Daarnaast kunnen de resultaten ook worden gesorteerd, dit gaat aan de hand van de order parameter gevolgd door desc (aflopend) of asc (oplopend). Er kunnen meerdere order paramaters op volgorde van toeppasing worden meegegeven (bijvoorbeeld https://ambtenaren.demo.zaakonline.nl/ambtenaren?order[bronOrganisatie]=desc&order[identificatie]=asc)
     
-    Kijk voor meer details over de mogelijkheden voor filteren en sorteren bij de get (verzamel) endpoint van de entiteit die je wilt ophalen
+    Kijk voor meer details over de mogelijkheden voor filteren en sorteren bij de GET (verzamel) endpoint van de entiteit die je wilt ophalen
     
     # Scopes
     Appllicaties kunnen op deze API alleen wijzigingen uitvoeren waarvoor zij over de juiste rechten(scopes) beschikken, de op deze api verschikbare scopes zijn:
@@ -70,10 +70,10 @@ paths:
   /ambtenaren:
     get:
       summary: Verzameling
-      description: 'Haal een verzameling van ambtenaren op, het is mogelijk om deze resultaten te filteren aan de hand van query parameters. <br><br>Lees meer over het filteren van resulaten onder [filteren](/#section/Filteren).'
+      description: 'Haal een verzameling van Ambtenaren op, het is mogelijk om deze resultaten te filteren aan de hand van query parameters. <br><br>Lees meer over het filteren van resulaten onder [filteren](/#section/Filteren).'
       responses:
         200:
-          description: 'Een overzicht van ambtenaren'
+          description: 'Een overzicht van Ambtenaren'
         400:
           description: 'Ongeldige aanvraag'
         404:
@@ -293,7 +293,7 @@ paths:
   '/ambtenaren/{id}/herstel/{version}':
     post:
       summary: Herstel
-      description: 'Herstel een eerdere versie van dit ambtenaren object. Dit is een destructieve actie die niet ongedaan kan worden gemaakt'
+      description: 'Herstel een eerdere versie van dit Ambtenaren object. Dit is een destructieve actie die niet ongedaan kan worden gemaakt'
       consumes:
         - application/json
         - text/html
@@ -324,7 +324,7 @@ paths:
   '/ambtenaren/{id}/log':
     get:
       summary: Logboek
-      description: 'Geeft een lijst van eerdere versies en wijzigingen van dit ambtenaren object'
+      description: 'Geeft een lijst van eerdere versies en wijzigingen van dit Ambtenaren object'
       consumes:
         - application/json
         - text/html
@@ -340,6 +340,85 @@ paths:
       tags:
         - Ambtenaar
       operationId: logAmbtenaarItem
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+  '/applicatie/{id}':
+    get:
+      summary: 'Haal op'
+      description: 'Haalt een applicatie op'
+      responses:
+        200:
+          description: 'Een overzicht van applicaties'
+        400:
+          description: 'Ongeldige aanvraag'
+        404:
+          description: 'Applocatie niet gevonden'
+      tags:
+        - User
+      operationId: getUserItem
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+    put:
+      summary: 'Werk bij'
+      description: 'Werk een applicatie bij'
+      responses:
+        202:
+          description: 'applicatie bijgewerkt'
+        400:
+          description: 'Ongeldige aanvraag'
+        404:
+          description: 'Applicatie niet gevonden'
+      tags:
+        - User
+      operationId: putUserItem
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/ld+json:
+            schema:
+              $ref: '#/components/schemas/User'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/User'
+        description: 'The updated User resource'
+  '/applicatie/{id}/log':
+    get:
+      summary: Logboek
+      description: 'Bekijk de wijzigingen op dit Applicatie object'
+      consumes:
+        - application/json
+        - text/html
+      produces:
+        - application/json
+      responses:
+        200:
+          description: 'Een overzicht van versies'
+        400:
+          description: 'Ongeldige aanvraag'
+        404:
+          description: 'Applicatie object niet gevonden'
+      tags:
+        - User
+      operationId: logUserItem
       parameters:
         -
           name: id
@@ -438,85 +517,6 @@ paths:
           required: false
           schema:
             type: string
-  '/appplicatie/{id}':
-    get:
-      summary: 'Haal op'
-      description: 'Haalt een applicatie op'
-      responses:
-        200:
-          description: 'Een overzicht van applicaties'
-        400:
-          description: 'Ongeldige aanvraag'
-        404:
-          description: 'Applocatie niet gevonden'
-      tags:
-        - User
-      operationId: getUserItem
-      parameters:
-        -
-          name: id
-          in: path
-          required: true
-          schema:
-            type: string
-    put:
-      summary: 'Werk bij'
-      description: 'Werk een applicatie bij'
-      responses:
-        202:
-          description: 'applicatie bijgewerkt'
-        400:
-          description: 'Ongeldige aanvraag'
-        404:
-          description: 'Applicatie niet gevonden'
-      tags:
-        - User
-      operationId: putUserItem
-      parameters:
-        -
-          name: id
-          in: path
-          required: true
-          schema:
-            type: string
-      requestBody:
-        content:
-          application/ld+json:
-            schema:
-              $ref: '#/components/schemas/User'
-          application/json:
-            schema:
-              $ref: '#/components/schemas/User'
-          text/html:
-            schema:
-              $ref: '#/components/schemas/User'
-        description: 'The updated User resource'
-  '/appplicatie/{id}/log':
-    get:
-      summary: Logboek
-      description: 'Bekijk de wijzigingen op dit object'
-      consumes:
-        - application/json
-        - text/html
-      produces:
-        - application/json
-      responses:
-        200:
-          description: 'Een overzicht van versies'
-        400:
-          description: 'Ongeldige aanvraag'
-        404:
-          description: 'Object niet gevonden'
-      tags:
-        - User
-      operationId: logUserItem
-      parameters:
-        -
-          name: id
-          in: path
-          required: true
-          schema:
-            type: string
   /login_check:
     post:
       summary: Login
@@ -587,7 +587,7 @@ components:
         identificatie:
           type: string
           example: 6a36c2c4-213e-4348-a467-dfa3a30f64aa
-          description: 'De unieke identificatie van dit object binnen de organisatie die dit object heeft gecreeerd. <br /><b>Schema:</b> <a href="https://schema.org/identifier">https://schema.org/identifier</a>'
+          description: 'De unieke identificatie van dit Ambtenaren object binnen de organisatie die dit Ambtenaren object heeft gecreeerd. <br /><b>Schema:</b> <a href="https://schema.org/identifier">https://schema.org/identifier</a>'
           maxLength: 40
         bronOrganisatie:
           title: bronOrganisatie
@@ -596,7 +596,7 @@ components:
           required: 'true'
           maxLength: 9
           minLength: 8
-          description: 'Het RSIN van de organisatie waartoe dit object behoord. Dit moet een geldig RSIN zijn van 9 nummers en voldoen aan https://nl.wikipedia.org/wiki/Burgerservicenummer#11-proef. <br> Het RSIN word bepaald aan de hand van de gauthenticeerde aplicatie en kan niet worden overschreven'
+          description: 'Het RSIN van de organisatie waartoe deze Ambtenaar behoord. Dit moet een geldig RSIN zijn van 9 nummers en voldoen aan https://nl.wikipedia.org/wiki/Burgerservicenummer#11-proef. <br> Het RSIN word bepaald aan de hand van de gauthenticeerde aplicatie en kan niet worden overschreven'
         afbeelding:
           title: BRP
           type: url
@@ -638,11 +638,11 @@ components:
           description: 'De taal waarin de informatie van deze Ambtenaar is opgesteld <br /><b>Schema:</b> <a href="https://www.ietf.org/rfc/rfc3066.txt">https://www.ietf.org/rfc/rfc3066.txt</a>'
           type: string
         registratiedatum:
-          description: 'Het tijdstip waarop deze entiteit is aangemaakt'
+          description: 'Het tijdstip waarop dit Ambtenaren object is aangemaakt'
           type: string
           format: date-time
         wijzigingsdatum:
-          description: 'Het tijdstip waarop deze entiteit voor het laatst is gewijzigd.'
+          description: 'Het tijdstip waarop dit Ambtenaren object voor het laatst is gewijzigd.'
           type: string
           format: date-time
         contactPersoon:
@@ -687,7 +687,7 @@ components:
         identificatie:
           type: string
           example: 6a36c2c4-213e-4348-a467-dfa3a30f64aa
-          description: 'De unieke identificatie van dit object binnen de organisatie die dit object heeft gecreeerd. <br /><b>Schema:</b> <a href="https://schema.org/identifier">https://schema.org/identifier</a>'
+          description: 'De unieke identificatie van dit Ambtenaren object binnen de organisatie die dit Ambtenaren object heeft gecreeerd. <br /><b>Schema:</b> <a href="https://schema.org/identifier">https://schema.org/identifier</a>'
           maxLength: 40
         bronOrganisatie:
           title: bronOrganisatie
@@ -696,7 +696,7 @@ components:
           required: 'true'
           maxLength: 9
           minLength: 8
-          description: 'Het RSIN van de organisatie waartoe dit object behoord. Dit moet een geldig RSIN zijn van 9 nummers en voldoen aan https://nl.wikipedia.org/wiki/Burgerservicenummer#11-proef. <br> Het RSIN word bepaald aan de hand van de gauthenticeerde aplicatie en kan niet worden overschreven'
+          description: 'Het RSIN van de organisatie waartoe deze Ambtenaar behoord. Dit moet een geldig RSIN zijn van 9 nummers en voldoen aan https://nl.wikipedia.org/wiki/Burgerservicenummer#11-proef. <br> Het RSIN word bepaald aan de hand van de gauthenticeerde aplicatie en kan niet worden overschreven'
         afbeelding:
           title: BRP
           type: url
@@ -738,11 +738,11 @@ components:
           description: 'De taal waarin de informatie van deze Ambtenaar is opgesteld <br /><b>Schema:</b> <a href="https://www.ietf.org/rfc/rfc3066.txt">https://www.ietf.org/rfc/rfc3066.txt</a>'
           type: string
         registratiedatum:
-          description: 'Het tijdstip waarop deze entiteit is aangemaakt'
+          description: 'Het tijdstip waarop dit Ambtenaren object is aangemaakt'
           type: string
           format: date-time
         wijzigingsdatum:
-          description: 'Het tijdstip waarop deze entiteit voor het laatst is gewijzigd.'
+          description: 'Het tijdstip waarop dit Ambtenaren object voor het laatst is gewijzigd.'
           type: string
           format: date-time
         contactPersoon:
@@ -792,11 +792,11 @@ components:
         isActief:
           type: boolean
         registratiedatum:
-          description: 'Het tijdstip waarop deze entiteit is aangemaakt'
+          description: 'Het tijdstip waarop deze Applicatie is aangemaakt'
           type: string
           format: date-time
         wijzigingsdatum:
-          description: 'Het tijdstip waarop deze entiteit voor het laatst is gewijzigd.'
+          description: 'Het tijdstip waarop deze Applicatie voor het laatst is gewijzigd.'
           type: string
           format: date-time
         contactPersoon:
@@ -842,11 +842,11 @@ components:
         isActief:
           type: boolean
         registratiedatum:
-          description: 'Het tijdstip waarop deze entiteit is aangemaakt'
+          description: 'Het tijdstip waarop deze Applicatie is aangemaakt'
           type: string
           format: date-time
         wijzigingsdatum:
-          description: 'Het tijdstip waarop deze entiteit voor het laatst is gewijzigd.'
+          description: 'Het tijdstip waarop deze Applicatie voor het laatst is gewijzigd.'
           type: string
           format: date-time
         contactPersoon:
