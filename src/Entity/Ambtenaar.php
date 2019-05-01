@@ -147,7 +147,7 @@ use ActivityLogBundle\Entity\Interfaces\StringableInterface;
  * )
  * @ApiFilter(DateFilter::class, properties={"registratiedatum","wijzigingsdatum"})
  * @ApiFilter(OrderFilter::class, properties={"id", "identificatie","bronOrganisatie"}, arguments={"orderParameterName"="order"})
- * @ApiFilter(SearchFilter::class, properties={"id": "exact","identificatie": "exact","bronOrganisatie": "exact")
+ * @ApiFilter(SearchFilter::class, properties={"id": "exact","identificatie": "exact","bronOrganisatie": "exact"})
  */
 
 class Ambtenaar implements StringableInterface

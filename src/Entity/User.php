@@ -159,9 +159,9 @@ use App\Controller\UserController;
  * )
  * @ApiFilter(DateFilter::class, properties={"registratiedatum","wijzigingsdatum"})
  * @ApiFilter(OrderFilter::class, properties={"id", "identificatie","bronOrganisatie"}, arguments={"orderParameterName"="order"})
- * @ApiFilter(SearchFilter::class, properties={"id": "exact","naam": "partial","bronOrganisatie": "exact")
+ * @ApiFilter(SearchFilter::class, properties={"id": "exact","naam": "partial","bronOrganisatie": "exact"})
  */
-class Applicatie implements UserInterface, StringableInterface
+class User implements UserInterface, StringableInterface
 {
 	/**
 	 * @ORM\Id
@@ -349,7 +349,7 @@ class Applicatie implements UserInterface, StringableInterface
 	 * 	   iri="https://schema.org/accessCode",
 	 *     attributes={
 	 *         "openapi_context"={
-	 *             "description"="The security token, that needs to be set on the Authorization header, prefixed with with Bearer and a space (e.g.Authorization: Bearer [TOKEN]) in order to identify a request as being made by a specific user"
+	 *             "description"="The security token, that needs to be set on the Authorization header, prefixed with with Bearer and a space (e.g.Authorization: Bearer [TOKEN]) in order to identify a request as being made by a specific user",
 	 *             "type"="string",
 	 *             "maxLength"=800,
 	 *             "minLength"=850,
@@ -368,7 +368,7 @@ class Applicatie implements UserInterface, StringableInterface
 	 * 	   iri="https://schema.org/accessCode",
 	 *     attributes={
 	 *         "openapi_context"={
-	 *             "description"="The refresh token, can be used on the token refresh action"
+	 *             "description"="The refresh token, can be used on the token refresh action",
 	 *             "type"="string",
 	 *             "maxLength"=100,
 	 *             "minLength"=130,
