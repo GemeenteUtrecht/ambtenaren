@@ -346,8 +346,10 @@ class Ambtenaar implements StringableInterface
 	 * @Groups({"read", "write"})
 	 * @ApiProperty(
 	 * 	   iri="http://schema.org/name",	 
-     *     attributes={
+     *     openapi_context={
      *         "swagger_context"={
+	 *             "minLength"=5,
+	 *             "maxLength"=255,
      *             "type"="string",
      *             "example"="John"
      *         }
@@ -372,6 +374,7 @@ class Ambtenaar implements StringableInterface
 	 * 	   iri="http://schema.org/name",
 	 *     attributes={
 	 *         "openapi_context"={
+	 *             "maxLength"=255,
 	 *             "type"="string",
 	 *             "example"="van der"
 	 *         }
@@ -400,7 +403,7 @@ class Ambtenaar implements StringableInterface
 	 * @ApiProperty(
 	 * 	   iri="http://schema.org/name",
 	 *     attributes={
-	 *         "swagger_context"={
+	 *         "openapi_context"={
 	 *             "minLength"=5,
 	 *             "maxLength"=255,
 	 *             "type"="string",
@@ -429,7 +432,7 @@ class Ambtenaar implements StringableInterface
 	 * @Groups({"read", "write"})
      * @ApiProperty(
      *     attributes={
-     *         "swagger_context"={
+     *         "openapi_context"={
      *             "type"="string",
      *             "enum"={"Dhr.", "Mvr."},
      *             "example"="Dhr."
@@ -460,7 +463,7 @@ class Ambtenaar implements StringableInterface
 	 * @ApiProperty(
 	 * 	  iri="https://schema.org/description",
 	 *     attributes={
-	 *         "swagger_context"={
+	 *         "openapi_context"={
 	 *             "type"="string",
 	 *             "minLength"=25,
 	 *             "maxLength"=2000,
@@ -492,7 +495,7 @@ class Ambtenaar implements StringableInterface
 	 * @ApiProperty(
 	 * 	  iri="https://schema.org/description",	 
      *     attributes={
-     *         "swagger_context"={
+     *         "openapi_context"={
      *             "type"="string",
 	 *             "minLength"=25,
 	 *             "maxLength"=2000,

@@ -33,7 +33,7 @@ info:
     
     Daarnaast kunnen de resultaten ook worden gesorteerd, dit gaat aan de hand van de order parameter gevolgd door desc (aflopend) of asc (oplopend). Er kunnen meerdere order paramaters op volgorde van toeppasing worden meegegeven (bijvoorbeeld https://ambtenaren.demo.zaakonline.nl/ambtenaren?order[bronOrganisatie]=desc&order[identificatie]=asc)
     
-    Kijk voor meer details over de mogelijkheden voor filteren en sorteren bij de get (verzamel) endpoint van de entiteit die je wilt ophalen
+    Kijk voor meer details over de mogelijkheden voor filteren en sorteren bij de GET (verzamel) endpoint van de entiteit die je wilt ophalen
     
     # Scopes
     Appllicaties kunnen op deze API alleen wijzigingen uitvoeren waarvoor zij over de juiste rechten(scopes) beschikken, de op deze api verschikbare scopes zijn:
@@ -363,6 +363,108 @@ paths:
       operationId: getUserCollection
       parameters:
         -
+          name: id
+          in: query
+          required: false
+          schema:
+            type: integer
+        -
+          name: 'id[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: integer
+          style: form
+          explode: true
+        -
+          name: naam
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: organisatie
+          in: query
+          required: false
+          schema:
+            type: integer
+        -
+          name: 'organisatie[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: integer
+          style: form
+          explode: true
+        -
+          name: contactPersoon
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'contactPersoon[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+          style: form
+          explode: true
+        -
+          name: 'order[id]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'order[naam]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'order[organisatie]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'order[isActief]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'order[registratiedatum]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'order[wijzigingsdatum]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'order[contactPersoon]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: isActief
+          in: query
+          required: false
+          schema:
+            type: boolean
+        -
           name: 'registratiedatum[before]'
           in: query
           required: false
@@ -406,34 +508,6 @@ paths:
             type: string
         -
           name: 'wijzigingsdatum[strictly_after]'
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: 'order[id]'
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: id
-          in: query
-          required: false
-          schema:
-            type: integer
-        -
-          name: 'id[]'
-          in: query
-          required: false
-          schema:
-            type: array
-            items:
-              type: integer
-          style: form
-          explode: true
-        -
-          name: naam
           in: query
           required: false
           schema:
@@ -538,13 +612,13 @@ paths:
         content:
           application/ld+json:
             schema:
-              $ref: '#/components/schemas/User-applicatie:schrijven'
+              $ref: '#/components/schemas/User-applicatie:inloggen'
           application/json:
             schema:
-              $ref: '#/components/schemas/User-applicatie:schrijven'
+              $ref: '#/components/schemas/User-applicatie:inloggen'
           text/html:
             schema:
-              $ref: '#/components/schemas/User-applicatie:schrijven'
+              $ref: '#/components/schemas/User-applicatie:inloggen'
         description: 'The new User resource'
   /registreer:
     post:
@@ -768,10 +842,10 @@ components:
         id:
           type: integer
         naam:
-          type: email
+          type: naam
           maxLength: 255
           minLength: 8
-          example: john@do.nl
+          example: mijn-applicatie
         sleutel:
           type: string
           maxLength: 16
@@ -781,7 +855,7 @@ components:
         scopes:
           type: array
           example: '[]'
-          description: 'De scopes (rechten) die deze applicatie heeft.'
+          description: 'De scopes (rechten) die deze applicatie heeft. Zie [scopes](/#section/Scopes) voor meer informatie.'
         organisatie:
           type: string
           example: '123456789'
@@ -790,6 +864,7 @@ components:
           minLength: 8
           description: 'Het RSIN van de organisatie waartoe deze applicatie behoord. Dit moet een geldig RSIN zijn van 9 nummers en voldoen aan https://nl.wikipedia.org/wiki/Burgerservicenummer#11-proef.'
         isActief:
+          description: 'Word gebruikt om aan te geven of deze aplicatie actief is (en mag inloggen) of dat deze slechts wordt gebruikt voor archief doeleinden'
           type: boolean
         registratiedatum:
           description: 'Het tijdstip waarop deze entiteit is aangemaakt'
@@ -821,6 +896,21 @@ components:
           readOnly: true
         roles:
           readOnly: true
+    'User-applicatie:inloggen':
+      type: object
+      description: 'Een applicatie die is geidentificeerd en geautoriceerd om namens een organisatie wijzigingen uit te voeren'
+      properties:
+        naam:
+          type: naam
+          maxLength: 255
+          minLength: 8
+          example: mijn-applicatie
+        sleutel:
+          type: string
+          maxLength: 16
+          minLength: 5
+          example: NietZoGeheim
+          description: 'Een door de organisatie opgegeven sleutel waarmee deze applicatie zich identificeerd bij het ophalen van en JWT token.'
     'User-applicatie:lezen':
       type: object
       description: 'Een applicatie die is geidentificeerd en geautoriceerd om namens een organisatie wijzigingen uit te voeren'
@@ -828,10 +918,10 @@ components:
         id:
           type: integer
         naam:
-          type: email
+          type: naam
           maxLength: 255
           minLength: 8
-          example: john@do.nl
+          example: mijn-applicatie
         organisatie:
           type: string
           example: '123456789'
@@ -840,6 +930,7 @@ components:
           minLength: 8
           description: 'Het RSIN van de organisatie waartoe deze applicatie behoord. Dit moet een geldig RSIN zijn van 9 nummers en voldoen aan https://nl.wikipedia.org/wiki/Burgerservicenummer#11-proef.'
         isActief:
+          description: 'Word gebruikt om aan te geven of deze aplicatie actief is (en mag inloggen) of dat deze slechts wordt gebruikt voor archief doeleinden'
           type: boolean
         registratiedatum:
           description: 'Het tijdstip waarop deze entiteit is aangemaakt'
@@ -862,10 +953,10 @@ components:
       description: 'Een applicatie die is geidentificeerd en geautoriceerd om namens een organisatie wijzigingen uit te voeren'
       properties:
         naam:
-          type: email
+          type: naam
           maxLength: 255
           minLength: 8
-          example: john@do.nl
+          example: mijn-applicatie
         sleutel:
           type: string
           maxLength: 16
@@ -875,7 +966,7 @@ components:
         scopes:
           type: array
           example: '[]'
-          description: 'De scopes (rechten) die deze applicatie heeft.'
+          description: 'De scopes (rechten) die deze applicatie heeft. Zie [scopes](/#section/Scopes) voor meer informatie.'
         organisatie:
           type: string
           example: '123456789'
@@ -883,35 +974,6 @@ components:
           maxLength: 9
           minLength: 8
           description: 'Het RSIN van de organisatie waartoe deze applicatie behoord. Dit moet een geldig RSIN zijn van 9 nummers en voldoen aan https://nl.wikipedia.org/wiki/Burgerservicenummer#11-proef.'
-        contactPersoon:
-          title: Ambtenaar
-          type: url
-          example: 'https://ref.tst.vng.cloud/zrc/api/v1/zaken/24524f1c-1c14-4801-9535-22007b8d1b65'
-          required: 'true'
-          maxLength: 255
-          format: uri
-          description: 'De contactpersoon voor deze applicatie, die bijvoorbeeld word verwittigd bij misbruik.'
-    'User-applicatie:schrijven':
-      type: object
-      description: 'Een applicatie die is geidentificeerd en geautoriceerd om namens een organisatie wijzigingen uit te voeren'
-      properties:
-        naam:
-          type: email
-          maxLength: 255
-          minLength: 8
-          example: john@do.nl
-        sleutel:
-          type: string
-          maxLength: 16
-          minLength: 5
-          example: NietZoGeheim
-          description: 'Een door de organisatie opgegeven sleutel waarmee deze applicatie zich identificeerd bij het ophalen van en JWT token.'
-        scopes:
-          type: array
-          example: '[]'
-          description: 'De scopes (rechten) die deze applicatie heeft.'
-        isActief:
-          type: boolean
         contactPersoon:
           title: Ambtenaar
           type: url
