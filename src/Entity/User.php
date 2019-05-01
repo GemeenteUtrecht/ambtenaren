@@ -19,6 +19,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use ActivityLogBundle\Entity\Interfaces\StringableInterface;
 
 use App\Controller\UserController;
+
 /**
  * Een applicatie die is geidentificeerd en geautoriceerd om namens een organisatie wijzigingen uit te voeren
  *
@@ -36,20 +37,33 @@ use App\Controller\UserController;
  *  	"get"={
  *  		"normalizationContext"={"groups"={"read"}},
  *  		"denormalizationContext"={"groups"={"write"}},
- *      	"path"="/users",
+ *      	"path"="/applicaties",
  *  		"openapi_context" = {
+ * 				"summary" = "Verzameling",
+ *         		"description" = "Haalt een verzameling van applicaties op",
+ *             	"responses" = {
+ *         			"200" = {
+ *         				"description" = "Een overzicht van applicaties"
+ *         			},	
+ *         			"400" = {
+ *         				"description" = "Ongeldige aanvraag"
+ *         			},
+ *         			"404" = {
+ *         				"description" = "Applicaties niet gevonden"
+ *         			}
+ *            	}            
  *  		}
  *  	},
  *     "register"={
  *         "method"="POST",
- *         "path"="/register",
+ *         "path"="/registreer",
  *         "controller"= UserController::class,
  *     	   "normalization_context"={"groups"={"user"}},
  *     	   "denormalization_context"={"groups"={"register"}},
  *
  *         "openapi_context" = {
- *         		"summary" = "Register a new user",
- *         		"description" = "Register a new user ",
+ *         		"summary" = "Registreren",
+ *         		"description" = "Registreer een nieuwe applicatie voor dit component",
  *          	"consumes" = {
  *              	"application/json",
  *               	"text/html",
@@ -59,7 +73,7 @@ use App\Controller\UserController;
  *            	},
  *             	"responses" = {
  *         			"201" = {
- *         				"description" = "User created"
+ *         				"description" = "Applicatie aangemaakt"
  *         			},
  *         			"400" = {
  *         				"description" = "Ongeldige aanvraag"
@@ -72,11 +86,10 @@ use App\Controller\UserController;
  *         "path"="/login_check",
  *         "controller"= UserController::class,
  *     	   "normalization_context"={"groups"={"login_check"}},
- *     	   "denormalization_context"={"groups"={"login"}},
- *
+ *     	   "denormalization_context"={"groups"={"login"}}, *
  *         "openapi_context" = {
  *         		"summary" = "Login",
- *         		"description" = "Log in a user",
+ *         		"description" = "Inloggen als applicatie",
  *          	"consumes" = {
  *              	"application/json",
  *               	"text/html",
@@ -86,10 +99,10 @@ use App\Controller\UserController;
  *            	},
  *             	"responses" = {
  *         			"200" = {
- *         				"description" = "User loged in"
+ *         				"description" = "Applicatie succesvol ingeloged"
  *         			},
  *         			"401" = {
- *         				"description" = "User not loged in"
+ *         				"description" = "Applicatie niet ingeloged"
  *         			}
  *            	}
  *         }
@@ -101,6 +114,19 @@ use App\Controller\UserController;
  *  		"denormalizationContext"={"groups"={"write"}},
  *      	"path"="/appplicatie/{id}",
  *  		"openapi_context" = {
+ * 				"summary" = "Haal op",
+ *         		"description" = "Haalt een applicatie op",
+ *             	"responses" = {
+ *         			"200" = {
+ *         				"description" = "Een overzicht van ambtenaren"
+ *         			},	
+ *         			"400" = {
+ *         				"description" = "Ongeldige aanvraag"
+ *         			},
+ *         			"404" = {
+ *         				"description" = "Applocatie niet gevonden"
+ *         			}
+ *            	}            
  *  		}
  *  	},
  *     "put"={
@@ -108,13 +134,19 @@ use App\Controller\UserController;
  *  		"denormalizationContext"={"groups"={"write"}},
  *      	"path"="/appplicatie/{id}",
  *  		"openapi_context" = {
- *  		}
- *  	},
- *     "delete"={
- *  		"normalizationContext"={"groups"={"read"}},
- *  		"denormalizationContext"={"groups"={"write"}},
- *      	"path"="/appplicatie/{id}",
- *  		"openapi_context" = {
+ * 				"summary" = "Werk bij",
+ *         		"description" = "Werk een applicatie bij",
+ *             	"responses" = {
+ *         			"202" = {
+ *         				"description" = "applicatie bijgewerkt"
+ *         			},	
+ *         			"400" = {
+ *         				"description" = "Ongeldige aanvraag"
+ *         			},
+ *         			"404" = {
+ *         				"description" = "Applicatie niet gevonden"
+ *         			}
+ *            	}            
  *  		}
  *  	},
  *     "log"={
@@ -124,8 +156,8 @@ use App\Controller\UserController;
  *     		"normalization_context"={"groups"={"read"}},
  *     		"denormalization_context"={"groups"={"write"}},
  *         	"openapi_context" = {
- *         		"summary" = "Log",
- *         		"description" = "View the changelog for this object",
+ *         		"summary" = "Logboek",
+ *         		"description" = "Bekijk de wijzigingen op dit object",
  *          	"consumes" = {
  *              	"application/json",
  *               	"text/html",
@@ -141,7 +173,7 @@ use App\Controller\UserController;
  *         				"description" = "Ongeldige aanvraag"
  *         			},
  *         			"404" = {
- *         				"description" = "Huwelijk of aanvraag niet gevonden"
+ *         				"description" = "Object niet gevonden"
  *         			}
  *            	}
  *         }
@@ -260,7 +292,7 @@ class User implements UserInterface, StringableInterface
 	 *      minMessage = "Het RSIN moet ten minste {{ limit }} karakters lang zijn",
 	 *      maxMessage = "Het RSIN kan niet langer dan {{ limit }} karakters zijn"
 	 * )
-	 * @Groups({"read", "write"})
+	 * @Groups({"read", "register"})
 	 * @ApiProperty(
 	 *     attributes={
 	 *         "openapi_context"={
@@ -377,7 +409,25 @@ class User implements UserInterface, StringableInterface
 	 *     }
 	 * )
 	 */
-	private $refresh_token;	
+	private $refresh_token;		
+	
+	/**
+	 * Het versie nummer van een eerdere versie die moet worden hersted (e.g. de huidige versie overschrijft)
+	 *
+	 * @Groups({"herstel"})
+	 * @ApiProperty(
+	 * 	   iri="https://schema.org/identifier",
+	 *     attributes={
+	 *         "openapi_context"={
+	 *            "type"="integer",
+	 *             "maxLength"=1,
+	 *             "minLength"=255,
+	 *             "example"="1"
+	 *         }
+	 *     }
+	 * )
+	 */
+	private $versie;
 	
 	/**
 	 * @return string

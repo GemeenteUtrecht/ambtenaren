@@ -29,7 +29,7 @@ info:
     <security-definitions />
     
   version: 0.0.1
-  title: 'Agenda API'
+  title: 'Ambtenaren API'
   termsOfService: 'http://www.zaakonline.nl/terms/'
   contact:
     name: 'API Support'
@@ -45,28 +45,16 @@ paths:
   /ambtenaren:
     get:
       summary: 'Haalt een verzameling van ambtenaren op'
+      responses:
+        200:
+          description: 'Een overzicht van ambtenaren'
+        400:
+          description: 'Ongeldige aanvraag'
+        404:
+          description: 'Ambtenaren niet gevonden'
       tags:
         - Ambtenaar
       operationId: getAmbtenaarCollection
-      responses:
-        200:
-          description: 'Ambtenaar collection response'
-          content:
-            application/ld+json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Ambtenaar'
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Ambtenaar'
-            text/html:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Ambtenaar'
       parameters:
         -
           name: 'registratiedatum[before]'
@@ -184,32 +172,14 @@ paths:
           explode: true
     post:
       summary: 'Maak een ambtenaar aan'
+      responses:
+        200:
+          description: 'Ambtenaar aangemaakt'
+        400:
+          description: 'Ongeldige aanvraag'
       tags:
         - Ambtenaar
       operationId: postAmbtenaarCollection
-      responses:
-        201:
-          description: 'Ambtenaar resource created'
-          content:
-            application/ld+json:
-              schema:
-                $ref: '#/components/schemas/Ambtenaar'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Ambtenaar'
-            text/html:
-              schema:
-                $ref: '#/components/schemas/Ambtenaar'
-          links:
-            GetAmbtenaarItem:
-              parameters:
-                id: '$response.body#/id'
-              operationId: getAmbtenaarItem
-              description: 'The `id` value returned in the response can be used as the `id` parameter in `GET /ambtenaren/{id}`.'
-        400:
-          description: 'Invalid input'
-        404:
-          description: 'Resource not found'
       requestBody:
         content:
           application/ld+json:
@@ -225,6 +195,13 @@ paths:
   '/ambtenaren/{id}':
     get:
       summary: 'Haalt een specifieke ambtenaar op'
+      responses:
+        200:
+          description: 'Een specifieke ambtenaar'
+        400:
+          description: 'Ongeldige aanvraag'
+        404:
+          description: 'Ambtenaren niet gevonden'
       tags:
         - Ambtenaar
       operationId: getAmbtenaarItem
@@ -235,23 +212,15 @@ paths:
           required: true
           schema:
             type: string
-      responses:
-        200:
-          description: 'Ambtenaar resource response'
-          content:
-            application/ld+json:
-              schema:
-                $ref: '#/components/schemas/Ambtenaar'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Ambtenaar'
-            text/html:
-              schema:
-                $ref: '#/components/schemas/Ambtenaar'
-        404:
-          description: 'Resource not found'
     put:
       summary: 'Vervang een specifieke ambtenaar'
+      responses:
+        200:
+          description: 'Ambtenaar bijgewerkt'
+        400:
+          description: 'Ongeldige aanvraag'
+        404:
+          description: 'Ambtenaar niet gevonden'
       tags:
         - Ambtenaar
       operationId: putAmbtenaarItem
@@ -262,23 +231,6 @@ paths:
           required: true
           schema:
             type: string
-      responses:
-        200:
-          description: 'Ambtenaar resource updated'
-          content:
-            application/ld+json:
-              schema:
-                $ref: '#/components/schemas/Ambtenaar'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Ambtenaar'
-            text/html:
-              schema:
-                $ref: '#/components/schemas/Ambtenaar'
-        400:
-          description: 'Invalid input'
-        404:
-          description: 'Resource not found'
       requestBody:
         content:
           application/ld+json:
@@ -292,15 +244,16 @@ paths:
               $ref: '#/components/schemas/Ambtenaar'
         description: 'The updated Ambtenaar resource'
     delete:
-      summary: 'Verwijder een specifieke ambtenaar'
+      summary: Verwijder
+      description: 'Verwijder een specifieke ambtenaar'
+      responses:
+        204:
+          description: 'Ambtenaar niet verwijderd'
+        404:
+          description: 'Ambtenaar niet gevonden'
       tags:
         - Ambtenaar
       operationId: deleteAmbtenaarItem
-      responses:
-        204:
-          description: 'Ambtenaar resource deleted'
-        404:
-          description: 'Resource not found'
       parameters:
         -
           name: id
@@ -308,6 +261,37 @@ paths:
           required: true
           schema:
             type: string
+  '/ambtenaren/{id}/herstel/{version}':
+    post:
+      summary: 'Versie terugdraaien'
+      description: 'Herstel een eerdere versie van dit ambtenaren object. Dit is een destructieve actie die niet ongedaan kan worden gemaakt'
+      consumes:
+        - application/json
+        - text/html
+      produces:
+        - application/json
+      responses:
+        202:
+          description: 'Teruggedraaid naar eerdere versie'
+        400:
+          description: 'Ongeldige aanvraag'
+        404:
+          description: 'Ambtenaar niet gevonden'
+      tags:
+        - Ambtenaar
+      operationId: revertAmbtenaarItem
+      requestBody:
+        content:
+          application/ld+json:
+            schema:
+              $ref: '#/components/schemas/Ambtenaar-herstel'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Ambtenaar-herstel'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Ambtenaar-herstel'
+        description: 'The new Ambtenaar resource'
   '/ambtenaren/{id}/log':
     get:
       summary: 'Logboek inzien'
@@ -334,232 +318,20 @@ paths:
           required: true
           schema:
             type: string
-  '/ambtenaren/{id}/revert/{version}':
-    post:
-      summary: 'Versie terugdraaien'
-      description: 'Herstel een eerdere versie van dit ambtenaren object. Dit is een destructieve actie die niet ongedaan kan worden gemaakt'
-      consumes:
-        - application/json
-        - text/html
-      produces:
-        - application/json
+  /applicaties:
+    get:
+      summary: Verzameling
+      description: 'Haalt een verzameling van applicaties op'
       responses:
-        202:
-          description: 'Teruggedraaid naar eerdere versie'
+        200:
+          description: 'Een overzicht van applicaties'
         400:
           description: 'Ongeldige aanvraag'
         404:
-          description: 'Ambtenaar niet gevonden'
-      tags:
-        - Ambtenaar
-      operationId: revertAmbtenaarItem
-      requestBody:
-        content:
-          application/ld+json:
-            schema:
-              $ref: '#/components/schemas/Ambtenaar-write'
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Ambtenaar-write'
-          text/html:
-            schema:
-              $ref: '#/components/schemas/Ambtenaar-write'
-        description: 'The new Ambtenaar resource'
-  '/appplicatie/{id}':
-    get:
-      tags:
-        - User
-      operationId: getUserItem
-      summary: 'Retrieves a User resource.'
-      parameters:
-        -
-          name: id
-          in: path
-          required: true
-          schema:
-            type: string
-      responses:
-        200:
-          description: 'User resource response'
-          content:
-            application/ld+json:
-              schema:
-                $ref: '#/components/schemas/User'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/User'
-            text/html:
-              schema:
-                $ref: '#/components/schemas/User'
-        404:
-          description: 'Resource not found'
-    put:
-      tags:
-        - User
-      operationId: putUserItem
-      summary: 'Replaces the User resource.'
-      parameters:
-        -
-          name: id
-          in: path
-          required: true
-          schema:
-            type: string
-      responses:
-        200:
-          description: 'User resource updated'
-          content:
-            application/ld+json:
-              schema:
-                $ref: '#/components/schemas/User'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/User'
-            text/html:
-              schema:
-                $ref: '#/components/schemas/User'
-        400:
-          description: 'Invalid input'
-        404:
-          description: 'Resource not found'
-      requestBody:
-        content:
-          application/ld+json:
-            schema:
-              $ref: '#/components/schemas/User'
-          application/json:
-            schema:
-              $ref: '#/components/schemas/User'
-          text/html:
-            schema:
-              $ref: '#/components/schemas/User'
-        description: 'The updated User resource'
-    delete:
-      tags:
-        - User
-      operationId: deleteUserItem
-      summary: 'Removes the User resource.'
-      responses:
-        204:
-          description: 'User resource deleted'
-        404:
-          description: 'Resource not found'
-      parameters:
-        -
-          name: id
-          in: path
-          required: true
-          schema:
-            type: string
-  '/appplicatie/{id}/log':
-    get:
-      summary: Log
-      description: 'View the changelog for this object'
-      consumes:
-        - application/json
-        - text/html
-      produces:
-        - application/json
-      responses:
-        200:
-          description: 'Een overzicht van versies'
-        400:
-          description: 'Ongeldige aanvraag'
-        404:
-          description: 'Huwelijk of aanvraag niet gevonden'
-      tags:
-        - User
-      operationId: logUserItem
-      parameters:
-        -
-          name: id
-          in: path
-          required: true
-          schema:
-            type: string
-  /login_check:
-    post:
-      summary: Login
-      description: 'Log in a user'
-      consumes:
-        - application/json
-        - text/html
-      produces:
-        - application/json
-      responses:
-        200:
-          description: 'User loged in'
-        401:
-          description: 'User not loged in'
-      tags:
-        - User
-      operationId: loginUserCollection
-      requestBody:
-        content:
-          application/ld+json:
-            schema:
-              $ref: '#/components/schemas/User-login'
-          application/json:
-            schema:
-              $ref: '#/components/schemas/User-login'
-          text/html:
-            schema:
-              $ref: '#/components/schemas/User-login'
-        description: 'The new User resource'
-  /register:
-    post:
-      summary: 'Register a new user'
-      description: 'Register a new user '
-      consumes:
-        - application/json
-        - text/html
-      produces:
-        - application/json
-      responses:
-        201:
-          description: 'User created'
-        400:
-          description: 'Ongeldige aanvraag'
-      tags:
-        - User
-      operationId: registerUserCollection
-      requestBody:
-        content:
-          application/ld+json:
-            schema:
-              $ref: '#/components/schemas/User-register'
-          application/json:
-            schema:
-              $ref: '#/components/schemas/User-register'
-          text/html:
-            schema:
-              $ref: '#/components/schemas/User-register'
-        description: 'The new User resource'
-  /users:
-    get:
+          description: 'Applicaties niet gevonden'
       tags:
         - User
       operationId: getUserCollection
-      summary: 'Retrieves the collection of User resources.'
-      responses:
-        200:
-          description: 'User collection response'
-          content:
-            application/ld+json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/User'
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/User'
-            text/html:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/User'
       parameters:
         -
           name: 'registratiedatum[before]'
@@ -637,6 +409,143 @@ paths:
           required: false
           schema:
             type: string
+  '/appplicatie/{id}':
+    get:
+      summary: 'Haal op'
+      description: 'Haalt een applicatie op'
+      responses:
+        200:
+          description: 'Een overzicht van ambtenaren'
+        400:
+          description: 'Ongeldige aanvraag'
+        404:
+          description: 'Applocatie niet gevonden'
+      tags:
+        - User
+      operationId: getUserItem
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+    put:
+      summary: 'Werk bij'
+      description: 'Werk een applicatie bij'
+      responses:
+        202:
+          description: 'applicatie bijgewerkt'
+        400:
+          description: 'Ongeldige aanvraag'
+        404:
+          description: 'Applicatie niet gevonden'
+      tags:
+        - User
+      operationId: putUserItem
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/ld+json:
+            schema:
+              $ref: '#/components/schemas/User'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/User'
+        description: 'The updated User resource'
+  '/appplicatie/{id}/log':
+    get:
+      summary: Logboek
+      description: 'Bekijk de wijzigingen op dit object'
+      consumes:
+        - application/json
+        - text/html
+      produces:
+        - application/json
+      responses:
+        200:
+          description: 'Een overzicht van versies'
+        400:
+          description: 'Ongeldige aanvraag'
+        404:
+          description: 'Object niet gevonden'
+      tags:
+        - User
+      operationId: logUserItem
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+  /login_check:
+    post:
+      summary: Login
+      description: 'Inloggen als applicatie'
+      consumes:
+        - application/json
+        - text/html
+      produces:
+        - application/json
+      responses:
+        200:
+          description: 'Applicatie succesvol ingeloged'
+        401:
+          description: 'Applicatie niet ingeloged'
+      tags:
+        - User
+      operationId: loginUserCollection
+      requestBody:
+        content:
+          application/ld+json:
+            schema:
+              $ref: '#/components/schemas/User-login'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User-login'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/User-login'
+        description: 'The new User resource'
+  /registreer:
+    post:
+      summary: Registreren
+      description: 'Registreer een nieuwe applicatie voor dit component'
+      consumes:
+        - application/json
+        - text/html
+      produces:
+        - application/json
+      responses:
+        201:
+          description: 'Appilicatue aangemaakt'
+        400:
+          description: 'Ongeldige aanvraag'
+      tags:
+        - User
+      operationId: registerUserCollection
+      requestBody:
+        content:
+          application/ld+json:
+            schema:
+              $ref: '#/components/schemas/User-register'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User-register'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/User-register'
+        description: 'The new User resource'
 security:
   -
     apiKey: []
@@ -732,6 +641,17 @@ components:
         - geslachtsnaam
         - samenvatting
         - beschrijving
+    Ambtenaar-herstel:
+      type: object
+      description: Ambtenaar
+      properties:
+        versie:
+          type: integer
+          maxLength: 1
+          minLength: 255
+          example: '1'
+          readOnly: true
+          description: 'Het versie nummer van een eerdere versie die moet worden hersted (e.g. de huidige versie overschrijft)'
     Ambtenaar-read:
       type: object
       description: Ambtenaar
@@ -801,80 +721,6 @@ components:
           description: 'Het tijdstip waarop deze entiteit voor het laatst is gewijzigd.'
           type: string
           format: date-time
-        contactPersoon:
-          title: Contactpersoon
-          type: url
-          example: 'https://ref.tst.vng.cloud/zrc/api/v1/zaken/24524f1c-1c14-4801-9535-22007b8d1b65'
-          required: 'true'
-          maxLength: 255
-          format: uri
-          description: 'De contactpersoon voor deze ambtenaar.'
-      required:
-        - voornamen
-        - geslachtsnaam
-        - samenvatting
-        - beschrijving
-    Ambtenaar-write:
-      type: object
-      description: Ambtenaar
-      properties:
-        id:
-          readOnly: true
-          description: 'Het identificatie nummer van deze Ambtenaar <br /><b>Schema:</b> <a href="https://schema.org/identifier">https://schema.org/identifier</a>'
-          type: integer
-        identificatie:
-          type: string
-          example: 6a36c2c4-213e-4348-a467-dfa3a30f64aa
-          description: 'De unieke identificatie van dit object binnen de organisatie die dit object heeft gecreeerd. <br /><b>Schema:</b> <a href="https://schema.org/identifier">https://schema.org/identifier</a>'
-          maxLength: 40
-        bronOrganisatie:
-          title: bronOrganisatie
-          type: string
-          example: '123456789'
-          required: 'true'
-          maxLength: 9
-          minLength: 8
-          description: 'Het RSIN van de organisatie waartoe dit object behoord. Dit moet een geldig RSIN zijn van 9 nummers en voldoen aan https://nl.wikipedia.org/wiki/Burgerservicenummer#11-proef'
-        afbeelding:
-          title: BRP
-          type: url
-          example: 'https://ref.tst.vng.cloud/zrc/api/v1/zaken/24524f1c-1c14-4801-9535-22007b8d1b65'
-          required: 'true'
-          maxLength: 255
-          format: uri
-          description: 'URL-referentie naar het afbeeldings document.'
-        film:
-          title: BRP
-          type: url
-          example: 'https://ref.tst.vng.cloud/zrc/api/v1/zaken/24524f1c-1c14-4801-9535-22007b8d1b65'
-          required: 'true'
-          maxLength: 255
-          format: uri
-          description: 'URL-referentie naar het film document'
-        voornamen:
-          description: 'De naam van deze Ambtenaar <br /><b>Schema:</b> <a href="https://schema.org/givenName">https://schema.org/givenName</a>a>'
-          type: string
-        voorvoegselGeslachtsnaam:
-          type: string
-          example: 'van der'
-          description: 'Voorvoegsel van de achternaam <br /><b>Schema:</b> <a href="https://schema.org/givenName">https://schema.org/givenName</a>'
-        geslachtsnaam:
-          description: 'De achternaam van deze Ambtenaar <br /><b>Schema:</b> <a href="https://schema.org/familyName">https://schema.org/familyName</a>'
-          type: string
-        aanhef:
-          description: |
-            *
-            De aanhef van deze Ambtenaar <br /> Moet altijd Dhr. of Mvr. zijn.
-          type: string
-        samenvatting:
-          description: 'Een samenvattende tekst over deze ambtenaar  <br /><b>Schema:</b> <a href="https://schema.org/description">https://schema.org/description</a>'
-          type: string
-        beschrijving:
-          description: 'Een beschrijvende tekst over deze Ambtenaar  <br /><b>Schema:</b> <a href="https://schema.org/description">https://schema.org/description</a>'
-          type: string
-        taal:
-          description: 'De taal waarin de informatie van deze Ambtenaar is opgesteld <br /><b>Schema:</b> <a href="https://www.ietf.org/rfc/rfc3066.txt">https://www.ietf.org/rfc/rfc3066.txt</a>'
-          type: string
         contactPersoon:
           title: Contactpersoon
           type: url
@@ -1031,6 +877,13 @@ components:
           type: array
           example: '[]'
           description: 'De scopes (rechten) die deze applicatie heeft.'
+        organisatie:
+          type: string
+          example: '123456789'
+          required: 'true'
+          maxLength: 9
+          minLength: 8
+          description: 'Het RSIN van de organisatie waartoe deze applicatie behoord. Dit moet een geldig RSIN zijn van 9 nummers en voldoen aan https://nl.wikipedia.org/wiki/Burgerservicenummer#11-proef.'
     User-user:
       type: object
       description: 'Een applicatie die is geidentificeerd en geautoriceerd om namens een organisatie wijzigingen uit te voeren'
@@ -1061,11 +914,14 @@ tags:
     name: Ambtenaar
     description: 'De ambtenaar is de actor binnen de gemeente die zaken behandeld.'
   -
-    name: Organisatie
-    description: 'De Organisatie wordt gebruikt om standaard configuraties in te regelen.'
+    name: User
+    description: 'De fictieve gebruiker die door de apllicatie wordt gebruikt voor wijzigingen.'
 x-tagGroups:
   -
     name: Ambtenaar
     tags:
       - Ambtenaar
-      - Organisatie
+  -
+    name: Applicatie
+    tags:
+      - User
