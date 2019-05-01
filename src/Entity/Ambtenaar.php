@@ -37,6 +37,7 @@ use ActivityLogBundle\Entity\Interfaces\StringableInterface;
  *  		"denormalizationContext"={"groups"={"write"}},
  *      	"path"="/ambtenaren",
  *  		"openapi_context" = {
+ * 				"summary" = "Haalt een verzameling van ambtenaren op"
  *  		}
  *  	},
  *  	"post"={
@@ -44,6 +45,7 @@ use ActivityLogBundle\Entity\Interfaces\StringableInterface;
  *  		"denormalizationContext"={"groups"={"write"}},
  *      	"path"="/ambtenaren",
  *  		"openapi_context" = {
+ * 					"summary" = "Maak een ambtenaar aan"
  *  		}
  *  	}
  *  },
@@ -53,6 +55,7 @@ use ActivityLogBundle\Entity\Interfaces\StringableInterface;
  *  		"denormalizationContext"={"groups"={"write"}},
  *      	"path"="/ambtenaren/{id}",
  *  		"openapi_context" = {
+ * 				"summary" = "Haalt een specifieke ambtenaar op"
  *  		}
  *  	},
  *     "put"={
@@ -60,6 +63,7 @@ use ActivityLogBundle\Entity\Interfaces\StringableInterface;
  *  		"denormalizationContext"={"groups"={"write"}},
  *      	"path"="/ambtenaren/{id}",
  *  		"openapi_context" = {
+ * 				"summary" = "Vervang een specifieke ambtenaar"
  *  		}
  *  	},
  *     "delete"={
@@ -67,6 +71,7 @@ use ActivityLogBundle\Entity\Interfaces\StringableInterface;
  *  		"denormalizationContext"={"groups"={"write"}},
  *      	"path"="/ambtenaren/{id}",
  *  		"openapi_context" = {
+ * 				"summary" = "Verwijder een specifieke ambtenaar"
  *  		}
  *  	},
  *     "log"={
@@ -77,7 +82,7 @@ use ActivityLogBundle\Entity\Interfaces\StringableInterface;
  *     		"denormalization_context"={"groups"={"write"}},
  *         	"openapi_context" = {
  *         		"summary" = "Logboek inzien",
- *         		"description" = "Geeft een array van eerdere versies en wijzigingen van dit object",
+ *         		"description" = "Geeft een array van eerdere versies en wijzigingen van dit ambtenaren object",
  *          	"consumes" = {
  *              	"application/json",
  *               	"text/html",
@@ -93,7 +98,7 @@ use ActivityLogBundle\Entity\Interfaces\StringableInterface;
  *         				"description" = "Ongeldige aanvraag"
  *         			},
  *         			"404" = {
- *         				"description" = "Huwelijk of aanvraag niet gevonden"
+ *         				"description" = "Ambtenaar niet gevonden"
  *         			}
  *            	}            
  *         }
@@ -105,8 +110,8 @@ use ActivityLogBundle\Entity\Interfaces\StringableInterface;
  *     		"normalization_context"={"groups"={"read"}},
  *     		"denormalization_context"={"groups"={"write"}},
  *         	"openapi_context" = {
- *         		"summary" = "Versie terugdraaid",
- *         		"description" = "Herstel een eerdere versie van dit object. Dit is een destructieve actie die niet ongedaan kan worden gemaakt",
+ *         		"summary" = "Versie terugdraaien",
+ *         		"description" = "Herstel een eerdere versie van dit ambtenaren object. Dit is een destructieve actie die niet ongedaan kan worden gemaakt",
  *          	"consumes" = {
  *              	"application/json",
  *               	"text/html",
@@ -122,7 +127,7 @@ use ActivityLogBundle\Entity\Interfaces\StringableInterface;
  *         				"description" = "Ongeldige aanvraag"
  *         			},
  *         			"404" = {
- *         				"description" = "Huwelijk of aanvraag niet gevonden"
+ *         				"description" = "Ambtenaar niet gevonden"
  *         			}
  *            	}            
  *         }
@@ -182,7 +187,7 @@ class Ambtenaar implements StringableInterface
 	public $identificatie;
 
 	/**
-	 * Het Huwelijk waartoe deze partner behoort.
+	 * De organisatie waartoe deze Ambtenaar behoort.
 	 *
 	 * @var \App\Entity\Organisatie
 	 * @ORM\ManyToOne(targetEntity="\App\Entity\Organisatie", cascade={"persist", "remove"}, inversedBy="ambtenaren")
@@ -295,7 +300,7 @@ class Ambtenaar implements StringableInterface
 	public $voorvoegselGeslachtsnaam;
 	
 	/**
-	 * De naam van deze Ambtenaar <br /><b>Schema:</b> <a href="https://schema.org/familyName">https://schema.org/familyName</a>
+	 * De achternaam van deze Ambtenaar <br /><b>Schema:</b> <a href="https://schema.org/familyName">https://schema.org/familyName</a>
 	 *
 	 * @var string
 	 *
@@ -354,7 +359,7 @@ class Ambtenaar implements StringableInterface
 	public $aanhef;
 	
 	/**
-	 * Een samenvattende tekst over deze locatie  <br /><b>Schema:</b> <a href="https://schema.org/description">https://schema.org/description</a>
+	 * Een samenvattende tekst over deze ambtenaar  <br /><b>Schema:</b> <a href="https://schema.org/description">https://schema.org/description</a>
 	 *
 	 * @var string
 	 *
@@ -386,7 +391,7 @@ class Ambtenaar implements StringableInterface
 	public $samenvatting;
 		
 	/**
-	 * Een beschrijvende tekst over deze ambtenaar  <br /><b>Schema:</b> <a href="https://schema.org/description">https://schema.org/description</a>
+	 * Een beschrijvende tekst over deze Ambtenaar  <br /><b>Schema:</b> <a href="https://schema.org/description">https://schema.org/description</a>
 	 *
 	 * @var string
 	 *
@@ -418,7 +423,7 @@ class Ambtenaar implements StringableInterface
 	public $beschrijving;
 		
 	/**
-	 * De taal waarin de informatie van deze locatie is opgesteld <br /><b>Schema:</b> <a href="https://www.ietf.org/rfc/rfc3066.txt">https://www.ietf.org/rfc/rfc3066.txt</a>
+	 * De taal waarin de informatie van deze Ambtenaar is opgesteld <br /><b>Schema:</b> <a href="https://www.ietf.org/rfc/rfc3066.txt">https://www.ietf.org/rfc/rfc3066.txt</a>
 	 *
 	 * @var string Een Unicode language identifier, ofwel RFC 3066 taalcode.
 	 *
@@ -518,7 +523,7 @@ class Ambtenaar implements StringableInterface
 	}
 	
 	/**
-	 * Add Product
+	 * Koppel een Ambtenaar aan een Product
 	 *
 	 * @param  \App\Entity\Product $product
 	 * @return Order
@@ -541,7 +546,7 @@ class Ambtenaar implements StringableInterface
 	}
 	
 	/**
-	 * Get Product
+	 * Haal een lijst met Producten op waar aan de Ambtenaar te koppelen is
 	 *
 	 * @return \Doctrine\Common\Collections\Collection
 	 */
