@@ -118,7 +118,7 @@ use App\Controller\UserController;
  *         		"description" = "Haalt een applicatie op",
  *             	"responses" = {
  *         			"200" = {
- *         				"description" = "Een overzicht van ambtenaren"
+ *         				"description" = "Een overzicht van applicaties"
  *         			},	
  *         			"400" = {
  *         				"description" = "Ongeldige aanvraag"

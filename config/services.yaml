@@ -60,7 +60,7 @@ parameters:
             - name: Ambtenaar
               description: "De ambtenaar is de actor binnen de gemeente die zaken behandeld."
             - name: User
-              description: "De fictieve gebruiker die door de apllicatie wordt gebruikt voor wijzigingen."  
+              description: "Een applicatie die door een organisatie wordt gebruikt voor wijzigingen."  
             # - name: User
             #   description: "Een gebruiker, of in dit geval een applicatie gebonden aan een JWT token behorende tot een organisatie."
             #   Grouping the endopoint  
