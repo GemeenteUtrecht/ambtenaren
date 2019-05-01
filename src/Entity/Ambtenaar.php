@@ -7,6 +7,9 @@ use Doctrine\Common\Collections\ArrayCollection;
 use ApiPlatform\Core\Annotation\ApiProperty;
 use ApiPlatform\Core\Annotation\ApiResource;
 use ApiPlatform\Core\Annotation\ApiSubresource;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\DateFilter;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\OrderFilter;
 use Symfony\Component\Validator\Constraints as Assert;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Serializer\Annotation\Groups;
@@ -141,6 +144,9 @@ use ActivityLogBundle\Entity\Interfaces\StringableInterface;
  *     fields={"identificatie", "bronOrganisatie"},
  *     message="De identificatie dient uniek te zijn voor de bronOrganisatie"
  * )
+ * @ApiFilter(DateFilter::class, properties={"registratiedatum","wijzigingsdatum"})
+ * @ApiFilter(OrderFilter::class, properties={"id", "identificatie","bronOrganisatie"}, arguments={"orderParameterName"="order"})
+ * @ApiFilter(SearchFilter::class, properties={"id": "exact","identificatie": "exact","bronOrganisatie": "exact")
  */
 
 class Ambtenaar implements StringableInterface
@@ -169,7 +175,7 @@ class Ambtenaar implements StringableInterface
 	 * )
 	 * @Assert\Length(
 	 *      max = 40,
-	 *      maxMessage = "Het RSIN kan niet langer dan {{ limit }} karakters zijn"
+	 *      maxMessage = "Het UUID kan niet langer dan {{ limit }} karakters zijn"
 	 * )
 	 * @Groups({"read", "write"})
 	 * @ApiProperty(
@@ -185,16 +191,37 @@ class Ambtenaar implements StringableInterface
 	 * @Gedmo\Versioned
 	 */
 	public $identificatie;
-
+	
 	/**
-	 * De organisatie waartoe deze Ambtenaar behoort.
+	 * Het RSIN van de organisatie waartoe dit object behoord. Dit moet een geldig RSIN zijn van 9 nummers en voldoen aan https://nl.wikipedia.org/wiki/Burgerservicenummer#11-proef
 	 *
-	 * @var \App\Entity\Organisatie
-	 * @ORM\ManyToOne(targetEntity="\App\Entity\Organisatie", cascade={"persist", "remove"}, inversedBy="ambtenaren")
-	 * @ORM\JoinColumn(referencedColumnName="id")
-	 *
+	 * @var integer
+	 * @ORM\Column(
+	 *     type     = "integer",
+	 *     length   = 9
+	 * )
+	 * @Assert\Length(
+	 *      min = 8,
+	 *      max = 9,
+	 *      minMessage = "Het RSIN moet ten minste {{ limit }} karakters lang zijn",
+	 *      maxMessage = "Het RSIN kan niet langer dan {{ limit }} karakters zijn"
+	 * )
+	 * @Groups({"read", "write"})
+	 * @ApiProperty(
+	 *     attributes={
+	 *         "openapi_context"={
+	 *             "title"="bronOrganisatie",
+	 *             "type"="string",
+	 *             "example"="123456789",
+	 *             "required"="true",
+	 *             "maxLength"=9,
+	 *             "minLength"=8,
+	 *             "description"="Het RSIN van deze organisatie. Dit moet een geldig RSIN zijn van 9 nummers en voldoen aan https://nl.wikipedia.org/wiki/Burgerservicenummer#11-proef"
+	 *         }
+	 *     }
+	 * )
 	 */
-	public $bronOrganisatie;
+	public $bronOrganisatie;	
 	
 	/**
 	 * URL-referentie naar het afbeeldings document.
