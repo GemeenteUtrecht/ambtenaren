@@ -187,7 +187,7 @@ class Ambtenaar implements StringableInterface
 	public $identificatie;
 
 	/**
-	 * Het Huwelijk waartoe deze partner behoort.
+	 * De organisatie waartoe deze Ambtenaar behoort.
 	 *
 	 * @var \App\Entity\Organisatie
 	 * @ORM\ManyToOne(targetEntity="\App\Entity\Organisatie", cascade={"persist", "remove"}, inversedBy="ambtenaren")
@@ -300,7 +300,7 @@ class Ambtenaar implements StringableInterface
 	public $voorvoegselGeslachtsnaam;
 	
 	/**
-	 * De naam van deze Ambtenaar <br /><b>Schema:</b> <a href="https://schema.org/familyName">https://schema.org/familyName</a>
+	 * De achternaam van deze Ambtenaar <br /><b>Schema:</b> <a href="https://schema.org/familyName">https://schema.org/familyName</a>
 	 *
 	 * @var string
 	 *
@@ -359,7 +359,7 @@ class Ambtenaar implements StringableInterface
 	public $aanhef;
 	
 	/**
-	 * Een samenvattende tekst over deze locatie  <br /><b>Schema:</b> <a href="https://schema.org/description">https://schema.org/description</a>
+	 * Een samenvattende tekst over deze ambtenaar  <br /><b>Schema:</b> <a href="https://schema.org/description">https://schema.org/description</a>
 	 *
 	 * @var string
 	 *
@@ -391,7 +391,7 @@ class Ambtenaar implements StringableInterface
 	public $samenvatting;
 		
 	/**
-	 * Een beschrijvende tekst over deze ambtenaar  <br /><b>Schema:</b> <a href="https://schema.org/description">https://schema.org/description</a>
+	 * Een beschrijvende tekst over deze Ambtenaar  <br /><b>Schema:</b> <a href="https://schema.org/description">https://schema.org/description</a>
 	 *
 	 * @var string
 	 *
@@ -423,7 +423,7 @@ class Ambtenaar implements StringableInterface
 	public $beschrijving;
 		
 	/**
-	 * De taal waarin de informatie van deze locatie is opgesteld <br /><b>Schema:</b> <a href="https://www.ietf.org/rfc/rfc3066.txt">https://www.ietf.org/rfc/rfc3066.txt</a>
+	 * De taal waarin de informatie van deze Ambtenaar is opgesteld <br /><b>Schema:</b> <a href="https://www.ietf.org/rfc/rfc3066.txt">https://www.ietf.org/rfc/rfc3066.txt</a>
 	 *
 	 * @var string Een Unicode language identifier, ofwel RFC 3066 taalcode.
 	 *

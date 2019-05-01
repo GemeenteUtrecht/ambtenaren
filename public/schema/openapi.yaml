@@ -1,7 +1,7 @@
 openapi: 3.0.2
 info:
   description: |
-    Welkom inovator! 
+    Welkom inovator! <br>
     Fijn dat je de tijd en moeite hebt genomen om je te verdiepen in dit component. 
     
     # Introductie                
@@ -209,7 +209,7 @@ paths:
         400:
           description: 'Ongeldige aanvraag'
         404:
-          description: 'Huwelijk of aanvraag niet gevonden'
+          description: 'Ambtenaar niet gevonden'
       tags:
         - Ambtenaar
       operationId: logAmbtenaarItem
@@ -235,7 +235,7 @@ paths:
         400:
           description: 'Ongeldige aanvraag'
         404:
-          description: 'Huwelijk of aanvraag niet gevonden'
+          description: 'Ambtenaar niet gevonden'
       tags:
         - Ambtenaar
       operationId: revertAmbtenaarItem
@@ -253,10 +253,10 @@ paths:
         description: 'The new Ambtenaar resource'
   /organisaties:
     get:
+      summary: 'Haal een verzameling van organisatie resources op'
       tags:
         - Organisatie
       operationId: getOrganisatieCollection
-      summary: 'Retrieves the collection of Organisatie resources.'
       responses:
         200:
           description: 'Organisatie collection response'
@@ -278,10 +278,10 @@ paths:
                   $ref: '#/components/schemas/Organisatie'
       parameters: []
     post:
+      summary: 'Maak een organisatie resource aan'
       tags:
         - Organisatie
       operationId: postOrganisatieCollection
-      summary: 'Creates a Organisatie resource.'
       responses:
         201:
           description: 'Organisatie resource created'
@@ -319,10 +319,10 @@ paths:
         description: 'The new Organisatie resource'
   '/organisaties/{id}':
     get:
+      summary: 'Haal een specifieke organisatie resource op'
       tags:
         - Organisatie
       operationId: getOrganisatieItem
-      summary: 'Retrieves a Organisatie resource.'
       parameters:
         -
           name: id
@@ -346,10 +346,10 @@ paths:
         404:
           description: 'Resource not found'
     put:
+      summary: 'Vervang een specifieke organisatie resource'
       tags:
         - Organisatie
       operationId: putOrganisatieItem
-      summary: 'Replaces the Organisatie resource.'
       parameters:
         -
           name: id
@@ -387,10 +387,10 @@ paths:
               $ref: '#/components/schemas/Organisatie'
         description: 'The updated Organisatie resource'
     delete:
+      summary: 'Verwijder een specifieke organisatie resource'
       tags:
         - Organisatie
       operationId: deleteOrganisatieItem
-      summary: 'Removes the Organisatie resource.'
       responses:
         204:
           description: 'Organisatie resource deleted'
@@ -431,7 +431,7 @@ paths:
             type: string
   '/organisaties/{id}/revert/{version}':
     post:
-      summary: 'Versie terugdraaid'
+      summary: 'Versie terugdraaien'
       description: 'Herstel een eerdere versie van dit object. Dit is een destructieve actie die niet ongedaan kan worden gemaakt'
       consumes:
         - application/json
@@ -627,7 +627,7 @@ components:
           description: 'De unieke identificatie van dit object binnen de organisatie die dit object heeft gecreeerd. <br /><b>Schema:</b> <a href="https://schema.org/identifier">https://schema.org/identifier</a>'
           maxLength: 40
         bronOrganisatie:
-          description: 'Het Huwelijk waartoe deze partner behoort.'
+          description: 'De organisatie waartoe deze Ambtenaar behoort.'
           type: string
         afbeelding:
           title: BRP
@@ -661,13 +661,13 @@ components:
             De aanhef van deze Ambtenaar <br /> Moet altijd Dhr. of Mvr. zijn.
           type: string
         samenvatting:
-          description: 'Een samenvattende tekst over deze locatie  <br /><b>Schema:</b> <a href="https://schema.org/description">https://schema.org/description</a>'
+          description: 'Een samenvattende tekst over deze ambtenaar  <br /><b>Schema:</b> <a href="https://schema.org/description">https://schema.org/description</a>'
           type: string
         beschrijving:
           description: 'Een beschrijvende tekst over deze ambtenaar  <br /><b>Schema:</b> <a href="https://schema.org/description">https://schema.org/description</a>'
           type: string
         taal:
-          description: 'De taal waarin de informatie van deze locatie is opgesteld <br /><b>Schema:</b> <a href="https://www.ietf.org/rfc/rfc3066.txt">https://www.ietf.org/rfc/rfc3066.txt</a>'
+          description: 'De taal waarin de informatie van deze Ambtenaar is opgesteld <br /><b>Schema:</b> <a href="https://www.ietf.org/rfc/rfc3066.txt">https://www.ietf.org/rfc/rfc3066.txt</a>'
           type: string
         registratiedatum:
           description: 'Het tijdstip waarop deze entiteit is aangemaakt'
@@ -747,13 +747,13 @@ components:
             De aanhef van deze Ambtenaar <br /> Moet altijd Dhr. of Mvr. zijn.
           type: string
         samenvatting:
-          description: 'Een samenvattende tekst over deze locatie  <br /><b>Schema:</b> <a href="https://schema.org/description">https://schema.org/description</a>'
+          description: 'Een samenvattende tekst over deze ambtenaar  <br /><b>Schema:</b> <a href="https://schema.org/description">https://schema.org/description</a>'
           type: string
         beschrijving:
           description: 'Een beschrijvende tekst over deze ambtenaar  <br /><b>Schema:</b> <a href="https://schema.org/description">https://schema.org/description</a>'
           type: string
         taal:
-          description: 'De taal waarin de informatie van deze locatie is opgesteld <br /><b>Schema:</b> <a href="https://www.ietf.org/rfc/rfc3066.txt">https://www.ietf.org/rfc/rfc3066.txt</a>'
+          description: 'De taal waarin de informatie van deze Ambtenaar is opgesteld <br /><b>Schema:</b> <a href="https://www.ietf.org/rfc/rfc3066.txt">https://www.ietf.org/rfc/rfc3066.txt</a>'
           type: string
         registratiedatum:
           description: 'Het tijdstip waarop deze entiteit is aangemaakt'
@@ -821,13 +821,13 @@ components:
             De aanhef van deze Ambtenaar <br /> Moet altijd Dhr. of Mvr. zijn.
           type: string
         samenvatting:
-          description: 'Een samenvattende tekst over deze locatie  <br /><b>Schema:</b> <a href="https://schema.org/description">https://schema.org/description</a>'
+          description: 'Een samenvattende tekst over deze ambtenaar  <br /><b>Schema:</b> <a href="https://schema.org/description">https://schema.org/description</a>'
           type: string
         beschrijving:
           description: 'Een beschrijvende tekst over deze ambtenaar  <br /><b>Schema:</b> <a href="https://schema.org/description">https://schema.org/description</a>'
           type: string
         taal:
-          description: 'De taal waarin de informatie van deze locatie is opgesteld <br /><b>Schema:</b> <a href="https://www.ietf.org/rfc/rfc3066.txt">https://www.ietf.org/rfc/rfc3066.txt</a>'
+          description: 'De taal waarin de informatie van deze Ambtenaar is opgesteld <br /><b>Schema:</b> <a href="https://www.ietf.org/rfc/rfc3066.txt">https://www.ietf.org/rfc/rfc3066.txt</a>'
           type: string
         contactPersoon:
           title: Contactpersoon
@@ -898,7 +898,7 @@ components:
           maxLength: 255
           minLength: 8
           example: john@do.nl
-          description: 'Het email addres van deze organisatie <br /><b>Schema:</b> <a href="https://schema.org/email">https://schema.org/email</a>'
+          description: 'Het emailadres van deze organisatie <br /><b>Schema:</b> <a href="https://schema.org/email">https://schema.org/email</a>'
         telefoonnummer:
           type: string
           maxLength: 255
@@ -981,7 +981,7 @@ components:
           maxLength: 255
           minLength: 8
           example: john@do.nl
-          description: 'Het email addres van deze organisatie <br /><b>Schema:</b> <a href="https://schema.org/email">https://schema.org/email</a>'
+          description: 'Het emailadres van deze organisatie <br /><b>Schema:</b> <a href="https://schema.org/email">https://schema.org/email</a>'
         telefoonnummer:
           type: string
           maxLength: 255
@@ -1054,7 +1054,7 @@ components:
           maxLength: 255
           minLength: 8
           example: john@do.nl
-          description: 'Het email addres van deze organisatie <br /><b>Schema:</b> <a href="https://schema.org/email">https://schema.org/email</a>'
+          description: 'Het emailadres van deze organisatie <br /><b>Schema:</b> <a href="https://schema.org/email">https://schema.org/email</a>'
         telefoonnummer:
           type: string
           maxLength: 255
@@ -1073,13 +1073,13 @@ components:
         - beschrijving
     'User-user_user:read':
       type: object
-      description: 'A user, as unique signed in individual who might be a member of an organisation.'
+      description: 'Een user of applicatie is een unique geidentificeerde entiteit wat een onderdeel van een organisatie kan zijn.'
       properties:
         fullname:
           type: string
     'User-user_user:write':
       type: object
-      description: 'A user, as unique signed in individual who might be a member of an organisation.'
+      description: 'Een user of applicatie is een unique geidentificeerde entiteit wat een onderdeel van een organisatie kan zijn.'
       properties:
         fullname:
           type: string
@@ -1101,8 +1101,12 @@ tags:
   -
     name: Ambtenaar
     description: 'De ambtenaar is de actor binnen de gemeente die zaken behandeld.'
+  -
+    name: Organisatie
+    description: 'De Organisatie wordt gebruikt om standaard configuraties in te regelen.'
 x-tagGroups:
   -
     name: Ambtenaar
     tags:
       - Ambtenaar
+      - Organisatie
