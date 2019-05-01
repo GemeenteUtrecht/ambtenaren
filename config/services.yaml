@@ -8,7 +8,7 @@ parameters:
 
     api_documentation:
         servers:
-        -   url: //agenda.zaakonline.nl/
+        -   url: //ambtenaren.zaakonline.nl/
             description: Sandbox server
         info:
             description: |
@@ -22,17 +22,17 @@ parameters:
                 Om het voor alle partijen zo makkelijk mogenlijk te maken bieden we zo veel mogenlijk informatie openbaar aan over dit component.  
                 - [datamodel als pdf](/schema/datamodel.pdf)
                 - [datamodel als mwb](/schema/datamodel.mwb)
-                - [codebase op github](https://github.com/GemeenteUtrecht/agenda)
-                - [codebase als zip](https://github.com/GemeenteUtrecht/agenda/archive/conduction.zip)
-                - [docker container](https://cloud.docker.com/u/huwelijksplanner/repository/docker/huwelijksplanneragenda-php)
-                - [online demo](http://agenda.demo.zaakonline.nl/)
+                - [codebase op github](https://github.com/GemeenteUtrecht/ambtenaren)
+                - [codebase als zip](https://github.com/GemeenteUtrecht/ambtenaren/archive/master.zip)
+                - [docker container](https://hub.docker.com/r/huwelijksplanner/ambtenaren-component)
+                - [online demo](http://ambtenaren.demo.zaakonline.nl/)
 
                 # OpenAPI Specification, Cross-Origin Resource Sharing en linked Data
                 Deze API is gedocumenteerd in het **OpenAPI format** 
                 De API bevat Cross-Origin Resource Sharing (CORS) en is geimplementeerd volgen de [W3C spec](https://www.w3.org/TR/cors/) standaarden. De API staat cross-domain communicatie van de browser toe. Alle responses hebben een "wildcard same-origin" dit maakt ze volledig publiekelijk en toegankelijk voor iedereen. Dat geld voor elke code op elke site.
                 
                 # Authenticatie
-                De agenda heeft twee vormen van authenticatie:
+                Het ambtenaren component heeft twee vormen van authenticatie:
                   - API Key
                   - OAuth2
                 OAuth2 - is een open protocol wat veilige autorisatie regelt op een simpele en gestandaardiseerde manier voor het web, mobiele en desktop applicaties.
@@ -40,7 +40,7 @@ parameters:
                 <security-definitions />
 
             version: 0.0.1
-            title: 'Agenda API'
+            title: 'Ambtenaren API'
             termsOfService: 'http://www.zaakonline.nl/terms/'
             contact:
                 name: API Support
