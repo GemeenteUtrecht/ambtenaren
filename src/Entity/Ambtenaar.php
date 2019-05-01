@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use ApiPlatform\Core\Annotation\ApiFilter;
 use ApiPlatform\Core\Annotation\ApiProperty;
 use ApiPlatform\Core\Annotation\ApiResource;
 use ApiPlatform\Core\Annotation\ApiSubresource;
@@ -40,7 +41,18 @@ use ActivityLogBundle\Entity\Interfaces\StringableInterface;
  *  		"denormalizationContext"={"groups"={"write"}},
  *      	"path"="/ambtenaren",
  *  		"openapi_context" = {
- * 				"summary" = "Haalt een verzameling van ambtenaren op"
+ * 				"summary" = "Haalt een verzameling van ambtenaren op",
+ *             	"responses" = {
+ *         			"200" = {
+ *         				"description" = "Een overzicht van ambtenaren"
+ *         			},	
+ *         			"400" = {
+ *         				"description" = "Ongeldige aanvraag"
+ *         			},
+ *         			"404" = {
+ *         				"description" = "Ambtenaren niet gevonden"
+ *         			}
+ *            	}            
  *  		}
  *  	},
  *  	"post"={
@@ -48,7 +60,15 @@ use ActivityLogBundle\Entity\Interfaces\StringableInterface;
  *  		"denormalizationContext"={"groups"={"write"}},
  *      	"path"="/ambtenaren",
  *  		"openapi_context" = {
- * 					"summary" = "Maak een ambtenaar aan"
+ * 				"summary" = "Maak een ambtenaar aan",
+ *             	"responses" = {
+ *         			"200" = {
+ *         				"description" = "Ambtenaar aangemaakt"
+ *         			},	
+ *         			"400" = {
+ *         				"description" = "Ongeldige aanvraag"
+ *         			}
+ *            	}            
  *  		}
  *  	}
  *  },
@@ -58,7 +78,18 @@ use ActivityLogBundle\Entity\Interfaces\StringableInterface;
  *  		"denormalizationContext"={"groups"={"write"}},
  *      	"path"="/ambtenaren/{id}",
  *  		"openapi_context" = {
- * 				"summary" = "Haalt een specifieke ambtenaar op"
+ * 				"summary" = "Haalt een specifieke ambtenaar op",
+ *             	"responses" = {
+ *         			"200" = {
+ *         				"description" = "Een specifieke ambtenaar"
+ *         			},	
+ *         			"400" = {
+ *         				"description" = "Ongeldige aanvraag"
+ *         			},
+ *         			"404" = {
+ *         				"description" = "Ambtenaren niet gevonden"
+ *         			}
+ *            	}            
  *  		}
  *  	},
  *     "put"={
@@ -66,7 +97,18 @@ use ActivityLogBundle\Entity\Interfaces\StringableInterface;
  *  		"denormalizationContext"={"groups"={"write"}},
  *      	"path"="/ambtenaren/{id}",
  *  		"openapi_context" = {
- * 				"summary" = "Vervang een specifieke ambtenaar"
+ * 				"summary" = "Vervang een specifieke ambtenaar",
+ *             	"responses" = {
+ *         			"200" = {
+ *         				"description" = "Ambtenaar bijgewerkt"
+ *         			},	
+ *         			"400" = {
+ *         				"description" = "Ongeldige aanvraag"
+ *         			},
+ *         			"404" = {
+ *         				"description" = "Ambtenaar niet gevonden"
+ *         			}
+ *            	}            
  *  		}
  *  	},
  *     "delete"={
@@ -74,7 +116,16 @@ use ActivityLogBundle\Entity\Interfaces\StringableInterface;
  *  		"denormalizationContext"={"groups"={"write"}},
  *      	"path"="/ambtenaren/{id}",
  *  		"openapi_context" = {
- * 				"summary" = "Verwijder een specifieke ambtenaar"
+ * 				"summary" = "Verwijder",
+ *         		"description" = "Verwijder een specifieke ambtenaar",
+ *             	"responses" = {
+ *         			"204" = {
+ *         				"description" = "Ambtenaar niet verwijderd"
+ *         			},	
+ *         			"404" = {
+ *         				"description" = "Ambtenaar niet gevonden"
+ *         			}
+ *            	}          
  *  		}
  *  	},
  *     "log"={
@@ -108,10 +159,10 @@ use ActivityLogBundle\Entity\Interfaces\StringableInterface;
  *     },
  *     "revert"={
  *         	"method"="POST",
- *         	"path"="/ambtenaren/{id}/revert/{version}",
+ *         	"path"="/ambtenaren/{id}/herstel/{version}",
  *          "controller"= HuwelijkController::class,
  *     		"normalization_context"={"groups"={"read"}},
- *     		"denormalization_context"={"groups"={"write"}},
+ *     		"denormalization_context"={"groups"={"herstel"}},
  *         	"openapi_context" = {
  *         		"summary" = "Versie terugdraaien",
  *         		"description" = "Herstel een eerdere versie van dit ambtenaren object. Dit is een destructieve actie die niet ongedaan kan worden gemaakt",
@@ -146,7 +197,7 @@ use ActivityLogBundle\Entity\Interfaces\StringableInterface;
  * )
  * @ApiFilter(DateFilter::class, properties={"registratiedatum","wijzigingsdatum"})
  * @ApiFilter(OrderFilter::class, properties={"id", "identificatie","bronOrganisatie"}, arguments={"orderParameterName"="order"})
- * @ApiFilter(SearchFilter::class, properties={"id": "exact","identificatie": "exact","bronOrganisatie": "exact")
+ * @ApiFilter(SearchFilter::class, properties={"id": "exact","identificatie": "exact","bronOrganisatie": "exact"})
  */
 
 class Ambtenaar implements StringableInterface
@@ -523,6 +574,30 @@ class Ambtenaar implements StringableInterface
 	 * @Gedmo\Versioned
 	 */
 	public $contactPersoon;
+	
+	/**
+	 * API Specifieke parameters
+	 *
+	 * De onderstaande parameters worden alleen gebruikt bij api specifieke calls en hebben geen context tot het overige datamodel
+	 */
+	
+	/**
+	 * Het versie nummer van een eerdere versie die moet worden hersted (e.g. de huidige versie overschrijft)
+	 *
+	 * @Groups({"herstel"})
+	 * @ApiProperty(
+	 * 	   iri="https://schema.org/identifier",
+	 *     attributes={
+	 *         "openapi_context"={
+	 *            "type"="integer",
+	 *             "maxLength"=1,
+	 *             "minLength"=255,
+	 *             "example"="1"
+	 *         }
+	 *     }
+	 * )
+	 */
+	private $versie;
 	
 	/**
 	 * @return string
