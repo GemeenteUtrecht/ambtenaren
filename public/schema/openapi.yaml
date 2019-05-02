@@ -5,10 +5,10 @@ info:
     Fijn dat je de tijd en moeite hebt genomen om je te verdiepen in dit component. 
     
     # Introductie                
-    Het "Ambtenaren" component is ontwikkeld voor de gemeente Utrecht en heeft als doel een ambtenaren te koppelen aan objecten uit andere componenten. Dit stelt je in staat om aan deze objecten ambtenaren te koppelen en zo hun activiteiten te kunnen beheren.
+    Het "Ambtenaren" component is ontwikkeld voor de gemeente Utrecht en heeft als doel ambtenaren te koppelen aan objecten uit andere componenten. Dit stelt je in staat om aan deze objecten, ambtenaren te koppelen en zo hun activiteiten te kunnen beheren.
     
     # Common ground en open source
-    Om het voor alle partijen zo makkelijk mogenlijk te maken bieden we zo veel mogenlijk informatie openbaar aan over dit component.  
+    Om het voor alle partijen zo makkelijk mogelijk te maken, stellen we zo veel mogelijk informatie over dit component openbaar beschikbaar.  
     - [datamodel als pdf](/schema/datamodel.pdf)
     - [datamodel als mwb](/schema/datamodel.mwb)
     - [codebase op github](https://github.com/GemeenteUtrecht/ambtenaren)
@@ -18,25 +18,25 @@ info:
     
     # OpenAPI Specification
     Deze API is gedocumenteerd in het **OpenAPI format** 
-    De API bevat Cross-Origin Resource Sharing (CORS) en is geimplementeerd volgen de [W3C spec](https://www.w3.org/TR/cors/) standaarden. De API staat cross-domain communicatie van de browser toe. Alle responses hebben een "wildcard same-origin" dit maakt ze volledig publiekelijk en toegankelijk voor iedereen. Dat geld voor elke code op elke site.
+    De API bevat Cross-Origin Resource Sharing (CORS) en is geimplementeerd volgens de [W3C spec](https://www.w3.org/TR/cors/) standaarden. De API staat cross-domain communicatie van de browser toe. Alle responses hebben een "wildcard same-origin", dit maakt ze publiekelijk en toegankelijk voor iedereen. Dat geldt voor elke code, op elke site.
     
     # Filteren en Sorteren
-    Het is mogelijk om resulten van deze API te filteren aan de hand van query parameters, deze worden meegegeven in de url tijdens het aanroepen van een endpoint door extra waarden toe te voegen na een vraagteken. De toevoegen ?bronOrganisatie=12345689 (volledige endpoint  /ambtenaren?bronOrganisatie=12345689) zorgt er bijvoorbeeld voor dat alleen ambtenaren met bronOrganisatie (ofwel rsin/organisatie) 123456789 worden weergegeven.
+    Het is mogelijk om resulten van deze API te filteren aan de hand van query parameters, deze worden meegegeven in de url tijdens het aanroepen van een endpoint, door extra waarden toe te voegen na een vraagteken. Toevoegen ?bronOrganisatie=12345689 (volledige endpoint  /ambtenaren?bronOrganisatie=12345689), zorgt er bijvoorbeeld voor dat alleen ambtenaren met bronOrganisatie (ofwel rsin/organisatie) 123456789 worden weergegeven.
     
-    Voor het filteren op datum geld dat er een weegmeethode moet worden meegegeven, voor de waardes geld dat elke door [PHP datetime](https://php.net/manual/en/datetime.construct.php) ondersteunde waarde kan worden gebruikt. Verschillende methode kunnen worden gebruikt om een spreiding te selecteren (bijvoorbeeld /ambtenaren?wijzigingsdatum[after]=2019-01-01&wijzigingsdatum[before]=2019-02-01 om alle ambtenaren gewijzigd in januarie 2019 te selecteren.
+    Voor het filteren op datum geldt dat er een weegmethode moet worden meegegeven, voor de waardes geldt dat elke door [PHP datetime](https://php.net/manual/en/datetime.construct.php) ondersteunde waarde kan worden gebruikt. Verschillende methoden kunnen worden gebruikt om een spreiding te selecteren (bijvoorbeeld /ambtenaren?wijzigingsdatum[after]=2019-01-01&wijzigingsdatum[before]=2019-02-01 om alle ambtenaren gewijzigd in Januari 2019 te selecteren.
     
-    De mogelijke weegmethodes voor datum vergelijking zijn:
-     - after -> Datums groter en gelijk aan
-     - before -> Datums klein en gelijk aan
-     - strictly_after -> Datums groter dan
-     - strictly_before -> Datums kleiner dan                                               
+    De mogelijke weegmethoden voor datum vergelijking zijn:
+     - after -> Data groter en gelijk aan
+     - before -> Data kleiner en gelijk aan
+     - strictly_after -> Data groter dan
+     - strictly_before -> Data kleiner dan                                               
     
-    Daarnaast kunnen de resultaten ook worden gesorteerd, dit gaat aan de hand van de order parameter gevolgd door desc (aflopend) of asc (oplopend). Er kunnen meerdere order paramaters op volgorde van toeppasing worden meegegeven (bijvoorbeeld https://ambtenaren.demo.zaakonline.nl/ambtenaren?order[bronOrganisatie]=desc&order[identificatie]=asc)
+    Daarnaast kunnen de resultaten ook worden gesorteerd, dit gaat aan de hand van de order parameter, gevolgd door desc (aflopend) of asc (oplopend). Er kunnen meerdere order parameters op volgorde van toepassing worden meegegeven (bijvoorbeeld https://ambtenaren.demo.zaakonline.nl/ambtenaren?order[bronOrganisatie]=desc&order[identificatie]=asc)
     
-    Kijk voor meer details over de mogelijkheden voor filteren en sorteren bij de GET (verzamel) endpoint van de entiteit die je wilt ophalen
+    Kijk voor meer details over de mogelijkheden voor filteren en sorteren bij de GET (verzamel) endpoint van de entiteit die je wilt ophalen.
     
     # Scopes
-    Appllicaties kunnen op deze API alleen wijzigingen uitvoeren waarvoor zij over de juiste rechten(scopes) beschikken, de op deze api verschikbare scopes zijn:
+    Applicaties kunnen op deze API alleen wijzigingen uitvoeren waarvoor zij over de juiste rechten(scopes) beschikken. De op deze api verschikbare scopes zijn:
      - ambtenaar:schrijven
      - ambtenaar:lezen
      - ambtenaar:maken
@@ -47,11 +47,11 @@ info:
      - applicatie:inloggen        
              
     # Authentication
-    Voor het gebruik van deze applicatie is een JWT Token nodig, deze hangt altijd vast aan een applicatie (ofwel user) een geldige JWT Token worden aangemaakt bij het registren van een applicatie en kennen een beperkte houdbaarheid. 
+    Voor het gebruik van deze applicatie is een JWT Token nodig, deze hangt altijd vast aan een applicatie (ofwel user). Geldige JWT Tokens worden aangemaakt bij het registreren van een applicatie en kennen een beperkte houdbaarheid. 
     
-    JWT Tokens kunnen zowel worden verlengd als dat er nieuwe tokens kunnen worden aangevraagd aan de hand van de applicatie id en sleutel.
+    JWT Tokens kunnen zowel worden verlengd, als opnieuw worden aangevraagd, dit aan de hand van de applicatie id en sleutel.
     
-    Let er bij het meegeven van JWT tokens op dat deze vooraf moeten worden gegaan door Bearer en een spatie, onder de header Authorization de volledig naam wordt daarmee: 'Authorization: Bearer [TOKEN]'
+    Let er bij het meegeven van JWT tokens op dat deze vooraf gedaan moeten worden door een Bearer en een spatie, onder de header Authorization. De volledig naam wordt daarmee: 'Authorization: Bearer [TOKEN]'
     
   version: 0.0.1
   title: 'Ambtenaren API'
@@ -350,10 +350,10 @@ paths:
   '/applicatie/{id}':
     get:
       summary: 'Haal op'
-      description: 'Haalt een applicatie op'
+      description: 'Haalt een Applicatie op'
       responses:
         200:
-          description: 'Een overzicht van applicaties'
+          description: 'Een overzicht van Applicaties'
         400:
           description: 'Ongeldige aanvraag'
         404:
@@ -370,7 +370,7 @@ paths:
             type: string
     put:
       summary: 'Werk bij'
-      description: 'Werk een applicatie bij'
+      description: 'Werk een Applicatie bij'
       responses:
         202:
           description: 'applicatie bijgewerkt'
@@ -429,10 +429,10 @@ paths:
   /applicaties:
     get:
       summary: Verzameling
-      description: 'Haal een verzameling van applicaties op, het is mogelijk om deze resultaten te filteren aan de hand van query parameters. <br><br>Lees meer over het filteren van resulaten onder [filteren](/#section/Filteren).'
+      description: 'Haal een verzameling van Applicaties op, het is mogelijk om deze resultaten te filteren aan de hand van query parameters. <br><br>Lees meer over het filteren van resulaten onder [filteren](/#section/Filteren).'
       responses:
         200:
-          description: 'Een overzicht van applicaties'
+          description: 'Een overzicht van Applicaties'
         400:
           description: 'Ongeldige aanvraag'
         404:
@@ -520,7 +520,7 @@ paths:
   /login_check:
     post:
       summary: Login
-      description: 'Inloggen als applicatie'
+      description: 'Inloggen als Applicatie'
       consumes:
         - application/json
         - text/html
@@ -549,7 +549,7 @@ paths:
   /registreer:
     post:
       summary: Registreren
-      description: 'Registreer een nieuwe applicatie voor dit component'
+      description: 'Registreer een nieuwe Applicatie voor dit component'
       consumes:
         - application/json
         - text/html
@@ -763,7 +763,7 @@ components:
         - beschrijving
     User:
       type: object
-      description: 'Een applicatie die is geidentificeerd en geautoriceerd om namens een organisatie wijzigingen uit te voeren'
+      description: 'Een Applicatie die is geidentificeerd en geautoriceerd om namens een organisatie wijzigingen uit te voeren'
       properties:
         id:
           type: integer
@@ -777,18 +777,18 @@ components:
           maxLength: 16
           minLength: 5
           example: NietZoGeheim
-          description: 'Een door de organisatie opgegeven sleutel waarmee deze applicatie zich identificeerd bij het ophalen van en JWT token.'
+          description: 'Een door de organisatie opgegeven sleutel waarmee deze Applicatie zich identificeerd bij het ophalen van en JWT token.'
         scopes:
           type: array
           example: '[]'
-          description: 'De scopes (rechten) die deze applicatie heeft.'
+          description: 'De scopes (rechten) die deze Applicatie heeft.'
         organisatie:
           type: string
           example: '123456789'
           required: 'true'
           maxLength: 9
           minLength: 8
-          description: 'Het RSIN van de organisatie waartoe deze applicatie behoord. Dit moet een geldig RSIN zijn van 9 nummers en voldoen aan https://nl.wikipedia.org/wiki/Burgerservicenummer#11-proef.'
+          description: 'Het RSIN van de organisatie waartoe deze Applicatie behoord. Dit moet een geldig RSIN zijn van 9 nummers en voldoen aan https://nl.wikipedia.org/wiki/Burgerservicenummer#11-proef.'
         isActief:
           type: boolean
         registratiedatum:
@@ -806,7 +806,7 @@ components:
           required: 'true'
           maxLength: 255
           format: uri
-          description: 'De contactpersoon voor deze applicatie, die bijvoorbeeld word verwittigd bij misbruik.'
+          description: 'De contactpersoon voor deze Applicatie, die bijvoorbeeld word verwittigd bij misbruik.'
         fullname:
           readOnly: true
           type: string
@@ -823,7 +823,7 @@ components:
           readOnly: true
     'User-applicatie:lezen':
       type: object
-      description: 'Een applicatie die is geidentificeerd en geautoriceerd om namens een organisatie wijzigingen uit te voeren'
+      description: 'Een Applicatie die is geidentificeerd en geautoriceerd om namens een organisatie wijzigingen uit te voeren'
       properties:
         id:
           type: integer
@@ -838,7 +838,7 @@ components:
           required: 'true'
           maxLength: 9
           minLength: 8
-          description: 'Het RSIN van de organisatie waartoe deze applicatie behoord. Dit moet een geldig RSIN zijn van 9 nummers en voldoen aan https://nl.wikipedia.org/wiki/Burgerservicenummer#11-proef.'
+          description: 'Het RSIN van de organisatie waartoe deze Applicatie behoord. Dit moet een geldig RSIN zijn van 9 nummers en voldoen aan https://nl.wikipedia.org/wiki/Burgerservicenummer#11-proef.'
         isActief:
           type: boolean
         registratiedatum:
@@ -856,10 +856,10 @@ components:
           required: 'true'
           maxLength: 255
           format: uri
-          description: 'De contactpersoon voor deze applicatie, die bijvoorbeeld word verwittigd bij misbruik.'
+          description: 'De contactpersoon voor deze Applicatie, die bijvoorbeeld word verwittigd bij misbruik.'
     'User-applicatie:maken':
       type: object
-      description: 'Een applicatie die is geidentificeerd en geautoriceerd om namens een organisatie wijzigingen uit te voeren'
+      description: 'Een Applicatie die is geidentificeerd en geautoriceerd om namens een organisatie wijzigingen uit te voeren'
       properties:
         naam:
           type: email
@@ -871,18 +871,18 @@ components:
           maxLength: 16
           minLength: 5
           example: NietZoGeheim
-          description: 'Een door de organisatie opgegeven sleutel waarmee deze applicatie zich identificeerd bij het ophalen van en JWT token.'
+          description: 'Een door de organisatie opgegeven sleutel waarmee deze Applicatie zich identificeerd bij het ophalen van en JWT token.'
         scopes:
           type: array
           example: '[]'
-          description: 'De scopes (rechten) die deze applicatie heeft.'
+          description: 'De scopes (rechten) die deze Applicatie heeft.'
         organisatie:
           type: string
           example: '123456789'
           required: 'true'
           maxLength: 9
           minLength: 8
-          description: 'Het RSIN van de organisatie waartoe deze applicatie behoord. Dit moet een geldig RSIN zijn van 9 nummers en voldoen aan https://nl.wikipedia.org/wiki/Burgerservicenummer#11-proef.'
+          description: 'Het RSIN van de organisatie waartoe deze Applicatie behoord. Dit moet een geldig RSIN zijn van 9 nummers en voldoen aan https://nl.wikipedia.org/wiki/Burgerservicenummer#11-proef.'
         contactPersoon:
           title: Ambtenaar
           type: url
@@ -890,10 +890,10 @@ components:
           required: 'true'
           maxLength: 255
           format: uri
-          description: 'De contactpersoon voor deze applicatie, die bijvoorbeeld word verwittigd bij misbruik.'
+          description: 'De contactpersoon voor deze Applicatie, die bijvoorbeeld word verwittigd bij misbruik.'
     'User-applicatie:schrijven':
       type: object
-      description: 'Een applicatie die is geidentificeerd en geautoriceerd om namens een organisatie wijzigingen uit te voeren'
+      description: 'Een Applicatie die is geidentificeerd en geautoriceerd om namens een organisatie wijzigingen uit te voeren'
       properties:
         naam:
           type: email
@@ -905,11 +905,11 @@ components:
           maxLength: 16
           minLength: 5
           example: NietZoGeheim
-          description: 'Een door de organisatie opgegeven sleutel waarmee deze applicatie zich identificeerd bij het ophalen van en JWT token.'
+          description: 'Een door de organisatie opgegeven sleutel waarmee deze Applicatie zich identificeerd bij het ophalen van en JWT token.'
         scopes:
           type: array
           example: '[]'
-          description: 'De scopes (rechten) die deze applicatie heeft.'
+          description: 'De scopes (rechten) die deze Applicatie heeft.'
         isActief:
           type: boolean
         contactPersoon:
@@ -919,7 +919,7 @@ components:
           required: 'true'
           maxLength: 255
           format: uri
-          description: 'De contactpersoon voor deze applicatie, die bijvoorbeeld word verwittigd bij misbruik.'
+          description: 'De contactpersoon voor deze Applicatie, die bijvoorbeeld word verwittigd bij misbruik.'
   securitySchemes:
     apiKey:
       type: apiKey
