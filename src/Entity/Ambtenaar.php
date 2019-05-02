@@ -42,10 +42,10 @@ use ActivityLogBundle\Entity\Interfaces\StringableInterface;
  *      	"path"="/ambtenaren",
  *  		"openapi_context" = {
  * 				"summary" = "Verzameling",
- *         		"description" = "Haal een verzameling van ambtenaren op, het is mogelijk om deze resultaten te filteren aan de hand van query parameters. <br><br>Lees meer over het filteren van resulaten onder [filteren](/#section/Filteren).",
+ *         		"description" = "Haal een verzameling van Ambtenaren op, het is mogelijk om deze resultaten te filteren aan de hand van query parameters. <br><br>Lees meer over het filteren van resulaten onder [filteren](/#section/Filteren).",
  *             	"responses" = {
  *         			"200" = {
- *         				"description" = "Een overzicht van ambtenaren"
+ *         				"description" = "Een overzicht van Ambtenaren"
  *         			},	
  *         			"400" = {
  *         				"description" = "Ongeldige aanvraag"
@@ -140,7 +140,7 @@ use ActivityLogBundle\Entity\Interfaces\StringableInterface;
  *     		"denormalization_context"={"groups"={"write"}},
  *         	"openapi_context" = {
  *         		"summary" = "Logboek",
- *         		"description" = "Geeft een lijst van eerdere versies en wijzigingen van dit ambtenaren object",
+ *         		"description" = "Geeft een lijst van eerdere versies en wijzigingen van dit Ambtenaren object",
  *          	"consumes" = {
  *              	"application/json",
  *               	"text/html",
@@ -169,7 +169,7 @@ use ActivityLogBundle\Entity\Interfaces\StringableInterface;
  *     		"denormalization_context"={"groups"={"herstel"}},
  *         	"openapi_context" = {
  *         		"summary" = "Herstel",
- *         		"description" = "Herstel een eerdere versie van dit ambtenaren object. Dit is een destructieve actie die niet ongedaan kan worden gemaakt",
+ *         		"description" = "Herstel een eerdere versie van dit Ambtenaren object. Dit is een destructieve actie die niet ongedaan kan worden gemaakt",
  *          	"consumes" = {
  *              	"application/json",
  *               	"text/html",
@@ -220,7 +220,7 @@ class Ambtenaar implements StringableInterface
 	private $id;
 	
 	/**
-	 * De unieke identificatie van dit object binnen de organisatie die dit object heeft gecreeerd. <br /><b>Schema:</b> <a href="https://schema.org/identifier">https://schema.org/identifier</a>
+	 * De unieke identificatie van dit Ambtenaren object binnen de organisatie die dit Ambtenaren object heeft gecreeerd. <br /><b>Schema:</b> <a href="https://schema.org/identifier">https://schema.org/identifier</a>
 	 *
 	 * @var string
 	 * @ORM\Column(
@@ -238,7 +238,7 @@ class Ambtenaar implements StringableInterface
 	 *         "openapi_context"={
 	 *             "type"="string",
 	 *             "example"="6a36c2c4-213e-4348-a467-dfa3a30f64aa",
-	 *             "description"="De unieke identificatie van dit object de organisatie die dit object heeft gecreeerd.",
+	 *             "description"="De unieke identificatie van dit Ambtenaren object de organisatie die dit Ambtenaren object heeft gecreeerd.",
 	 *             "maxLength"=40
 	 *         }
 	 *     }
@@ -248,7 +248,7 @@ class Ambtenaar implements StringableInterface
 	public $identificatie;
 	
 	/**
-	 * Het RSIN van de organisatie waartoe dit object behoord. Dit moet een geldig RSIN zijn van 9 nummers en voldoen aan https://nl.wikipedia.org/wiki/Burgerservicenummer#11-proef. <br> Het RSIN word bepaald aan de hand van de gauthenticeerde aplicatie en kan niet worden overschreven
+	 * Het RSIN van de organisatie waartoe deze Ambtenaar behoord. Dit moet een geldig RSIN zijn van 9 nummers en voldoen aan https://nl.wikipedia.org/wiki/Burgerservicenummer#11-proef. <br> Het RSIN word bepaald aan de hand van de gauthenticeerde aplicatie en kan niet worden overschreven
 	 *
 	 * @var integer
 	 * @ORM\Column(
@@ -530,7 +530,7 @@ class Ambtenaar implements StringableInterface
 	public $taal = 'nl';	
 			
 	/**
-	 * Het tijdstip waarop deze entiteit is aangemaakt
+	 * Het tijdstip waarop dit Ambtenaren object is aangemaakt
 	 *
 	 * @var string Een "Y-m-d H:i:s" waarde bijvoorbeeld "2018-12-31 13:33:05" ofwel "Jaar-dag-maand uur:minuut:seconde"
 	 * @Gedmo\Timestampable(on="create")
@@ -543,7 +543,7 @@ class Ambtenaar implements StringableInterface
 	public $registratiedatum;
 	
 	/**
-	 * Het tijdstip waarop deze entiteit voor het laatst is gewijzigd.
+	 * Het tijdstip waarop dit Ambtenaren object voor het laatst is gewijzigd.
 	 *
 	 * @var string Een "Y-m-d H:i:s" waarde bijvoorbeeld "2018-12-31 13:33:05" ofwel "Jaar-dag-maand uur:minuut:seconde"
 	 * @Gedmo\Timestampable(on="update")

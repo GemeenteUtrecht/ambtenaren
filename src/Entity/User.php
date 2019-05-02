@@ -21,7 +21,7 @@ use ActivityLogBundle\Entity\Interfaces\StringableInterface;
 use App\Controller\UserController;
 
 /**
- * Een applicatie die is geidentificeerd en geautoriceerd om namens een organisatie wijzigingen uit te voeren
+ * Een Applicatie die is geidentificeerd en geautoriceerd om namens een organisatie wijzigingen uit te voeren
  *
  * @category   	Entity
  *
@@ -40,10 +40,10 @@ use App\Controller\UserController;
  *      	"path"="/applicaties",
  *  		"openapi_context" = {
  * 				"summary" = "Verzameling",
- *         		"description" = "Haal een verzameling van applicaties op, het is mogelijk om deze resultaten te filteren aan de hand van query parameters. <br><br>Lees meer over het filteren van resulaten onder [filteren](/#section/Filteren).",
+ *         		"description" = "Haal een verzameling van Applicaties op, het is mogelijk om deze resultaten te filteren aan de hand van query parameters. <br><br>Lees meer over het filteren van resulaten onder [filteren](/#section/Filteren).",
  *             	"responses" = {
  *         			"200" = {
- *         				"description" = "Een overzicht van applicaties"
+ *         				"description" = "Een overzicht van Applicaties"
  *         			},	
  *         			"400" = {
  *         				"description" = "Ongeldige aanvraag"
@@ -63,7 +63,7 @@ use App\Controller\UserController;
  *
  *         "openapi_context" = {
  *         		"summary" = "Registreren",
- *         		"description" = "Registreer een nieuwe applicatie voor dit component",
+ *         		"description" = "Registreer een nieuwe Applicatie voor dit component",
  *          	"consumes" = {
  *              	"application/json",
  *               	"text/html",
@@ -89,7 +89,7 @@ use App\Controller\UserController;
  *     	   "denormalization_context"={"groups"={"applicatie:inloggen"}}, 
  *         "openapi_context" = {
  *         		"summary" = "Login",
- *         		"description" = "Inloggen als applicatie",
+ *         		"description" = "Inloggen als Applicatie",
  *          	"consumes" = {
  *              	"application/json",
  *               	"text/html",
@@ -112,13 +112,13 @@ use App\Controller\UserController;
  *     "get"={
  *  		"normalizationContext"={"groups"={"applicatie:lezen"}},
  *  		"denormalizationContext"={"groups"={"applicatie:schrijven"}},
- *      	"path"="/appplicatie/{id}",
+ *      	"path"="/applicatie/{id}",
  *  		"openapi_context" = {
  * 				"summary" = "Haal op",
- *         		"description" = "Haalt een applicatie op",
+ *         		"description" = "Haalt een Applicatie op",
  *             	"responses" = {
  *         			"200" = {
- *         				"description" = "Een overzicht van applicaties"
+ *         				"description" = "Een overzicht van Applicaties"
  *         			},	
  *         			"400" = {
  *         				"description" = "Ongeldige aanvraag"
@@ -132,10 +132,10 @@ use App\Controller\UserController;
  *     "put"={
  *  		"normalizationContext"={"groups"={"applicatie:lezen"}},
  *  		"denormalizationContext"={"groups"={"applicatie:schrijven"}},
- *      	"path"="/appplicatie/{id}",
+ *      	"path"="/applicatie/{id}",
  *  		"openapi_context" = {
  * 				"summary" = "Werk bij",
- *         		"description" = "Werk een applicatie bij",
+ *         		"description" = "Werk een Applicatie bij",
  *             	"responses" = {
  *         			"202" = {
  *         				"description" = "applicatie bijgewerkt"
@@ -151,13 +151,13 @@ use App\Controller\UserController;
  *  	},
  *     "log"={
  *         	"method"="GET",
- *         	"path"="/appplicatie/{id}/log",
+ *         	"path"="/applicatie/{id}/log",
  *          "controller"= UserController::class,
  *     		"normalization_context"={"groups"={"applicatie:lezen"}},
  *     		"denormalization_context"={"groups"={"applicatie:schrijven"}},
  *         	"openapi_context" = {
  *         		"summary" = "Logboek",
- *         		"description" = "Bekijk de wijzigingen op dit object",
+ *         		"description" = "Bekijk de wijzigingen op dit Applicatie object",
  *          	"consumes" = {
  *              	"application/json",
  *               	"text/html",
@@ -173,7 +173,7 @@ use App\Controller\UserController;
  *         				"description" = "Ongeldige aanvraag"
  *         			},
  *         			"404" = {
- *         				"description" = "Object niet gevonden"
+ *         				"description" = "Applicatie object niet gevonden"
  *         			}
  *            	}
  *         }
@@ -187,7 +187,7 @@ use App\Controller\UserController;
  * @ORM\HasLifecycleCallbacks
  * @UniqueEntity(
  *     fields={"naam", "organisatie"},
- *     message="De naam van een applicatie dient uniek te zijn voor een organisatie"
+ *     message="De naam van een Applicatie dient uniek te zijn voor een organisatie"
  * )
  */
 class User implements UserInterface, StringableInterface
@@ -239,7 +239,7 @@ class User implements UserInterface, StringableInterface
 	public $naam;
 		
 	/**
-	 * Een door de organisatie opgegeven sleutel waarmee deze applicatie zich identificeerd bij het ophalen van en JWT token.
+	 * Een door de organisatie opgegeven sleutel waarmee deze Applicatie zich identificeerd bij het ophalen van en JWT token.
 	 * 
 	 * @Groups({"applicatie:schrijven","applicatie:maken","applicatie:inloggen"})
 	 * @ORM\Column(type="string", length=500)
@@ -280,7 +280,7 @@ class User implements UserInterface, StringableInterface
 	public $scopes;
 	
 	/**
-	 * Het RSIN van de organisatie waartoe deze applicatie behoord. Dit moet een geldig RSIN zijn van 9 nummers en voldoen aan https://nl.wikipedia.org/wiki/Burgerservicenummer#11-proef.
+	 * Het RSIN van de organisatie waartoe deze Applicatie behoord. Dit moet een geldig RSIN zijn van 9 nummers en voldoen aan https://nl.wikipedia.org/wiki/Burgerservicenummer#11-proef.
 	 *
 	 * @var integer
 	 * @ORM\Column(
@@ -322,7 +322,7 @@ class User implements UserInterface, StringableInterface
 	public $isActief;
 	
 	/**
-	 * Het tijdstip waarop deze entiteit is aangemaakt
+	 * Het tijdstip waarop deze Applicatie is aangemaakt
 	 *
 	 * @var datetime Een "Y-m-d H:i:s" waarde bijvoorbeeld "2018-12-31 13:33:05" ofwel "Jaar-dag-maand uur:minuut:seconde"
 	 * @Gedmo\Timestampable(on="create")
@@ -337,7 +337,7 @@ class User implements UserInterface, StringableInterface
 	public $registratiedatum;
 	
 	/**
-	 * Het tijdstip waarop deze entiteit voor het laatst is gewijzigd.
+	 * Het tijdstip waarop deze Applicatie voor het laatst is gewijzigd.
 	 *
 	 * @var datetime Een "Y-m-d H:i:s" waarde bijvoorbeeld "2018-12-31 13:33:05" ofwel "Jaar-dag-maand uur:minuut:seconde"
 	 * @Gedmo\Timestampable(on="update")
@@ -353,7 +353,7 @@ class User implements UserInterface, StringableInterface
 	public $wijzigingsdatum;
 	
 	/**
-	 * De contactpersoon voor deze applicatie, die bijvoorbeeld word verwittigd bij misbruik.
+	 * De contactpersoon voor deze Applicatie, die bijvoorbeeld word verwittigd bij misbruik.
 	 *
 	 * @ORM\Column(
 	 *     type     = "string",
@@ -371,7 +371,7 @@ class User implements UserInterface, StringableInterface
 	 *             "required"="true",
 	 *             "maxLength"=255,
 	 *             "format"="uri",
-	 *             "description"="URL-referentie naar de Ambtenaar verantwoordelijk voor deze applicatie"
+	 *             "description"="URL-referentie naar de Ambtenaar verantwoordelijk voor deze Applicatie"
 	 *         }
 	 *     }
 	 * )
@@ -394,7 +394,7 @@ class User implements UserInterface, StringableInterface
 	private $username;
 		
 	/**
-	 * Een JWT Token waarmee de applicatie zich kan identificeren op de API
+	 * Een JWT Token waarmee de Applicatie zich kan identificeren op de API
 	 * 
 	 * @Groups({"login_check"})
 	 * @ApiProperty(
