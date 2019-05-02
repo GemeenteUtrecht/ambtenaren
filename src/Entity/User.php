@@ -88,8 +88,8 @@ use App\Controller\UserController;
  *     	   "normalization_context"={"groups"={"applicatie:lezen"}},
  *     	   "denormalization_context"={"groups"={"applicatie:inloggen"}}, 
  *         "openapi_context" = {
- *         		"summary" = "Login",
- *         		"description" = "Inloggen als Applicatie",
+ *         		"summary" = "Token halen",
+ *         		"description" = "Inloggen als Applicatie en JWT Token ophalen",
  *          	"consumes" = {
  *              	"application/json",
  *               	"text/html",
@@ -264,7 +264,7 @@ class User implements UserInterface, StringableInterface
 	public $sleutel;
 	
 	/**
-	 * De scopes (rechten) die deze applicatie heeft. Zie [scopes](/#section/Scopes) voor meer informatie.
+	 * De scopes (rechten) die deze Applicatie heeft. Zie [scopes](/#section/Scopes) voor meer informatie.
 	 *
 	 * @Groups({"applicatie:schrijven","applicatie:maken"})
 	 * @ORM\Column(type="string", length=500)

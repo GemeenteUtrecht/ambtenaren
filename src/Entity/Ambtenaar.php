@@ -345,9 +345,9 @@ class Ambtenaar implements StringableInterface
      *      maxMessage = "De naam kan niet langer dan {{ limit }} karakters zijn")
 	 * @Groups({"read", "write"})
 	 * @ApiProperty(
-	 * 	   iri="http://schema.org/name",	 
-     *     openapi_context={
-     *         "swagger_context"={
+	 * 	   iri="http://schema.org/name",	      *     
+	 *     attributes={
+     *         "openapi_context"={
 	 *             "minLength"=5,
 	 *             "maxLength"=255,
      *             "type"="string",
