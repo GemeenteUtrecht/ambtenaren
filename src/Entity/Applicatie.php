@@ -190,7 +190,7 @@ use App\Controller\UserController;
  *     message="De naam van een Applicatie dient uniek te zijn voor een organisatie"
  * )
  */
-class User implements UserInterface, StringableInterface
+class Applicatie implements UserInterface, StringableInterface
 {
 	/**
 	 * @ORM\Id
@@ -221,7 +221,7 @@ class User implements UserInterface, StringableInterface
 	 *      minMessage = "De naam moet tenminste {{ limit }} tekens bevatten",
 	 *      maxMessage = "De naam kan maximaal {{ limit }} tekens bevatten"
 	 * )
-	 * @Groups({"user:write","user"})
+	 * @Groups({"applicatie:write","user"})
      * @ApiFilter(SearchFilter::class, strategy="partial")
      * @ApiFilter(OrderFilter::class)
 	 * @ApiProperty(
@@ -470,9 +470,9 @@ class User implements UserInterface, StringableInterface
 		return $this->name;
 	}
 	
-	public function isUser(?UserInterface $user = null): bool
+	public function isUser(?UserInterface $applicatie = null): bool
 	{
-		return $user instanceof self && $user->id === $this->id;
+		return $applicatie instanceof self && $applicatie->id === $this->id;
 	}
 	
 	public function __construct($username)

@@ -13,11 +13,11 @@ parameters:
         info:
             description: |
                 Welkom inovator! <br>
-                Fijn dat je de tijd en moeite hebt genomen om je te verdiepen in dit component. 
-                
-                # Introductie                
-                Het "Ambtenaren" component is ontwikkeld voor de gemeente Utrecht en heeft als doel ambtenaren te koppelen aan objecten uit andere componenten. Dit stelt je in staat om aan deze objecten, ambtenaren te koppelen en zo hun activiteiten te kunnen beheren.
+                Fijn dat je de tijd en moeite hebt genomen om je te verdiepen in dit component. Het "Ambtenaren" component is ontwikkeld voor de gemeente Utrecht en heeft als doel ambtenaren te koppelen aan objecten uit andere componenten. Dit stelt je in staat om aan deze objecten, ambtenaren te koppelen en zo hun activiteiten te kunnen beheren.
               
+                # Ondersteuning
+                Wordt lid van het slackkanaal [https://zaakonline.slack.com](https://zaakonline.slack.com) voor ondersteuning door het ontwikkel team en regelmatige updates over de ontwikkelingen op het gebied van de zaakonline componenten.
+                
                 # Common ground en open source
                 Om het voor alle partijen zo makkelijk mogelijk te maken, stellen we zo veel mogelijk informatie over dit component openbaar beschikbaar.  
                 - [datamodel als pdf](/schema/datamodel.pdf)
@@ -84,7 +84,7 @@ parameters:
               # The general endpoints  
             - name: Ambtenaar
               description: "De ambtenaar is de actor binnen de gemeente die zaken behandeld."
-            - name: User
+            - name: Applicatie
               description: "Een applicatie die door een organisatie wordt gebruikt voor wijzigingen."  
             # - name: User
             #   description: "Een gebruiker, of in dit geval een applicatie gebonden aan een JWT token behorende tot een organisatie."
@@ -95,7 +95,7 @@ parameters:
               - Ambtenaar
             - name: Applicatie
               tags:
-              - User
+              - Applicatie
               
         
 services:

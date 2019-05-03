@@ -4,10 +4,10 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
-use ApiPlatform\Core\Annotation\ApiFilter;
 use ApiPlatform\Core\Annotation\ApiProperty;
 use ApiPlatform\Core\Annotation\ApiResource;
 use ApiPlatform\Core\Annotation\ApiSubresource;
+use ApiPlatform\Core\Annotation\ApiFilter;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\DateFilter;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\OrderFilter;
@@ -262,6 +262,8 @@ class Ambtenaar implements StringableInterface
 	 *      maxMessage = "Het RSIN kan niet langer dan {{ limit }} karakters zijn"
 	 * )
 	 * @Groups({"read"})
+     * @ApiFilter(SearchFilter::class, strategy="exact")
+     * @ApiFilter(OrderFilter::class)
 	 * @ApiProperty(
 	 *     attributes={
 	 *         "openapi_context"={
@@ -583,10 +585,10 @@ class Ambtenaar implements StringableInterface
 	/**
 	 * De eigenaar (aplicatie) van dit object, wordt bepaald aan de hand van de geathenticeerde applicatie die de ambtenaar heeft aangemaakt
 	 * 
-	 * @var App\Entity\User $eigenaar
+	 * @var App\Entity\Applicatie $eigenaar
 	 *
      * @Gedmo\Blameable(on="create")
-	 * @ORM\ManyToOne(targetEntity="App\Entity\User")
+	 * @ORM\ManyToOne(targetEntity="App\Entity\Applicatie")
 	 * @Groups({"read"})
 	 */
 	public $eigenaar;
