@@ -57,7 +57,7 @@ parameters:
                  - applicatie:maken
                  - applicatie:inloggen        
                          
-                # Authentication
+                # Authenticatie
                 Voor het gebruik van deze applicatie is een JWT Token nodig, deze hangt altijd vast aan een applicatie (ofwel user). Geldige JWT Tokens worden aangemaakt bij het registreren van een applicatie en kennen een beperkte houdbaarheid. 
                 
                 JWT Tokens kunnen zowel worden verlengd, als opnieuw worden aangevraagd, dit aan de hand van de applicatie id en sleutel.
