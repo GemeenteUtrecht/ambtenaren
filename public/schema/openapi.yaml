@@ -2,10 +2,10 @@ openapi: 3.0.2
 info:
   description: |
     Welkom inovator! <br>
-    Fijn dat je de tijd en moeite hebt genomen om je te verdiepen in dit component. 
+    Fijn dat je de tijd en moeite hebt genomen om je te verdiepen in dit component. Het "Ambtenaren" component is ontwikkeld voor de gemeente Utrecht en heeft als doel ambtenaren te koppelen aan objecten uit andere componenten. Dit stelt je in staat om aan deze objecten, ambtenaren te koppelen en zo hun activiteiten te kunnen beheren.
     
-    # Introductie                
-    Het "Ambtenaren" component is ontwikkeld voor de gemeente Utrecht en heeft als doel ambtenaren te koppelen aan objecten uit andere componenten. Dit stelt je in staat om aan deze objecten, ambtenaren te koppelen en zo hun activiteiten te kunnen beheren.
+    # Ondersteuning
+    Wordt lid van het slackkanaal [https://zaakonline.slack.com](https://zaakonline.slack.com) voor ondersteuning door het ontwikkel team en regelmatige updates over de ontwikkelingen op het gebied van de zaakonline componenten.
     
     # Common ground en open source
     Om het voor alle partijen zo makkelijk mogelijk te maken, stellen we zo veel mogelijk informatie over dit component openbaar beschikbaar.  
@@ -359,8 +359,8 @@ paths:
         404:
           description: 'Applocatie niet gevonden'
       tags:
-        - User
-      operationId: getUserItem
+        - Applicatie
+      operationId: getApplicatieItem
       parameters:
         -
           name: id
@@ -379,8 +379,8 @@ paths:
         404:
           description: 'Applicatie niet gevonden'
       tags:
-        - User
-      operationId: putUserItem
+        - Applicatie
+      operationId: putApplicatieItem
       parameters:
         -
           name: id
@@ -392,14 +392,14 @@ paths:
         content:
           application/ld+json:
             schema:
-              $ref: '#/components/schemas/User'
+              $ref: '#/components/schemas/Applicatie'
           application/json:
             schema:
-              $ref: '#/components/schemas/User'
+              $ref: '#/components/schemas/Applicatie'
           text/html:
             schema:
-              $ref: '#/components/schemas/User'
-        description: 'The updated User resource'
+              $ref: '#/components/schemas/Applicatie'
+        description: 'The updated Applicatie resource'
   '/applicatie/{id}/log':
     get:
       summary: Logboek
@@ -417,8 +417,8 @@ paths:
         404:
           description: 'Applicatie object niet gevonden'
       tags:
-        - User
-      operationId: logUserItem
+        - Applicatie
+      operationId: logApplicatieItem
       parameters:
         -
           name: id
@@ -438,9 +438,111 @@ paths:
         404:
           description: 'Applicaties niet gevonden'
       tags:
-        - User
-      operationId: getUserCollection
+        - Applicatie
+      operationId: getApplicatieCollection
       parameters:
+        -
+          name: id
+          in: query
+          required: false
+          schema:
+            type: integer
+        -
+          name: 'id[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: integer
+          style: form
+          explode: true
+        -
+          name: naam
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: organisatie
+          in: query
+          required: false
+          schema:
+            type: integer
+        -
+          name: 'organisatie[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: integer
+          style: form
+          explode: true
+        -
+          name: contactPersoon
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'contactPersoon[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+          style: form
+          explode: true
+        -
+          name: 'order[id]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'order[naam]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'order[organisatie]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'order[isActief]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'order[registratiedatum]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'order[wijzigingsdatum]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'order[contactPersoon]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: isActief
+          in: query
+          required: false
+          schema:
+            type: boolean
         -
           name: 'registratiedatum[before]'
           in: query
@@ -489,38 +591,10 @@ paths:
           required: false
           schema:
             type: string
-        -
-          name: 'order[id]'
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: id
-          in: query
-          required: false
-          schema:
-            type: integer
-        -
-          name: 'id[]'
-          in: query
-          required: false
-          schema:
-            type: array
-            items:
-              type: integer
-          style: form
-          explode: true
-        -
-          name: naam
-          in: query
-          required: false
-          schema:
-            type: string
   /login_check:
     post:
-      summary: Login
-      description: 'Inloggen als Applicatie'
+      summary: 'Token halen'
+      description: 'Inloggen als Applicatie en JWT Token ophalen'
       consumes:
         - application/json
         - text/html
@@ -532,20 +606,20 @@ paths:
         401:
           description: 'Applicatie niet ingeloged'
       tags:
-        - User
-      operationId: loginUserCollection
+        - Applicatie
+      operationId: loginApplicatieCollection
       requestBody:
         content:
           application/ld+json:
             schema:
-              $ref: '#/components/schemas/User-applicatie:schrijven'
+              $ref: '#/components/schemas/Applicatie-applicatie:inloggen'
           application/json:
             schema:
-              $ref: '#/components/schemas/User-applicatie:schrijven'
+              $ref: '#/components/schemas/Applicatie-applicatie:inloggen'
           text/html:
             schema:
-              $ref: '#/components/schemas/User-applicatie:schrijven'
-        description: 'The new User resource'
+              $ref: '#/components/schemas/Applicatie-applicatie:inloggen'
+        description: 'The new Applicatie resource'
   /registreer:
     post:
       summary: Registreren
@@ -561,20 +635,20 @@ paths:
         400:
           description: 'Ongeldige aanvraag'
       tags:
-        - User
-      operationId: registerUserCollection
+        - Applicatie
+      operationId: registerApplicatieCollection
       requestBody:
         content:
           application/ld+json:
             schema:
-              $ref: '#/components/schemas/User-applicatie:maken'
+              $ref: '#/components/schemas/Applicatie-applicatie:maken'
           application/json:
             schema:
-              $ref: '#/components/schemas/User-applicatie:maken'
+              $ref: '#/components/schemas/Applicatie-applicatie:maken'
           text/html:
             schema:
-              $ref: '#/components/schemas/User-applicatie:maken'
-        description: 'The new User resource'
+              $ref: '#/components/schemas/Applicatie-applicatie:maken'
+        description: 'The new Applicatie resource'
 security:
   -
     apiKey: []
@@ -614,26 +688,43 @@ components:
           format: uri
           description: 'URL-referentie naar het film document'
         voornamen:
-          description: 'De naam van deze Ambtenaar <br /><b>Schema:</b> <a href="https://schema.org/givenName">https://schema.org/givenName</a>a>'
+          minLength: 5
+          maxLength: 255
           type: string
+          example: John
+          description: 'De naam van deze Ambtenaar <br /><b>Schema:</b> <a href="https://schema.org/givenName">https://schema.org/givenName</a>a>'
         voorvoegselGeslachtsnaam:
+          maxLength: 255
           type: string
           example: 'van der'
           description: 'Voorvoegsel van de achternaam <br /><b>Schema:</b> <a href="https://schema.org/givenName">https://schema.org/givenName</a>'
         geslachtsnaam:
-          description: 'De achternaam van deze Ambtenaar <br /><b>Schema:</b> <a href="https://schema.org/familyName">https://schema.org/familyName</a>'
+          minLength: 5
+          maxLength: 255
           type: string
+          example: Doe
+          description: 'De achternaam van deze Ambtenaar <br /><b>Schema:</b> <a href="https://schema.org/familyName">https://schema.org/familyName</a>'
         aanhef:
+          type: string
+          enum:
+            - Dhr.
+            - Mvr.
+          example: Dhr.
           description: |
             *
             De aanhef van deze Ambtenaar <br /> Moet altijd Dhr. of Mvr. zijn.
-          type: string
         samenvatting:
+          type: string
+          minLength: 25
+          maxLength: 2000
+          example: 'Deze prachtige locatie is zeker het aanbevelen waard'
           description: 'Een samenvattende tekst over deze ambtenaar  <br /><b>Schema:</b> <a href="https://schema.org/description">https://schema.org/description</a>'
-          type: string
         beschrijving:
-          description: 'Een beschrijvende tekst over deze Ambtenaar  <br /><b>Schema:</b> <a href="https://schema.org/description">https://schema.org/description</a>'
           type: string
+          minLength: 25
+          maxLength: 2000
+          example: 'John is de leukste trouw ambtenaar uit uw gemeente en omstreken'
+          description: 'Een beschrijvende tekst over deze Ambtenaar  <br /><b>Schema:</b> <a href="https://schema.org/description">https://schema.org/description</a>'
         taal:
           description: 'De taal waarin de informatie van deze Ambtenaar is opgesteld <br /><b>Schema:</b> <a href="https://www.ietf.org/rfc/rfc3066.txt">https://www.ietf.org/rfc/rfc3066.txt</a>'
           type: string
@@ -714,26 +805,43 @@ components:
           format: uri
           description: 'URL-referentie naar het film document'
         voornamen:
-          description: 'De naam van deze Ambtenaar <br /><b>Schema:</b> <a href="https://schema.org/givenName">https://schema.org/givenName</a>a>'
+          minLength: 5
+          maxLength: 255
           type: string
+          example: John
+          description: 'De naam van deze Ambtenaar <br /><b>Schema:</b> <a href="https://schema.org/givenName">https://schema.org/givenName</a>a>'
         voorvoegselGeslachtsnaam:
+          maxLength: 255
           type: string
           example: 'van der'
           description: 'Voorvoegsel van de achternaam <br /><b>Schema:</b> <a href="https://schema.org/givenName">https://schema.org/givenName</a>'
         geslachtsnaam:
-          description: 'De achternaam van deze Ambtenaar <br /><b>Schema:</b> <a href="https://schema.org/familyName">https://schema.org/familyName</a>'
+          minLength: 5
+          maxLength: 255
           type: string
+          example: Doe
+          description: 'De achternaam van deze Ambtenaar <br /><b>Schema:</b> <a href="https://schema.org/familyName">https://schema.org/familyName</a>'
         aanhef:
+          type: string
+          enum:
+            - Dhr.
+            - Mvr.
+          example: Dhr.
           description: |
             *
             De aanhef van deze Ambtenaar <br /> Moet altijd Dhr. of Mvr. zijn.
-          type: string
         samenvatting:
+          type: string
+          minLength: 25
+          maxLength: 2000
+          example: 'Deze prachtige locatie is zeker het aanbevelen waard'
           description: 'Een samenvattende tekst over deze ambtenaar  <br /><b>Schema:</b> <a href="https://schema.org/description">https://schema.org/description</a>'
-          type: string
         beschrijving:
-          description: 'Een beschrijvende tekst over deze Ambtenaar  <br /><b>Schema:</b> <a href="https://schema.org/description">https://schema.org/description</a>'
           type: string
+          minLength: 25
+          maxLength: 2000
+          example: 'John is de leukste trouw ambtenaar uit uw gemeente en omstreken'
+          description: 'Een beschrijvende tekst over deze Ambtenaar  <br /><b>Schema:</b> <a href="https://schema.org/description">https://schema.org/description</a>'
         taal:
           description: 'De taal waarin de informatie van deze Ambtenaar is opgesteld <br /><b>Schema:</b> <a href="https://www.ietf.org/rfc/rfc3066.txt">https://www.ietf.org/rfc/rfc3066.txt</a>'
           type: string
@@ -761,17 +869,17 @@ components:
         - geslachtsnaam
         - samenvatting
         - beschrijving
-    User:
+    Applicatie:
       type: object
       description: 'Een Applicatie die is geidentificeerd en geautoriceerd om namens een organisatie wijzigingen uit te voeren'
       properties:
         id:
           type: integer
         naam:
-          type: email
+          type: naam
           maxLength: 255
           minLength: 8
-          example: john@do.nl
+          example: mijn-applicatie
         sleutel:
           type: string
           maxLength: 16
@@ -781,7 +889,7 @@ components:
         scopes:
           type: array
           example: '[]'
-          description: 'De scopes (rechten) die deze Applicatie heeft.'
+          description: 'De scopes (rechten) die deze Applicatie heeft. Zie [scopes](/#section/Scopes) voor meer informatie.'
         organisatie:
           type: string
           example: '123456789'
@@ -790,6 +898,7 @@ components:
           minLength: 8
           description: 'Het RSIN van de organisatie waartoe deze Applicatie behoord. Dit moet een geldig RSIN zijn van 9 nummers en voldoen aan https://nl.wikipedia.org/wiki/Burgerservicenummer#11-proef.'
         isActief:
+          description: 'Word gebruikt om aan te geven of deze aplicatie actief is (en mag inloggen) of dat deze slechts wordt gebruikt voor archief doeleinden'
           type: boolean
         registratiedatum:
           description: 'Het tijdstip waarop deze Applicatie is aangemaakt'
@@ -821,17 +930,32 @@ components:
           readOnly: true
         roles:
           readOnly: true
-    'User-applicatie:lezen':
+    'Applicatie-applicatie:inloggen':
+      type: object
+      description: 'Een Applicatie die is geidentificeerd en geautoriceerd om namens een organisatie wijzigingen uit te voeren'
+      properties:
+        naam:
+          type: naam
+          maxLength: 255
+          minLength: 8
+          example: mijn-applicatie
+        sleutel:
+          type: string
+          maxLength: 16
+          minLength: 5
+          example: NietZoGeheim
+          description: 'Een door de organisatie opgegeven sleutel waarmee deze Applicatie zich identificeerd bij het ophalen van en JWT token.'
+    'Applicatie-applicatie:lezen':
       type: object
       description: 'Een Applicatie die is geidentificeerd en geautoriceerd om namens een organisatie wijzigingen uit te voeren'
       properties:
         id:
           type: integer
         naam:
-          type: email
+          type: naam
           maxLength: 255
           minLength: 8
-          example: john@do.nl
+          example: mijn-applicatie
         organisatie:
           type: string
           example: '123456789'
@@ -840,6 +964,7 @@ components:
           minLength: 8
           description: 'Het RSIN van de organisatie waartoe deze Applicatie behoord. Dit moet een geldig RSIN zijn van 9 nummers en voldoen aan https://nl.wikipedia.org/wiki/Burgerservicenummer#11-proef.'
         isActief:
+          description: 'Word gebruikt om aan te geven of deze aplicatie actief is (en mag inloggen) of dat deze slechts wordt gebruikt voor archief doeleinden'
           type: boolean
         registratiedatum:
           description: 'Het tijdstip waarop deze Applicatie is aangemaakt'
@@ -857,15 +982,15 @@ components:
           maxLength: 255
           format: uri
           description: 'De contactpersoon voor deze Applicatie, die bijvoorbeeld word verwittigd bij misbruik.'
-    'User-applicatie:maken':
+    'Applicatie-applicatie:maken':
       type: object
       description: 'Een Applicatie die is geidentificeerd en geautoriceerd om namens een organisatie wijzigingen uit te voeren'
       properties:
         naam:
-          type: email
+          type: naam
           maxLength: 255
           minLength: 8
-          example: john@do.nl
+          example: mijn-applicatie
         sleutel:
           type: string
           maxLength: 16
@@ -875,7 +1000,7 @@ components:
         scopes:
           type: array
           example: '[]'
-          description: 'De scopes (rechten) die deze Applicatie heeft.'
+          description: 'De scopes (rechten) die deze Applicatie heeft. Zie [scopes](/#section/Scopes) voor meer informatie.'
         organisatie:
           type: string
           example: '123456789'
@@ -883,35 +1008,6 @@ components:
           maxLength: 9
           minLength: 8
           description: 'Het RSIN van de organisatie waartoe deze Applicatie behoord. Dit moet een geldig RSIN zijn van 9 nummers en voldoen aan https://nl.wikipedia.org/wiki/Burgerservicenummer#11-proef.'
-        contactPersoon:
-          title: Ambtenaar
-          type: url
-          example: 'https://ref.tst.vng.cloud/zrc/api/v1/zaken/24524f1c-1c14-4801-9535-22007b8d1b65'
-          required: 'true'
-          maxLength: 255
-          format: uri
-          description: 'De contactpersoon voor deze Applicatie, die bijvoorbeeld word verwittigd bij misbruik.'
-    'User-applicatie:schrijven':
-      type: object
-      description: 'Een Applicatie die is geidentificeerd en geautoriceerd om namens een organisatie wijzigingen uit te voeren'
-      properties:
-        naam:
-          type: email
-          maxLength: 255
-          minLength: 8
-          example: john@do.nl
-        sleutel:
-          type: string
-          maxLength: 16
-          minLength: 5
-          example: NietZoGeheim
-          description: 'Een door de organisatie opgegeven sleutel waarmee deze Applicatie zich identificeerd bij het ophalen van en JWT token.'
-        scopes:
-          type: array
-          example: '[]'
-          description: 'De scopes (rechten) die deze Applicatie heeft.'
-        isActief:
-          type: boolean
         contactPersoon:
           title: Ambtenaar
           type: url

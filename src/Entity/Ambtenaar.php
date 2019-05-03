@@ -4,10 +4,10 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
-use ApiPlatform\Core\Annotation\ApiFilter;
 use ApiPlatform\Core\Annotation\ApiProperty;
 use ApiPlatform\Core\Annotation\ApiResource;
 use ApiPlatform\Core\Annotation\ApiSubresource;
+use ApiPlatform\Core\Annotation\ApiFilter;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\DateFilter;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\OrderFilter;
@@ -262,6 +262,8 @@ class Ambtenaar implements StringableInterface
 	 *      maxMessage = "Het RSIN kan niet langer dan {{ limit }} karakters zijn"
 	 * )
 	 * @Groups({"read"})
+     * @ApiFilter(SearchFilter::class, strategy="exact")
+     * @ApiFilter(OrderFilter::class)
 	 * @ApiProperty(
 	 *     attributes={
 	 *         "openapi_context"={
@@ -345,9 +347,11 @@ class Ambtenaar implements StringableInterface
      *      maxMessage = "De naam kan niet langer dan {{ limit }} karakters zijn")
 	 * @Groups({"read", "write"})
 	 * @ApiProperty(
-	 * 	   iri="http://schema.org/name",	 
-     *     attributes={
-     *         "swagger_context"={
+	 * 	   iri="http://schema.org/name",	      *     
+	 *     attributes={
+     *         "openapi_context"={
+	 *             "minLength"=5,
+	 *             "maxLength"=255,
      *             "type"="string",
      *             "example"="John"
      *         }
@@ -372,6 +376,7 @@ class Ambtenaar implements StringableInterface
 	 * 	   iri="http://schema.org/name",
 	 *     attributes={
 	 *         "openapi_context"={
+	 *             "maxLength"=255,
 	 *             "type"="string",
 	 *             "example"="van der"
 	 *         }
@@ -400,7 +405,7 @@ class Ambtenaar implements StringableInterface
 	 * @ApiProperty(
 	 * 	   iri="http://schema.org/name",
 	 *     attributes={
-	 *         "swagger_context"={
+	 *         "openapi_context"={
 	 *             "minLength"=5,
 	 *             "maxLength"=255,
 	 *             "type"="string",
@@ -429,7 +434,7 @@ class Ambtenaar implements StringableInterface
 	 * @Groups({"read", "write"})
      * @ApiProperty(
      *     attributes={
-     *         "swagger_context"={
+     *         "openapi_context"={
      *             "type"="string",
      *             "enum"={"Dhr.", "Mvr."},
      *             "example"="Dhr."
@@ -460,7 +465,7 @@ class Ambtenaar implements StringableInterface
 	 * @ApiProperty(
 	 * 	  iri="https://schema.org/description",
 	 *     attributes={
-	 *         "swagger_context"={
+	 *         "openapi_context"={
 	 *             "type"="string",
 	 *             "minLength"=25,
 	 *             "maxLength"=2000,
@@ -492,7 +497,7 @@ class Ambtenaar implements StringableInterface
 	 * @ApiProperty(
 	 * 	  iri="https://schema.org/description",	 
      *     attributes={
-     *         "swagger_context"={
+     *         "openapi_context"={
      *             "type"="string",
 	 *             "minLength"=25,
 	 *             "maxLength"=2000,
@@ -580,10 +585,10 @@ class Ambtenaar implements StringableInterface
 	/**
 	 * De eigenaar (applicatie) van dit object, wordt bepaald aan de hand van de geauthenticeerde applicatie die de ambtenaar heeft aangemaakt
 	 * 
-	 * @var App\Entity\User $eigenaar
+	 * @var App\Entity\Applicatie $eigenaar
 	 *
      * @Gedmo\Blameable(on="create")
-	 * @ORM\ManyToOne(targetEntity="App\Entity\User")
+	 * @ORM\ManyToOne(targetEntity="App\Entity\Applicatie")
 	 * @Groups({"read"})
 	 */
 	public $eigenaar;
