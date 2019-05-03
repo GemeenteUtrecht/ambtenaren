@@ -46,7 +46,7 @@ info:
      - applicatie:maken
      - applicatie:inloggen        
              
-    # Authentication
+    # Authenticatie
     Voor het gebruik van deze applicatie is een JWT Token nodig, deze hangt altijd vast aan een applicatie (ofwel user). Geldige JWT Tokens worden aangemaakt bij het registreren van een applicatie en kennen een beperkte houdbaarheid. 
     
     JWT Tokens kunnen zowel worden verlengd, als opnieuw worden aangevraagd, dit aan de hand van de applicatie id en sleutel.
@@ -670,7 +670,7 @@ components:
           required: 'true'
           maxLength: 9
           minLength: 8
-          description: 'Het RSIN van de organisatie waartoe deze Ambtenaar behoord. Dit moet een geldig RSIN zijn van 9 nummers en voldoen aan https://nl.wikipedia.org/wiki/Burgerservicenummer#11-proef. <br> Het RSIN word bepaald aan de hand van de gauthenticeerde aplicatie en kan niet worden overschreven'
+          description: 'Het RSIN van de organisatie waartoe deze Ambtenaar behoord. Dit moet een geldig RSIN zijn van 9 nummers en voldoen aan https://nl.wikipedia.org/wiki/Burgerservicenummer#11-proef. <br> Het RSIN word bepaald aan de hand van de gauthenticeerde applicatie en kan niet worden overschreven'
         afbeelding:
           title: BRP
           type: url
@@ -745,7 +745,7 @@ components:
           format: uri
           description: 'Het contact persoon voor deze ambtenaar'
         eigenaar:
-          description: 'De eigenaar (aplicatie) van dit object, wordt bepaald aan de hand van de geathenticeerde applicatie die de ambtenaar heeft aangemaakt'
+          description: 'De eigenaar (applicatie) van dit object, wordt bepaald aan de hand van de geauthenticeerde applicatie die de ambtenaar heeft aangemaakt'
           type: string
         id:
           readOnly: true
@@ -787,7 +787,7 @@ components:
           required: 'true'
           maxLength: 9
           minLength: 8
-          description: 'Het RSIN van de organisatie waartoe deze Ambtenaar behoord. Dit moet een geldig RSIN zijn van 9 nummers en voldoen aan https://nl.wikipedia.org/wiki/Burgerservicenummer#11-proef. <br> Het RSIN word bepaald aan de hand van de gauthenticeerde aplicatie en kan niet worden overschreven'
+          description: 'Het RSIN van de organisatie waartoe deze Ambtenaar behoord. Dit moet een geldig RSIN zijn van 9 nummers en voldoen aan https://nl.wikipedia.org/wiki/Burgerservicenummer#11-proef. <br> Het RSIN word bepaald aan de hand van de gauthenticeerde applicatie en kan niet worden overschreven'
         afbeelding:
           title: BRP
           type: url
@@ -862,7 +862,7 @@ components:
           format: uri
           description: 'Het contact persoon voor deze ambtenaar'
         eigenaar:
-          description: 'De eigenaar (aplicatie) van dit object, wordt bepaald aan de hand van de geathenticeerde applicatie die de ambtenaar heeft aangemaakt'
+          description: 'De eigenaar (applicatie) van dit object, wordt bepaald aan de hand van de geauthenticeerde applicatie die de ambtenaar heeft aangemaakt'
           type: string
       required:
         - voornamen
