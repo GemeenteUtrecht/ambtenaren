@@ -37,16 +37,16 @@ info:
     
     # Scopes
     Applicaties kunnen op deze API alleen wijzigingen uitvoeren waarvoor zij over de juiste rechten(scopes) beschikken. De op deze api verschikbare scopes zijn:
-     - ambtenaar:schrijven
-     - ambtenaar:lezen
-     - ambtenaar:maken
-     - ambtenaar:verwijderen
+     - Ambtenaren:schrijven
+     - Ambtenaren:lezen
+     - Ambtenaren:maken
+     - Ambtenaren:verwijderen
      - applicatie:schrijven
      - applicatie:lezen
      - applicatie:maken
      - applicatie:inloggen        
              
-    # Authenticatie
+    # Authentication
     Voor het gebruik van deze applicatie is een JWT Token nodig, deze hangt altijd vast aan een applicatie (ofwel user). Geldige JWT Tokens worden aangemaakt bij het registreren van een applicatie en kennen een beperkte houdbaarheid. 
     
     JWT Tokens kunnen zowel worden verlengd, als opnieuw worden aangevraagd, dit aan de hand van de applicatie id en sleutel.
@@ -898,7 +898,7 @@ components:
           minLength: 8
           description: 'Het RSIN van de organisatie waartoe deze Applicatie behoord. Dit moet een geldig RSIN zijn van 9 nummers en voldoen aan https://nl.wikipedia.org/wiki/Burgerservicenummer#11-proef.'
         isActief:
-          description: 'Word gebruikt om aan te geven of deze aplicatie actief is (en mag inloggen) of dat deze slechts wordt gebruikt voor archief doeleinden'
+          description: 'Word gebruikt om aan te geven of deze applicatie actief is (en mag inloggen) of dat deze slechts wordt gebruikt voor archief doeleinden'
           type: boolean
         registratiedatum:
           description: 'Het tijdstip waarop deze Applicatie is aangemaakt'
@@ -964,7 +964,7 @@ components:
           minLength: 8
           description: 'Het RSIN van de organisatie waartoe deze Applicatie behoord. Dit moet een geldig RSIN zijn van 9 nummers en voldoen aan https://nl.wikipedia.org/wiki/Burgerservicenummer#11-proef.'
         isActief:
-          description: 'Word gebruikt om aan te geven of deze aplicatie actief is (en mag inloggen) of dat deze slechts wordt gebruikt voor archief doeleinden'
+          description: 'Word gebruikt om aan te geven of deze applicatie actief is (en mag inloggen) of dat deze slechts wordt gebruikt voor archief doeleinden'
           type: boolean
         registratiedatum:
           description: 'Het tijdstip waarop deze Applicatie is aangemaakt'
@@ -1034,7 +1034,7 @@ tags:
     name: Ambtenaar
     description: 'De ambtenaar is de actor binnen de gemeente die zaken behandeld.'
   -
-    name: User
+    name: Applicatie
     description: 'Een applicatie die door een organisatie wordt gebruikt voor wijzigingen.'
 x-tagGroups:
   -
@@ -1044,4 +1044,4 @@ x-tagGroups:
   -
     name: Applicatie
     tags:
-      - User
+      - Applicatie

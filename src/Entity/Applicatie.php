@@ -312,7 +312,7 @@ class Applicatie implements UserInterface, StringableInterface
 	public $organisatie;	
 	
 	/**
-	 * Word gebruikt om aan te geven of deze aplicatie actief is (en mag inloggen) of dat deze slechts wordt gebruikt voor archief doeleinden
+	 * Word gebruikt om aan te geven of deze applicatie actief is (en mag inloggen) of dat deze slechts wordt gebruikt voor archief doeleinden
 	 * 
 	 * @Groups({"applicatie:lezen","applicatie:schrijven"})
      * @ApiFilter(BooleanFilter::class)
