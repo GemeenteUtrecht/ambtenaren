@@ -583,7 +583,7 @@ class Ambtenaar implements StringableInterface
 	public $contactPersoon;
 	
 	/**
-	 * De eigenaar (applicatie) van dit object, wordt bepaald aan de hand van de geauthenticeerde applicatie die de ambtenaar heeft aangemaakt
+	 * Met eigenaar wordt bijgehouden welke  applicatie verantwoordelijk is voor de Ambtenaar, en daarvoor de rechten beheerd en uitgeeft. In die zin moet de eigenaar dan ook worden gezien in de trant van autorisatie en configuratie in plaats van als onderdeel van het datamodel.
 	 * 
 	 * @var App\Entity\Applicatie $eigenaar
 	 *

@@ -37,16 +37,16 @@ info:
     
     # Scopes
     Applicaties kunnen op deze API alleen wijzigingen uitvoeren waarvoor zij over de juiste rechten(scopes) beschikken. De op deze api verschikbare scopes zijn:
-     - Ambtenaren:schrijven
-     - Ambtenaren:lezen
-     - Ambtenaren:maken
-     - Ambtenaren:verwijderen
+     - ambtenaar:schrijven
+     - ambtenaar:lezen
+     - ambtenaar:maken
+     - ambtenaar:verwijderen
      - applicatie:schrijven
      - applicatie:lezen
      - applicatie:maken
      - applicatie:inloggen        
              
-    # Authentication
+    # Authenticatie
     Voor het gebruik van deze applicatie is een JWT Token nodig, deze hangt altijd vast aan een applicatie (ofwel user). Geldige JWT Tokens worden aangemaakt bij het registreren van een applicatie en kennen een beperkte houdbaarheid. 
     
     JWT Tokens kunnen zowel worden verlengd, als opnieuw worden aangevraagd, dit aan de hand van de applicatie id en sleutel.
@@ -351,13 +351,6 @@ paths:
     get:
       summary: 'Haal op'
       description: 'Haalt een Applicatie op'
-      responses:
-        200:
-          description: 'Een overzicht van Applicaties'
-        400:
-          description: 'Ongeldige aanvraag'
-        404:
-          description: 'Applocatie niet gevonden'
       tags:
         - Applicatie
       operationId: getApplicatieItem
@@ -368,6 +361,21 @@ paths:
           required: true
           schema:
             type: string
+      responses:
+        200:
+          description: 'Applicatie resource response'
+          content:
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Applicatie'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Applicatie'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Applicatie'
+        404:
+          description: 'Resource not found'
     put:
       summary: 'Werk bij'
       description: 'Werk een Applicatie bij'
@@ -407,15 +415,6 @@ paths:
       consumes:
         - application/json
         - text/html
-      produces:
-        - application/json
-      responses:
-        200:
-          description: 'Een overzicht van versies'
-        400:
-          description: 'Ongeldige aanvraag'
-        404:
-          description: 'Applicatie object niet gevonden'
       tags:
         - Applicatie
       operationId: logApplicatieItem
@@ -426,20 +425,47 @@ paths:
           required: true
           schema:
             type: string
+      responses:
+        200:
+          description: 'Applicatie resource response'
+          content:
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Applicatie-applicatie:lezen'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Applicatie-applicatie:lezen'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Applicatie-applicatie:lezen'
+        404:
+          description: 'Resource not found'
   /applicaties:
     get:
       summary: Verzameling
       description: 'Haal een verzameling van Applicaties op, het is mogelijk om deze resultaten te filteren aan de hand van query parameters. <br><br>Lees meer over het filteren van resulaten onder [filteren](/#section/Filteren).'
-      responses:
-        200:
-          description: 'Een overzicht van Applicaties'
-        400:
-          description: 'Ongeldige aanvraag'
-        404:
-          description: 'Applicaties niet gevonden'
       tags:
         - Applicatie
       operationId: getApplicatieCollection
+      responses:
+        200:
+          description: 'Applicatie collection response'
+          content:
+            application/ld+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Applicatie'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Applicatie'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Applicatie'
       parameters:
         -
           name: id
@@ -745,7 +771,7 @@ components:
           format: uri
           description: 'Het contact persoon voor deze ambtenaar'
         eigenaar:
-          description: 'De eigenaar (applicatie) van dit object, wordt bepaald aan de hand van de geauthenticeerde applicatie die de ambtenaar heeft aangemaakt'
+          description: 'Met eigenaar wordt bijgehouden welke  applicatie verantwoordelijk is voor de Ambtenaar, en daarvoor de rechten beheerd en uitgeeft. In die zin moet de eigenaar dan ook worden gezien in de trant van autorisatie en configuratie in plaats van als onderdeel van het datamodel.'
           type: string
         id:
           readOnly: true
@@ -862,7 +888,7 @@ components:
           format: uri
           description: 'Het contact persoon voor deze ambtenaar'
         eigenaar:
-          description: 'De eigenaar (applicatie) van dit object, wordt bepaald aan de hand van de geauthenticeerde applicatie die de ambtenaar heeft aangemaakt'
+          description: 'Met eigenaar wordt bijgehouden welke  applicatie verantwoordelijk is voor de Ambtenaar, en daarvoor de rechten beheerd en uitgeeft. In die zin moet de eigenaar dan ook worden gezien in de trant van autorisatie en configuratie in plaats van als onderdeel van het datamodel.'
           type: string
       required:
         - voornamen

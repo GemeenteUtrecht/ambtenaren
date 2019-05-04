@@ -40,18 +40,7 @@ use App\Controller\UserController;
  *      	"path"="/applicaties",
  *  		"openapi_context" = {
  * 				"summary" = "Verzameling",
- *         		"description" = "Haal een verzameling van Applicaties op, het is mogelijk om deze resultaten te filteren aan de hand van query parameters. <br><br>Lees meer over het filteren van resulaten onder [filteren](/#section/Filteren).",
- *             	"responses" = {
- *         			"200" = {
- *         				"description" = "Een overzicht van Applicaties"
- *         			},	
- *         			"400" = {
- *         				"description" = "Ongeldige aanvraag"
- *         			},
- *         			"404" = {
- *         				"description" = "Applicaties niet gevonden"
- *         			}
- *            	}            
+ *         		"description" = "Haal een verzameling van Applicaties op, het is mogelijk om deze resultaten te filteren aan de hand van query parameters. <br><br>Lees meer over het filteren van resulaten onder [filteren](/#section/Filteren)."            
  *  		}
  *  	},
  *     "register"={
@@ -115,18 +104,7 @@ use App\Controller\UserController;
  *      	"path"="/applicatie/{id}",
  *  		"openapi_context" = {
  * 				"summary" = "Haal op",
- *         		"description" = "Haalt een Applicatie op",
- *             	"responses" = {
- *         			"200" = {
- *         				"description" = "Een overzicht van Applicaties"
- *         			},	
- *         			"400" = {
- *         				"description" = "Ongeldige aanvraag"
- *         			},
- *         			"404" = {
- *         				"description" = "Applocatie niet gevonden"
- *         			}
- *            	}            
+ *         		"description" = "Haalt een Applicatie op"           
  *  		}
  *  	},
  *     "put"={
@@ -161,20 +139,6 @@ use App\Controller\UserController;
  *          	"consumes" = {
  *              	"application/json",
  *               	"text/html",
- *            	},
- *             	"produces" = {
- *         			"application/json"
- *            	},
- *             	"responses" = {
- *         			"200" = {
- *         				"description" = "Een overzicht van versies"
- *         			},
- *         			"400" = {
- *         				"description" = "Ongeldige aanvraag"
- *         			},
- *         			"404" = {
- *         				"description" = "Applicatie object niet gevonden"
- *         			}
  *            	}
  *         }
  *     }
