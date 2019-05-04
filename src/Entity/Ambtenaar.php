@@ -41,19 +41,8 @@ use ActivityLogBundle\Entity\Interfaces\StringableInterface;
  *  		"denormalizationContext"={"groups"={"write"}},
  *      	"path"="/ambtenaren",
  *  		"openapi_context" = {
- * 				"summary" = "Verzameling",
- *         		"description" = "Haal een verzameling van Ambtenaren op, het is mogelijk om deze resultaten te filteren aan de hand van query parameters. <br><br>Lees meer over het filteren van resulaten onder [filteren](/#section/Filteren).",
- *             	"responses" = {
- *         			"200" = {
- *         				"description" = "Een overzicht van Ambtenaren"
- *         			},	
- *         			"400" = {
- *         				"description" = "Ongeldige aanvraag"
- *         			},
- *         			"404" = {
- *         				"description" = "Ambtenaren niet gevonden"
- *         			}
- *            	}            
+ * 				"summary" = "Collectie",
+ *         		"description" = "Haal een verzameling van Ambtenaren op, het is mogelijk om deze resultaten te filteren aan de hand van query parameters. <br><br>Lees meer over het filteren van resulaten onder [filteren](/#section/Filteren).",                   
  *  		}
  *  	},
  *  	"post"={
@@ -62,15 +51,7 @@ use ActivityLogBundle\Entity\Interfaces\StringableInterface;
  *      	"path"="/ambtenaren",
  *  		"openapi_context" = {
  * 				"summary" = "Maak aan",
- *         		"description" = "Maak een specifieke ambtenaar aan",
- *             	"responses" = {
- *         			"200" = {
- *         				"description" = "Ambtenaar aangemaakt"
- *         			},	
- *         			"400" = {
- *         				"description" = "Ongeldige aanvraag"
- *         			}
- *            	}            
+ *         		"description" = "Maak een specifieke ambtenaar aan"
  *  		}
  *  	}
  *  },
@@ -81,18 +62,7 @@ use ActivityLogBundle\Entity\Interfaces\StringableInterface;
  *      	"path"="/ambtenaren/{id}",
  *  		"openapi_context" = {
  * 				"summary" = "Bekijk",
- *         		"description" = "Bekijk een specifieke ambtenaar",
- *             	"responses" = {
- *         			"200" = {
- *         				"description" = "Een specifieke ambtenaar"
- *         			},	
- *         			"400" = {
- *         				"description" = "Ongeldige aanvraag"
- *         			},
- *         			"404" = {
- *         				"description" = "Ambtenaren niet gevonden"
- *         			}
- *            	}            
+ *         		"description" = "Bekijk een specifieke ambtenaar"
  *  		}
  *  	},
  *     "put"={
@@ -101,18 +71,7 @@ use ActivityLogBundle\Entity\Interfaces\StringableInterface;
  *      	"path"="/ambtenaren/{id}",
  *  		"openapi_context" = {
  * 				"summary" = "Vervang",
- *         		"description" = "Vervang een specifieke ambtenaar",
- *             	"responses" = {
- *         			"200" = {
- *         				"description" = "Ambtenaar bijgewerkt"
- *         			},	
- *         			"400" = {
- *         				"description" = "Ongeldige aanvraag"
- *         			},
- *         			"404" = {
- *         				"description" = "Ambtenaar niet gevonden"
- *         			}
- *            	}            
+ *         		"description" = "Vervang een specifieke ambtenaar"
  *  		}
  *  	},
  *     "delete"={
@@ -121,15 +80,7 @@ use ActivityLogBundle\Entity\Interfaces\StringableInterface;
  *      	"path"="/ambtenaren/{id}",
  *  		"openapi_context" = {
  * 				"summary" = "Verwijder",
- *         		"description" = "Verwijder een specifieke ambtenaar",
- *             	"responses" = {
- *         			"204" = {
- *         				"description" = "Ambtenaar niet verwijderd"
- *         			},	
- *         			"404" = {
- *         				"description" = "Ambtenaar niet gevonden"
- *         			}
- *            	}          
+ *         		"description" = "Verwijder een specifieke ambtenaar"
  *  		}
  *  	},
  *     "log"={
@@ -140,25 +91,7 @@ use ActivityLogBundle\Entity\Interfaces\StringableInterface;
  *     		"denormalization_context"={"groups"={"write"}},
  *         	"openapi_context" = {
  *         		"summary" = "Logboek",
- *         		"description" = "Geeft een lijst van eerdere versies en wijzigingen van dit Ambtenaren object",
- *          	"consumes" = {
- *              	"application/json",
- *               	"text/html",
- *            	},
- *             	"produces" = {
- *         			"application/json"
- *            	},
- *             	"responses" = {
- *         			"200" = {
- *         				"description" = "Een overzicht van versies"
- *         			},	
- *         			"400" = {
- *         				"description" = "Ongeldige aanvraag"
- *         			},
- *         			"404" = {
- *         				"description" = "Ambtenaar niet gevonden"
- *         			}
- *            	}            
+ *         		"description" = "Geeft een lijst van eerdere versies en wijzigingen van dit Ambtenaren object"
  *         }
  *     },
  *     "revert"={
@@ -169,25 +102,7 @@ use ActivityLogBundle\Entity\Interfaces\StringableInterface;
  *     		"denormalization_context"={"groups"={"herstel"}},
  *         	"openapi_context" = {
  *         		"summary" = "Herstel",
- *         		"description" = "Herstel een eerdere versie van dit Ambtenaren object. Dit is een destructieve actie die niet ongedaan kan worden gemaakt",
- *          	"consumes" = {
- *              	"application/json",
- *               	"text/html",
- *            	},
- *             	"produces" = {
- *         			"application/json"
- *            	},
- *             	"responses" = {
- *         			"202" = {
- *         				"description" = "Teruggedraaid naar eerdere versie"
- *         			},	
- *         			"400" = {
- *         				"description" = "Ongeldige aanvraag"
- *         			},
- *         			"404" = {
- *         				"description" = "Ambtenaar niet gevonden"
- *         			}
- *            	}            
+ *         		"description" = "Herstel een eerdere versie van dit Ambtenaren object. Dit is een destructieve actie die niet ongedaan kan worden gemaakt"
  *         }
  *     }
  *  }

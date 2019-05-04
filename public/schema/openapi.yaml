@@ -71,16 +71,28 @@ paths:
     get:
       summary: Verzameling
       description: 'Haal een verzameling van Ambtenaren op, het is mogelijk om deze resultaten te filteren aan de hand van query parameters. <br><br>Lees meer over het filteren van resulaten onder [filteren](/#section/Filteren).'
-      responses:
-        200:
-          description: 'Een overzicht van Ambtenaren'
-        400:
-          description: 'Ongeldige aanvraag'
-        404:
-          description: 'Ambtenaren niet gevonden'
       tags:
         - Ambtenaar
       operationId: getAmbtenaarCollection
+      responses:
+        200:
+          description: 'Ambtenaar collection response'
+          content:
+            application/ld+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Ambtenaar'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Ambtenaar'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Ambtenaar'
       parameters:
         -
           name: 'registratiedatum[before]'
@@ -199,14 +211,32 @@ paths:
     post:
       summary: 'Maak aan'
       description: 'Maak een specifieke ambtenaar aan'
-      responses:
-        200:
-          description: 'Ambtenaar aangemaakt'
-        400:
-          description: 'Ongeldige aanvraag'
       tags:
         - Ambtenaar
       operationId: postAmbtenaarCollection
+      responses:
+        201:
+          description: 'Ambtenaar resource created'
+          content:
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Ambtenaar'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Ambtenaar'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Ambtenaar'
+          links:
+            GetAmbtenaarItem:
+              parameters:
+                id: '$response.body#/id'
+              operationId: getAmbtenaarItem
+              description: 'The `id` value returned in the response can be used as the `id` parameter in `GET /ambtenaren/{id}`.'
+        400:
+          description: 'Invalid input'
+        404:
+          description: 'Resource not found'
       requestBody:
         content:
           application/ld+json:
@@ -223,13 +253,6 @@ paths:
     get:
       summary: Bekijk
       description: 'Bekijk een specifieke ambtenaar'
-      responses:
-        200:
-          description: 'Een specifieke ambtenaar'
-        400:
-          description: 'Ongeldige aanvraag'
-        404:
-          description: 'Ambtenaren niet gevonden'
       tags:
         - Ambtenaar
       operationId: getAmbtenaarItem
@@ -240,16 +263,24 @@ paths:
           required: true
           schema:
             type: string
+      responses:
+        200:
+          description: 'Ambtenaar resource response'
+          content:
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Ambtenaar'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Ambtenaar'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Ambtenaar'
+        404:
+          description: 'Resource not found'
     put:
       summary: Vervang
       description: 'Vervang een specifieke ambtenaar'
-      responses:
-        200:
-          description: 'Ambtenaar bijgewerkt'
-        400:
-          description: 'Ongeldige aanvraag'
-        404:
-          description: 'Ambtenaar niet gevonden'
       tags:
         - Ambtenaar
       operationId: putAmbtenaarItem
@@ -260,6 +291,23 @@ paths:
           required: true
           schema:
             type: string
+      responses:
+        200:
+          description: 'Ambtenaar resource updated'
+          content:
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Ambtenaar'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Ambtenaar'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Ambtenaar'
+        400:
+          description: 'Invalid input'
+        404:
+          description: 'Resource not found'
       requestBody:
         content:
           application/ld+json:
@@ -275,14 +323,14 @@ paths:
     delete:
       summary: Verwijder
       description: 'Verwijder een specifieke ambtenaar'
-      responses:
-        204:
-          description: 'Ambtenaar niet verwijderd'
-        404:
-          description: 'Ambtenaar niet gevonden'
       tags:
         - Ambtenaar
       operationId: deleteAmbtenaarItem
+      responses:
+        204:
+          description: 'Ambtenaar resource deleted'
+        404:
+          description: 'Resource not found'
       parameters:
         -
           name: id
@@ -294,21 +342,32 @@ paths:
     post:
       summary: Herstel
       description: 'Herstel een eerdere versie van dit Ambtenaren object. Dit is een destructieve actie die niet ongedaan kan worden gemaakt'
-      consumes:
-        - application/json
-        - text/html
-      produces:
-        - application/json
-      responses:
-        202:
-          description: 'Teruggedraaid naar eerdere versie'
-        400:
-          description: 'Ongeldige aanvraag'
-        404:
-          description: 'Ambtenaar niet gevonden'
       tags:
         - Ambtenaar
       operationId: revertAmbtenaarItem
+      responses:
+        201:
+          description: 'Ambtenaar resource created'
+          content:
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Ambtenaar-read'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Ambtenaar-read'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Ambtenaar-read'
+          links:
+            GetAmbtenaarItem:
+              parameters:
+                id: '$response.body#/id'
+              operationId: getAmbtenaarItem
+              description: 'The `id` value returned in the response can be used as the `id` parameter in `GET /ambtenaren/{id}`.'
+        400:
+          description: 'Invalid input'
+        404:
+          description: 'Resource not found'
       requestBody:
         content:
           application/ld+json:
@@ -325,18 +384,6 @@ paths:
     get:
       summary: Logboek
       description: 'Geeft een lijst van eerdere versies en wijzigingen van dit Ambtenaren object'
-      consumes:
-        - application/json
-        - text/html
-      produces:
-        - application/json
-      responses:
-        200:
-          description: 'Een overzicht van versies'
-        400:
-          description: 'Ongeldige aanvraag'
-        404:
-          description: 'Ambtenaar niet gevonden'
       tags:
         - Ambtenaar
       operationId: logAmbtenaarItem
@@ -347,17 +394,25 @@ paths:
           required: true
           schema:
             type: string
+      responses:
+        200:
+          description: 'Ambtenaar resource response'
+          content:
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Ambtenaar-read'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Ambtenaar-read'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Ambtenaar-read'
+        404:
+          description: 'Resource not found'
   '/applicatie/{id}':
     get:
       summary: 'Haal op'
       description: 'Haalt een Applicatie op'
-      responses:
-        200:
-          description: 'Een overzicht van Applicaties'
-        400:
-          description: 'Ongeldige aanvraag'
-        404:
-          description: 'Applocatie niet gevonden'
       tags:
         - Applicatie
       operationId: getApplicatieItem
@@ -368,16 +423,24 @@ paths:
           required: true
           schema:
             type: string
+      responses:
+        200:
+          description: 'Applicatie resource response'
+          content:
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Applicatie'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Applicatie'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Applicatie'
+        404:
+          description: 'Resource not found'
     put:
       summary: 'Werk bij'
       description: 'Werk een Applicatie bij'
-      responses:
-        202:
-          description: 'applicatie bijgewerkt'
-        400:
-          description: 'Ongeldige aanvraag'
-        404:
-          description: 'Applicatie niet gevonden'
       tags:
         - Applicatie
       operationId: putApplicatieItem
@@ -388,6 +451,23 @@ paths:
           required: true
           schema:
             type: string
+      responses:
+        200:
+          description: 'Applicatie resource updated'
+          content:
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Applicatie'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Applicatie'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Applicatie'
+        400:
+          description: 'Invalid input'
+        404:
+          description: 'Resource not found'
       requestBody:
         content:
           application/ld+json:
@@ -404,18 +484,6 @@ paths:
     get:
       summary: Logboek
       description: 'Bekijk de wijzigingen op dit Applicatie object'
-      consumes:
-        - application/json
-        - text/html
-      produces:
-        - application/json
-      responses:
-        200:
-          description: 'Een overzicht van versies'
-        400:
-          description: 'Ongeldige aanvraag'
-        404:
-          description: 'Applicatie object niet gevonden'
       tags:
         - Applicatie
       operationId: logApplicatieItem
@@ -426,20 +494,47 @@ paths:
           required: true
           schema:
             type: string
+      responses:
+        200:
+          description: 'Applicatie resource response'
+          content:
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Applicatie-applicatie:lezen'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Applicatie-applicatie:lezen'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Applicatie-applicatie:lezen'
+        404:
+          description: 'Resource not found'
   /applicaties:
     get:
       summary: Verzameling
       description: 'Haal een verzameling van Applicaties op, het is mogelijk om deze resultaten te filteren aan de hand van query parameters. <br><br>Lees meer over het filteren van resulaten onder [filteren](/#section/Filteren).'
-      responses:
-        200:
-          description: 'Een overzicht van Applicaties'
-        400:
-          description: 'Ongeldige aanvraag'
-        404:
-          description: 'Applicaties niet gevonden'
       tags:
         - Applicatie
       operationId: getApplicatieCollection
+      responses:
+        200:
+          description: 'Applicatie collection response'
+          content:
+            application/ld+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Applicatie'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Applicatie'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Applicatie'
       parameters:
         -
           name: id
@@ -595,19 +690,32 @@ paths:
     post:
       summary: 'Token halen'
       description: 'Inloggen als Applicatie en JWT Token ophalen'
-      consumes:
-        - application/json
-        - text/html
-      produces:
-        - application/json
-      responses:
-        200:
-          description: 'Applicatie succesvol ingeloged'
-        401:
-          description: 'Applicatie niet ingeloged'
       tags:
         - Applicatie
       operationId: loginApplicatieCollection
+      responses:
+        201:
+          description: 'Applicatie resource created'
+          content:
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Applicatie-applicatie:lezen'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Applicatie-applicatie:lezen'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Applicatie-applicatie:lezen'
+          links:
+            GetApplicatieItem:
+              parameters:
+                id: '$response.body#/id'
+              operationId: getApplicatieItem
+              description: 'The `id` value returned in the response can be used as the `id` parameter in `GET /applicatie/{id}`.'
+        400:
+          description: 'Invalid input'
+        404:
+          description: 'Resource not found'
       requestBody:
         content:
           application/ld+json:
@@ -624,19 +732,32 @@ paths:
     post:
       summary: Registreren
       description: 'Registreer een nieuwe Applicatie voor dit component'
-      consumes:
-        - application/json
-        - text/html
-      produces:
-        - application/json
-      responses:
-        201:
-          description: 'Applicatie aangemaakt'
-        400:
-          description: 'Ongeldige aanvraag'
       tags:
         - Applicatie
       operationId: registerApplicatieCollection
+      responses:
+        201:
+          description: 'Applicatie resource created'
+          content:
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Applicatie-applicatie:lezen'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Applicatie-applicatie:lezen'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Applicatie-applicatie:lezen'
+          links:
+            GetApplicatieItem:
+              parameters:
+                id: '$response.body#/id'
+              operationId: getApplicatieItem
+              description: 'The `id` value returned in the response can be used as the `id` parameter in `GET /applicatie/{id}`.'
+        400:
+          description: 'Invalid input'
+        404:
+          description: 'Resource not found'
       requestBody:
         content:
           application/ld+json:
@@ -1034,7 +1155,7 @@ tags:
     name: Ambtenaar
     description: 'De ambtenaar is de actor binnen de gemeente die zaken behandeld.'
   -
-    name: User
+    name: Applicatie
     description: 'Een applicatie die door een organisatie wordt gebruikt voor wijzigingen.'
 x-tagGroups:
   -
@@ -1044,4 +1165,4 @@ x-tagGroups:
   -
     name: Applicatie
     tags:
-      - User
+      - Applicatie
