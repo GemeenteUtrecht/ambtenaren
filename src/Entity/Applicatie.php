@@ -21,7 +21,7 @@ use ActivityLogBundle\Entity\Interfaces\StringableInterface;
 use App\Controller\UserController;
 
 /**
- * Een Applicatie die is geidentificeerd en geautoriceerd om namens een organisatie wijzigingen uit te voeren
+ * Een software applicatie binnen een organisatie die gebruik maakt van een component voor het creëren, ophalen, bijwerken of verwijderen van gegevens. Applicaties kunnen worden geregistreerd om namens een organisatie te handelen op een component. In deze zin zijn applicaties dan ook onderdeel van het beheerproces, infrastructuur en configuratie van een component in plaats van het datamodel dat door het component wordt geleverd.
  *
  * @category   	Entity
  *

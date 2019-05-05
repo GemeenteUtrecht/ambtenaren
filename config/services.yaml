@@ -85,7 +85,7 @@ parameters:
             - name: Ambtenaar
               description: "De ambtenaar is de actor binnen de gemeente die zaken behandeld."
             - name: Applicatie
-              description: "Een applicatie die door een organisatie wordt gebruikt voor wijzigingen."  
+              description: "Een software applicatie binnen een organisatie die gebruik maakt van een component voor het creëren, ophalen, bijwerken of verwijderen van gegevens. Applicaties kunnen worden geregistreerd om namens een organisatie te handelen op een component. In deze zin zijn applicaties dan ook onderdeel van het beheerproces, infrastructuur en configuratie van een component in plaats van het datamodel dat door het component wordt geleverd."  
             # - name: User
             #   description: "Een gebruiker, of in dit geval een applicatie gebonden aan een JWT token behorende tot een organisatie."
             #   Grouping the endopoint  

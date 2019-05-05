@@ -929,7 +929,7 @@ components:
         - beschrijving
     Applicatie:
       type: object
-      description: 'Een Applicatie die is geidentificeerd en geautoriceerd om namens een organisatie wijzigingen uit te voeren'
+      description: 'Een software applicatie binnen een organisatie die gebruik maakt van een component voor het creëren, ophalen, bijwerken of verwijderen van gegevens. Applicaties kunnen worden geregistreerd om namens een organisatie te handelen op een component. In deze zin zijn applicaties dan ook onderdeel van het beheerproces, infrastructuur en configuratie van een component in plaats van het datamodel dat door het component wordt geleverd.'
       properties:
         id:
           type: integer
@@ -990,7 +990,7 @@ components:
           readOnly: true
     'Applicatie-applicatie:inloggen':
       type: object
-      description: 'Een Applicatie die is geidentificeerd en geautoriceerd om namens een organisatie wijzigingen uit te voeren'
+      description: 'Een software applicatie binnen een organisatie die gebruik maakt van een component voor het creëren, ophalen, bijwerken of verwijderen van gegevens. Applicaties kunnen worden geregistreerd om namens een organisatie te handelen op een component. In deze zin zijn applicaties dan ook onderdeel van het beheerproces, infrastructuur en configuratie van een component in plaats van het datamodel dat door het component wordt geleverd.'
       properties:
         naam:
           type: naam
@@ -1005,7 +1005,7 @@ components:
           description: 'Een door de organisatie opgegeven sleutel waarmee deze Applicatie zich identificeerd bij het ophalen van en JWT token.'
     'Applicatie-applicatie:lezen':
       type: object
-      description: 'Een Applicatie die is geidentificeerd en geautoriceerd om namens een organisatie wijzigingen uit te voeren'
+      description: 'Een software applicatie binnen een organisatie die gebruik maakt van een component voor het creëren, ophalen, bijwerken of verwijderen van gegevens. Applicaties kunnen worden geregistreerd om namens een organisatie te handelen op een component. In deze zin zijn applicaties dan ook onderdeel van het beheerproces, infrastructuur en configuratie van een component in plaats van het datamodel dat door het component wordt geleverd.'
       properties:
         id:
           type: integer
@@ -1042,7 +1042,7 @@ components:
           description: 'De contactpersoon voor deze Applicatie, die bijvoorbeeld word verwittigd bij misbruik.'
     'Applicatie-applicatie:maken':
       type: object
-      description: 'Een Applicatie die is geidentificeerd en geautoriceerd om namens een organisatie wijzigingen uit te voeren'
+      description: 'Een software applicatie binnen een organisatie die gebruik maakt van een component voor het creëren, ophalen, bijwerken of verwijderen van gegevens. Applicaties kunnen worden geregistreerd om namens een organisatie te handelen op een component. In deze zin zijn applicaties dan ook onderdeel van het beheerproces, infrastructuur en configuratie van een component in plaats van het datamodel dat door het component wordt geleverd.'
       properties:
         naam:
           type: naam
@@ -1093,7 +1093,7 @@ tags:
     description: 'De ambtenaar is de actor binnen de gemeente die zaken behandeld.'
   -
     name: Applicatie
-    description: 'Een applicatie die door een organisatie wordt gebruikt voor wijzigingen.'
+    description: 'Een software applicatie binnen een organisatie die gebruik maakt van een component voor het creëren, ophalen, bijwerken of verwijderen van gegevens. Applicaties kunnen worden geregistreerd om namens een organisatie te handelen op een component. In deze zin zijn applicaties dan ook onderdeel van het beheerproces, infrastructuur en configuratie van een component in plaats van het datamodel dat door het component wordt geleverd.'
 x-tagGroups:
   -
     name: Ambtenaar
