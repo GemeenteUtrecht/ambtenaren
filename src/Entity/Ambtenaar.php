@@ -43,16 +43,9 @@ use ActivityLogBundle\Entity\Interfaces\StringableInterface;
  *  		"openapi_context" = {
  * 				"summary" = "Verzameling",
  *         		"description" = "Haal een verzameling van Ambtenaren op, het is mogelijk om deze resultaten te filteren aan de hand van query parameters. <br><br>Lees meer over het filteren van resulaten onder [filteren](/#section/Filteren).",
- *             	"responses" = {
- *         			"200" = {
- *         				"description" = "Een overzicht van Ambtenaren"
- *         			},	
- *         			"400" = {
- *         				"description" = "Ongeldige aanvraag"
- *         			},
- *         			"404" = {
- *         				"description" = "Ambtenaren niet gevonden"
- *         			}
+ *             	"consumes" = {
+ *              	"application/json",
+ *               	"text/html",
  *            	}            
  *  		}
  *  	},
@@ -82,16 +75,9 @@ use ActivityLogBundle\Entity\Interfaces\StringableInterface;
  *  		"openapi_context" = {
  * 				"summary" = "Bekijk",
  *         		"description" = "Bekijk een specifieke ambtenaar",
- *             	"responses" = {
- *         			"200" = {
- *         				"description" = "Een specifieke ambtenaar"
- *         			},	
- *         			"400" = {
- *         				"description" = "Ongeldige aanvraag"
- *         			},
- *         			"404" = {
- *         				"description" = "Ambtenaren niet gevonden"
- *         			}
+ *             	"consumes" = {
+ *              	"application/json",
+ *               	"text/html",
  *            	}            
  *  		}
  *  	},
@@ -144,20 +130,6 @@ use ActivityLogBundle\Entity\Interfaces\StringableInterface;
  *          	"consumes" = {
  *              	"application/json",
  *               	"text/html",
- *            	},
- *             	"produces" = {
- *         			"application/json"
- *            	},
- *             	"responses" = {
- *         			"200" = {
- *         				"description" = "Een overzicht van versies"
- *         			},	
- *         			"400" = {
- *         				"description" = "Ongeldige aanvraag"
- *         			},
- *         			"404" = {
- *         				"description" = "Ambtenaar niet gevonden"
- *         			}
  *            	}            
  *         }
  *     },
@@ -583,15 +555,15 @@ class Ambtenaar implements StringableInterface
 	public $contactPersoon;
 	
 	/**
-	 * Met eigenaar wordt bijgehouden welke  applicatie verantwoordelijk is voor de Ambtenaar, en daarvoor de rechten beheerd en uitgeeft. In die zin moet de eigenaar dan ook worden gezien in de trant van autorisatie en configuratie in plaats van als onderdeel van het datamodel.
+	 * De applicatie die verantwoordelijk is voor het object, en daarvoor de rechten beheerd en uitgeeft, en het eindoordeel heeft met betrekking tot waarheidsvinding.. Een model nuancering waarbij we niet alleen moeten weten welke organisatie over een object gaat, maar ook welke applicatie binnen de organisatie.
 	 * 
-	 * @var App\Entity\Applicatie $eigenaar
+	 * @var App\Entity\Applicatie $bronApplicatie
 	 *
      * @Gedmo\Blameable(on="create")
 	 * @ORM\ManyToOne(targetEntity="App\Entity\Applicatie")
 	 * @Groups({"read"})
 	 */
-	public $eigenaar;
+	public $bronApplicatie;
 	
 	/**
 	 * API Specifieke parameters
