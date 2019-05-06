@@ -8,7 +8,7 @@ info:
     Wordt lid van het slackkanaal [https://zaakonline.slack.com](https://zaakonline.slack.com) voor ondersteuning door het ontwikkel team en regelmatige updates over de ontwikkelingen op het gebied van de zaakonline componenten.
     
     # Common ground en open source
-    Om het voor alle partijen zo makkelijk mogelijk te maken, stellen we zo veel mogelijk informatie over dit component openbaar beschikbaar.  
+    Om het voor alle partijen zo makkelijk mogelijk te maken, stellen we zo veel mogelijk informatie over dit component openbaar beschikbaar.
     - [datamodel als pdf](/schema/datamodel.pdf)
     - [datamodel als mwb](/schema/datamodel.mwb)
     - [codebase op github](https://github.com/GemeenteUtrecht/ambtenaren)
@@ -51,7 +51,7 @@ info:
     
     JWT Tokens kunnen zowel worden verlengd, als opnieuw worden aangevraagd, dit aan de hand van de applicatie id en sleutel.
     
-    Let er bij het meegeven van JWT tokens op dat deze vooraf gedaan moeten worden door een Bearer en een spatie, onder de header Authorization. De volledig naam wordt daarmee: 'Authorization: Bearer [TOKEN]'
+    Let er bij het meegeven van JWT tokens op dat deze voorafgegaan moeten worden door een Bearer en een spatie, onder de header Authorization. De volledig naam wordt daarmee: 'Authorization: Bearer [TOKEN]'
     
   version: 0.0.1
   title: 'Ambtenaren API'
@@ -382,7 +382,7 @@ paths:
   '/applicatie/{id}':
     get:
       summary: 'Haal op'
-      description: 'Haalt een Applicatie op'
+      description: 'Haal een Applicatie op'
       tags:
         - Applicatie
       operationId: getApplicatieItem
@@ -410,7 +410,7 @@ paths:
           description: 'Resource not found'
     put:
       summary: 'Werk bij'
-      description: 'Werk een Applicatie bij'
+      description: 'Werk een Applicatie bij.'
       responses:
         202:
           description: 'applicatie bijgewerkt'
@@ -443,7 +443,7 @@ paths:
   '/applicatie/{id}/log':
     get:
       summary: Logboek
-      description: 'Bekijk de wijzigingen op dit Applicatie object'
+      description: 'Bekijk de wijzigingen op dit Applicatie object.'
       consumes:
         - application/json
         - text/html
@@ -660,9 +660,9 @@ paths:
         - application/json
       responses:
         200:
-          description: 'Applicatie succesvol ingeloged'
+          description: 'Applicatie succesvol ingelogd'
         401:
-          description: 'Applicatie niet ingeloged'
+          description: 'Applicatie niet ingelogd'
       tags:
         - Applicatie
       operationId: loginApplicatieCollection
@@ -929,7 +929,7 @@ components:
         - beschrijving
     Applicatie:
       type: object
-      description: 'Een software applicatie binnen een organisatie die gebruik maakt van een component voor het creëren, ophalen, bijwerken of verwijderen van gegevens. Applicaties kunnen worden geregistreerd om namens een organisatie te handelen op een component. In deze zin zijn applicaties dan ook onderdeel van het beheerproces, infrastructuur en configuratie van een component in plaats van het datamodel dat door het component wordt geleverd.'
+      description: 'Een Applicatie die is geidentificeerd en geautoriceerd om namens een organisatie wijzigingen uit te voeren'
       properties:
         id:
           type: integer
@@ -943,7 +943,7 @@ components:
           maxLength: 16
           minLength: 5
           example: NietZoGeheim
-          description: 'Een door de organisatie opgegeven sleutel waarmee deze Applicatie zich identificeerd bij het ophalen van en JWT token.'
+          description: 'Een door de organisatie opgegeven sleutel waarmee deze Applicatie zich identificeert bij het ophalen van en JWT token.'
         scopes:
           type: array
           example: '[]'
@@ -954,7 +954,7 @@ components:
           required: 'true'
           maxLength: 9
           minLength: 8
-          description: 'Het RSIN van de organisatie waartoe deze Applicatie behoord. Dit moet een geldig RSIN zijn van 9 nummers en voldoen aan https://nl.wikipedia.org/wiki/Burgerservicenummer#11-proef.'
+          description: 'Het RSIN van de organisatie waartoe deze Applicatie behoort. Dit moet een geldig RSIN zijn van 9 nummers en voldoen aan https://nl.wikipedia.org/wiki/Burgerservicenummer#11-proef.'
         isActief:
           description: 'Word gebruikt om aan te geven of deze applicatie actief is (en mag inloggen) of dat deze slechts wordt gebruikt voor archief doeleinden'
           type: boolean
@@ -973,7 +973,7 @@ components:
           required: 'true'
           maxLength: 255
           format: uri
-          description: 'De contactpersoon voor deze Applicatie, die bijvoorbeeld word verwittigd bij misbruik.'
+          description: 'De contactpersoon voor deze Applicatie, die bijvoorbeeld wordt verwittigd bij misbruik.'
         fullname:
           readOnly: true
           type: string
@@ -981,7 +981,7 @@ components:
           readOnly: true
           type: boolean
         username:
-          description: 'Username wordt door symfony gebruikt voor de gebruikersnaam maar in de context commonground component api gebruken we hem niet en onderdruken we hem door hem aan geen groupen toe te wijzen'
+          description: 'Username wordt door symfony gebruikt voor de gebruikersnaam maar in de context common ground component api gebruiken we hem niet en onderdrukken we hem door hem aan geen groepen toe te wijzen'
         password:
           readOnly: true
         salt:
@@ -990,7 +990,7 @@ components:
           readOnly: true
     'Applicatie-applicatie:inloggen':
       type: object
-      description: 'Een software applicatie binnen een organisatie die gebruik maakt van een component voor het creëren, ophalen, bijwerken of verwijderen van gegevens. Applicaties kunnen worden geregistreerd om namens een organisatie te handelen op een component. In deze zin zijn applicaties dan ook onderdeel van het beheerproces, infrastructuur en configuratie van een component in plaats van het datamodel dat door het component wordt geleverd.'
+      description: 'Een Applicatie die is geidentificeerd en geautoriceerd om namens een organisatie wijzigingen uit te voeren'
       properties:
         naam:
           type: naam
@@ -1002,10 +1002,10 @@ components:
           maxLength: 16
           minLength: 5
           example: NietZoGeheim
-          description: 'Een door de organisatie opgegeven sleutel waarmee deze Applicatie zich identificeerd bij het ophalen van en JWT token.'
+          description: 'Een door de organisatie opgegeven sleutel waarmee deze Applicatie zich identificeert bij het ophalen van en JWT token.'
     'Applicatie-applicatie:lezen':
       type: object
-      description: 'Een software applicatie binnen een organisatie die gebruik maakt van een component voor het creëren, ophalen, bijwerken of verwijderen van gegevens. Applicaties kunnen worden geregistreerd om namens een organisatie te handelen op een component. In deze zin zijn applicaties dan ook onderdeel van het beheerproces, infrastructuur en configuratie van een component in plaats van het datamodel dat door het component wordt geleverd.'
+      description: 'Een Applicatie die is geidentificeerd en geautoriceerd om namens een organisatie wijzigingen uit te voeren'
       properties:
         id:
           type: integer
@@ -1020,7 +1020,7 @@ components:
           required: 'true'
           maxLength: 9
           minLength: 8
-          description: 'Het RSIN van de organisatie waartoe deze Applicatie behoord. Dit moet een geldig RSIN zijn van 9 nummers en voldoen aan https://nl.wikipedia.org/wiki/Burgerservicenummer#11-proef.'
+          description: 'Het RSIN van de organisatie waartoe deze Applicatie behoort. Dit moet een geldig RSIN zijn van 9 nummers en voldoen aan https://nl.wikipedia.org/wiki/Burgerservicenummer#11-proef.'
         isActief:
           description: 'Word gebruikt om aan te geven of deze applicatie actief is (en mag inloggen) of dat deze slechts wordt gebruikt voor archief doeleinden'
           type: boolean
@@ -1039,10 +1039,10 @@ components:
           required: 'true'
           maxLength: 255
           format: uri
-          description: 'De contactpersoon voor deze Applicatie, die bijvoorbeeld word verwittigd bij misbruik.'
+          description: 'De contactpersoon voor deze Applicatie, die bijvoorbeeld wordt verwittigd bij misbruik.'
     'Applicatie-applicatie:maken':
       type: object
-      description: 'Een software applicatie binnen een organisatie die gebruik maakt van een component voor het creëren, ophalen, bijwerken of verwijderen van gegevens. Applicaties kunnen worden geregistreerd om namens een organisatie te handelen op een component. In deze zin zijn applicaties dan ook onderdeel van het beheerproces, infrastructuur en configuratie van een component in plaats van het datamodel dat door het component wordt geleverd.'
+      description: 'Een Applicatie die is geidentificeerd en geautoriceerd om namens een organisatie wijzigingen uit te voeren'
       properties:
         naam:
           type: naam
@@ -1054,7 +1054,7 @@ components:
           maxLength: 16
           minLength: 5
           example: NietZoGeheim
-          description: 'Een door de organisatie opgegeven sleutel waarmee deze Applicatie zich identificeerd bij het ophalen van en JWT token.'
+          description: 'Een door de organisatie opgegeven sleutel waarmee deze Applicatie zich identificeert bij het ophalen van en JWT token.'
         scopes:
           type: array
           example: '[]'
@@ -1065,7 +1065,7 @@ components:
           required: 'true'
           maxLength: 9
           minLength: 8
-          description: 'Het RSIN van de organisatie waartoe deze Applicatie behoord. Dit moet een geldig RSIN zijn van 9 nummers en voldoen aan https://nl.wikipedia.org/wiki/Burgerservicenummer#11-proef.'
+          description: 'Het RSIN van de organisatie waartoe deze Applicatie behoort. Dit moet een geldig RSIN zijn van 9 nummers en voldoen aan https://nl.wikipedia.org/wiki/Burgerservicenummer#11-proef.'
         contactPersoon:
           title: Ambtenaar
           type: url
@@ -1073,7 +1073,7 @@ components:
           required: 'true'
           maxLength: 255
           format: uri
-          description: 'De contactpersoon voor deze Applicatie, die bijvoorbeeld word verwittigd bij misbruik.'
+          description: 'De contactpersoon voor deze Applicatie, die bijvoorbeeld wordt verwittigd bij misbruik.'
   securitySchemes:
     apiKey:
       type: apiKey
