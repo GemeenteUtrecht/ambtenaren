@@ -365,15 +365,15 @@ class Ambtenaar implements StringableInterface
 	 *     nullable = true
 	 * )
 	 *  @Assert\Choice(
-     *     choices = { "Dhr.", "Mvr." },
-     *     message = "Kies Dhr. of Mvr."
+     *     choices = { "Dhr.", "Mevr." },
+     *     message = "Kies Dhr. of Mevr."
      * )
 	 * @Groups({"read", "write"})
      * @ApiProperty(
      *     attributes={
      *         "openapi_context"={
      *             "type"="string",
-     *             "enum"={"Dhr.", "Mvr."},
+     *             "enum"={"Dhr.", "Mevr."},
      *             "example"="Dhr."
      *         }
      *     }
