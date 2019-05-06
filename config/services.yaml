@@ -34,7 +34,7 @@ parameters:
                 # Filteren en Sorteren
                 Het is mogelijk om resultaten van deze API te filteren aan de hand van query parameters, deze worden meegegeven in de url tijdens het aanroepen van een endpoint, door extra waarden toe te voegen na een vraagteken. Bijvoorbeeld: ?bronOrganisatie=12345689 (*volledige endpoint  /ambtenaren?bronOrganisatie=12345689*), zorgt ervoor dat alleen ambtenaren met bronOrganisatie (ofwel rsin/organisatie) 123456789 worden weergegeven.
                 
-                Voor het filteren op datum geldt dat er een weegmethode moet worden meegegeven. Voor deze waardes geldt dat elke door [PHP datetime](https://php.net/manual/en/datetime.construct.php) ondersteunde waarde kan worden gebruikt. Verschillende methoden kunnen worden gebruikt om een spreiding te selecteren bijvoorbeeld: */ambtenaren?wijzigingsdatum[after]=2019-01-01&wijzigingsdatum[before]=2019-02-01* om alle ambtenaren gewijzigd in Januari 2019 te selecteren.
+                Voor het filteren op datum geldt dat er een weegmethode moet worden meegegeven. Voor deze waardes geldt dat elke door [PHP datetime](https://php.net/manual/en/datetime.construct.php) ondersteunde waarde kan worden gebruikt. Verschillende methoden kunnen worden gebruikt om een spreiding te selecteren bijvoorbeeld: */ambtenaren?wijzigingsdatum[after]=2019-01-01&wijzigingsdatum[before]=2019-02-01*, om alle ambtenaren gewijzigd in Januari 2019 te selecteren.
                 
                 De mogelijke weegmethoden voor datum vergelijking zijn:
                  - after -> Data groter en gelijk aan
@@ -47,7 +47,7 @@ parameters:
                 Kijk voor meer details over de mogelijkheden voor filteren en sorteren bij de GET (verzamel) endpoint van de entiteit die je wilt ophalen.
                 
                 # Scopes
-                Applicaties kunnen op deze API alleen wijzigingen uitvoeren waarvoor zij over de juiste rechten(scopes) beschikken. De op deze api verschikbare scopes zijn:
+                Applicaties kunnen op deze API alleen wijzigingen uitvoeren waarvoor zij over de juiste rechten(scopes) beschikken. De op deze api berschikbare scopes zijn:
                  - ambtenaar:schrijven
                  - ambtenaar:lezen
                  - ambtenaar:maken
