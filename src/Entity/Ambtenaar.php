@@ -135,6 +135,26 @@ class Ambtenaar implements StringableInterface
 	private $id;
 	
 	/**
+	 * De absolute locatie van dit object. <br /><b>Schema:</b> <a href="https://schema.org/url">https://schema.org/url</a>
+	 *
+	 * @var string
+	 * 
+	 * @Groups({"read"})
+	 * @ApiProperty(
+	 * 	   iri="https://schema.org/url",
+	 *     attributes={
+	 *         "openapi_context"={
+	 *             "type"="url",
+	 *             "example"="6a36c2c4-213e-4348-a467-dfa3a30f64aa",
+	 *             "description"="De unieke identificatie van dit Ambtenaren object de organisatie die dit Ambtenaren object heeft gecreëerd.",
+	 *             "maxLength"=250
+	 *         }
+	 *     }
+	 * )
+	 */
+	public $url;
+	
+	/**
 	 * De unieke identificatie van dit Ambtenaren object binnen de organisatie die dit Ambtenaren object heeft gecreëerd. <br /><b>Schema:</b> <a href="https://schema.org/identifier">https://schema.org/identifier</a>
 	 *
 	 * @var string
@@ -149,6 +169,7 @@ class Ambtenaar implements StringableInterface
 	 * )
 	 * @Groups({"read", "write"})
 	 * @ApiProperty(
+	 * 	   iri="https://schema.org/identifier",
 	 *     attributes={
 	 *         "openapi_context"={
 	 *             "type"="string",
@@ -180,6 +201,7 @@ class Ambtenaar implements StringableInterface
      * @ApiFilter(SearchFilter::class, strategy="exact")
      * @ApiFilter(OrderFilter::class)
 	 * @ApiProperty(
+	 * 	   iri="https://schema.org/identifier",
 	 *     attributes={
 	 *         "openapi_context"={
 	 *             "title"="bronOrganisatie",
@@ -245,7 +267,7 @@ class Ambtenaar implements StringableInterface
 	public $film;
 	
 	/**
-	 * De naam van deze Ambtenaar <br /><b>Schema:</b> <a href="https://schema.org/givenName">https://schema.org/givenName</a>a>
+	 * De naam van deze Ambtenaar <br /><b>Schema:</b> <a href="https://schema.org/givenName">https://schema.org/givenName</a>
 	 *
 	 * @var string
 	 *
@@ -276,7 +298,7 @@ class Ambtenaar implements StringableInterface
 	public $voornamen;
 	
 	/**
-	 * Voorvoegsel van de achternaam <br /><b>Schema:</b> <a href="https://schema.org/givenName">https://schema.org/givenName</a>
+	 * Voorvoegsel van de achternaam <br /><b>Schema:</b> <a href="https://schema.org/additionalName>https://schema.org/additionalName</a>
 	 *
 	 * @var string
 	 *
@@ -288,7 +310,7 @@ class Ambtenaar implements StringableInterface
 	 * )
 	 * @Groups({"read", "write"})
 	 * @ApiProperty(
-	 * 	   iri="http://schema.org/name",
+	 * 	   iri="https://schema.org/additionalName",
 	 *     attributes={
 	 *         "openapi_context"={
 	 *             "maxLength"=255,
@@ -360,7 +382,7 @@ class Ambtenaar implements StringableInterface
 	public $aanhef;
 	
 	/**
-	 * Een samenvattende tekst over deze ambtenaar  <br /><b>Schema:</b> <a href="https://schema.org/description">https://schema.org/description</a>
+	 * Een korte samenvattende tekst over deze ambtenaar bedoeld ter introductie <br /><b>Schema:</b> <a href="https://schema.org/description">https://schema.org/description</a>
 	 *
 	 * @var string
 	 *
@@ -392,7 +414,7 @@ class Ambtenaar implements StringableInterface
 	public $samenvatting;
 		
 	/**
-	 * Een beschrijvende tekst over deze Ambtenaar  <br /><b>Schema:</b> <a href="https://schema.org/description">https://schema.org/description</a>
+	 * Een uitgebreidende beschrijvende tekst over deze Ambtenaar bedoeld ter verdere verduidelijking  <br /><b>Schema:</b> <a href="https://schema.org/description">https://schema.org/description</a>
 	 *
 	 * @var string
 	 *
@@ -550,11 +572,14 @@ class Ambtenaar implements StringableInterface
 	{
 		return $this->toString();
 	}
-	
-	
+		
 	public function getId(): ?int
 	{
 		return $this->id;
+	}	
+	
+	public function getUrl()
+	{
+		return 'http://ambtenaren.demo.zaakonline.nl/ambtenaren/'.$this->id;
 	}
-		
 }
