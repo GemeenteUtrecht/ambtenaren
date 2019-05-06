@@ -382,7 +382,7 @@ class Ambtenaar implements StringableInterface
 	public $aanhef;
 	
 	/**
-	 * Een korte samenvattende tekst over deze ambtenaar bedoeld ter introductie <br /><b>Schema:</b> <a href="https://schema.org/description">https://schema.org/description</a>
+	 * Een korte samenvattende tekst over deze ambtenaar bedoelt ter introductie. <br /><b>Schema:</b> <a href="https://schema.org/description">https://schema.org/description</a>
 	 *
 	 * @var string
 	 *
@@ -414,7 +414,7 @@ class Ambtenaar implements StringableInterface
 	public $samenvatting;
 		
 	/**
-	 * Een uitgebreidende beschrijvende tekst over deze Ambtenaar bedoeld ter verdere verduidelijking  <br /><b>Schema:</b> <a href="https://schema.org/description">https://schema.org/description</a>
+	 * Een uitgebreidende beschrijvende tekst over deze Ambtenaar bedoelt ter verdere verduidelijking.  <br /><b>Schema:</b> <a href="https://schema.org/description">https://schema.org/description</a>
 	 *
 	 * @var string
 	 *
