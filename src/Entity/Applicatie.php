@@ -21,7 +21,7 @@ use ActivityLogBundle\Entity\Interfaces\StringableInterface;
 use App\Controller\UserController;
 
 /**
- * Een Applicatie die is geidentificeerd en geautoriceerd om namens een organisatie wijzigingen uit te voeren
+ * Een software applicatie binnen een organisatie die gebruik maakt van een component voor het creëren, ophalen, bijwerken of verwijderen van gegevens. Applicaties kunnen worden geregistreerd om namens een organisatie te handelen op een component. In deze zin zijn applicaties dan ook onderdeel van het beheerproces, infrastructuur en configuratie van een component in plaats van het datamodel dat door het component wordt geleverd.
  *
  * @category   	Entity
  *
@@ -39,8 +39,8 @@ use App\Controller\UserController;
  *  		"denormalizationContext"={"groups"={"applicatie:schrijven"}},
  *      	"path"="/applicaties",
  *  		"openapi_context" = {
- * 				"summary" = "Collectie",
- *         		"description" = "Haal een verzameling van Applicaties op, het is mogelijk om deze resultaten te filteren aan de hand van query parameters. <br><br>Lees meer over het filteren van resulaten onder [filteren](/#section/Filteren)."
+ * 				"summary" = "Verzameling",
+ *         		"description" = "Haal een verzameling van Applicaties op, het is mogelijk om deze resultaten te filteren aan de hand van query parameters. <br><br>Lees meer over het filteren van resulaten onder [filteren](/#section/Filteren)."            
  *  		}
  *  	},
  *     "register"={
@@ -74,7 +74,7 @@ use App\Controller\UserController;
  *      	"path"="/applicatie/{id}",
  *  		"openapi_context" = {
  * 				"summary" = "Haal op",
- *         		"description" = "Haalt een Applicatie op"
+ *         		"description" = "Haalt een Applicatie op"           
  *  		}
  *  	},
  *     "put"={
@@ -231,7 +231,7 @@ class Applicatie implements UserInterface, StringableInterface
 	public $organisatie;	
 	
 	/**
-	 * Word gebruikt om aan te geven of deze aplicatie actief is (en mag inloggen) of dat deze slechts wordt gebruikt voor archief doeleinden
+	 * Word gebruikt om aan te geven of deze applicatie actief is (en mag inloggen) of dat deze slechts wordt gebruikt voor archief doeleinden
 	 * 
 	 * @Groups({"applicatie:lezen","applicatie:schrijven"})
      * @ApiFilter(BooleanFilter::class)

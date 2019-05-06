@@ -498,15 +498,15 @@ class Ambtenaar implements StringableInterface
 	public $contactPersoon;
 	
 	/**
-	 * De eigenaar (applicatie) van dit object, wordt bepaald aan de hand van de geauthenticeerde applicatie die de ambtenaar heeft aangemaakt
+	 * De applicatie die verantwoordelijk is voor het object, en daarvoor de rechten beheerd en uitgeeft, en het eindoordeel heeft met betrekking tot waarheidsvinding.. Een model nuancering waarbij we niet alleen moeten weten welke organisatie over een object gaat, maar ook welke applicatie binnen de organisatie.
 	 * 
-	 * @var App\Entity\Applicatie $eigenaar
+	 * @var App\Entity\Applicatie $bronApplicatie
 	 *
      * @Gedmo\Blameable(on="create")
 	 * @ORM\ManyToOne(targetEntity="App\Entity\Applicatie")
 	 * @Groups({"read"})
 	 */
-	public $eigenaar;
+	public $bronApplicatie;
 	
 	/**
 	 * API Specifieke parameters
