@@ -781,7 +781,7 @@ components:
       properties:
         url:
           type: url
-          example: 6a36c2c4-213e-4348-a467-dfa3a30f64aa
+          example: 'https://ambtenaren.demo.zaakonline.nl/ambtenaren/1'
           description: 'De absolute locatie van dit object. <br /><b>Schema:</b> <a href="https://schema.org/url">https://schema.org/url</a>'
           maxLength: 250
         identificatie:
@@ -903,7 +903,7 @@ components:
           type: integer
         url:
           type: url
-          example: 6a36c2c4-213e-4348-a467-dfa3a30f64aa
+          example: 'https://ambtenaren.demo.zaakonline.nl/ambtenaren/1'
           description: 'De absolute locatie van dit object. <br /><b>Schema:</b> <a href="https://schema.org/url">https://schema.org/url</a>'
           maxLength: 250
         identificatie:

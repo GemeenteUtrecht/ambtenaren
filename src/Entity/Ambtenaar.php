@@ -145,7 +145,7 @@ class Ambtenaar implements StringableInterface
 	 *     attributes={
 	 *         "openapi_context"={
 	 *             "type"="url",
-	 *             "example"="6a36c2c4-213e-4348-a467-dfa3a30f64aa",
+	 *             "example"="https://ambtenaren.demo.zaakonline.nl/ambtenaren/1",
 	 *             "description"="De unieke identificatie van dit Ambtenaren object de organisatie die dit Ambtenaren object heeft gecreëerd.",
 	 *             "maxLength"=250
 	 *         }
