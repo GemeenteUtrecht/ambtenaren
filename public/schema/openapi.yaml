@@ -1,7 +1,7 @@
 openapi: 3.0.2
 info:
   description: |
-    Welkom innovator! <br>
+    # Welkom innovator!
     Fijn dat je de tijd en moeite hebt genomen om je te verdiepen in dit component. Het "Ambtenaren" component is ontwikkeld voor de gemeente Utrecht en heeft als doel ambtenaren te koppelen aan objecten uit andere componenten. Dit stelt je in staat om aan deze objecten, ambtenaren te koppelen en zo hun activiteiten te kunnen beheren.
     
     # Ondersteuning
@@ -834,7 +834,7 @@ components:
           type: string
           enum:
             - Dhr.
-            - Mvr.
+            - Mevr.
           example: Dhr.
           description: |
             *
@@ -844,13 +844,13 @@ components:
           minLength: 25
           maxLength: 2000
           example: 'Deze prachtige locatie is zeker het aanbevelen waard'
-          description: 'Een korte samenvattende tekst over deze ambtenaar bedoeld ter introductie <br /><b>Schema:</b> <a href="https://schema.org/description">https://schema.org/description</a>'
+          description: 'Een korte samenvattende tekst over deze ambtenaar bedoelt ter introductie. <br /><b>Schema:</b> <a href="https://schema.org/description">https://schema.org/description</a>'
         beschrijving:
           type: string
           minLength: 25
           maxLength: 2000
           example: 'John is de leukste trouwambtenaar uit uw gemeente en omstreken'
-          description: 'Een uitgebreidende beschrijvende tekst over deze Ambtenaar bedoeld ter verdere verduidelijking  <br /><b>Schema:</b> <a href="https://schema.org/description">https://schema.org/description</a>'
+          description: 'Een uitgebreidende beschrijvende tekst over deze Ambtenaar bedoelt ter verdere verduidelijking.  <br /><b>Schema:</b> <a href="https://schema.org/description">https://schema.org/description</a>'
         taal:
           description: 'De taal waarin de informatie van deze Ambtenaar is opgesteld <br /><b>Schema:</b> <a href="https://www.ietf.org/rfc/rfc3066.txt">https://www.ietf.org/rfc/rfc3066.txt</a>'
           type: string
@@ -956,7 +956,7 @@ components:
           type: string
           enum:
             - Dhr.
-            - Mvr.
+            - Mevr.
           example: Dhr.
           description: |
             *
@@ -966,13 +966,13 @@ components:
           minLength: 25
           maxLength: 2000
           example: 'Deze prachtige locatie is zeker het aanbevelen waard'
-          description: 'Een korte samenvattende tekst over deze ambtenaar bedoeld ter introductie <br /><b>Schema:</b> <a href="https://schema.org/description">https://schema.org/description</a>'
+          description: 'Een korte samenvattende tekst over deze ambtenaar bedoelt ter introductie. <br /><b>Schema:</b> <a href="https://schema.org/description">https://schema.org/description</a>'
         beschrijving:
           type: string
           minLength: 25
           maxLength: 2000
           example: 'John is de leukste trouwambtenaar uit uw gemeente en omstreken'
-          description: 'Een uitgebreidende beschrijvende tekst over deze Ambtenaar bedoeld ter verdere verduidelijking  <br /><b>Schema:</b> <a href="https://schema.org/description">https://schema.org/description</a>'
+          description: 'Een uitgebreidende beschrijvende tekst over deze Ambtenaar bedoelt ter verdere verduidelijking.  <br /><b>Schema:</b> <a href="https://schema.org/description">https://schema.org/description</a>'
         taal:
           description: 'De taal waarin de informatie van deze Ambtenaar is opgesteld <br /><b>Schema:</b> <a href="https://www.ietf.org/rfc/rfc3066.txt">https://www.ietf.org/rfc/rfc3066.txt</a>'
           type: string

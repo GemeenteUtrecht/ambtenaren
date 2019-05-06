@@ -365,15 +365,15 @@ class Ambtenaar implements StringableInterface
 	 *     nullable = true
 	 * )
 	 *  @Assert\Choice(
-     *     choices = { "Dhr.", "Mvr." },
-     *     message = "Kies Dhr. of Mvr."
+     *     choices = { "Dhr.", "Mevr." },
+     *     message = "Kies Dhr. of Mevr."
      * )
 	 * @Groups({"read", "write"})
      * @ApiProperty(
      *     attributes={
      *         "openapi_context"={
      *             "type"="string",
-     *             "enum"={"Dhr.", "Mvr."},
+     *             "enum"={"Dhr.", "Mevr."},
      *             "example"="Dhr."
      *         }
      *     }
@@ -382,7 +382,7 @@ class Ambtenaar implements StringableInterface
 	public $aanhef;
 	
 	/**
-	 * Een korte samenvattende tekst over deze ambtenaar bedoeld ter introductie <br /><b>Schema:</b> <a href="https://schema.org/description">https://schema.org/description</a>
+	 * Een korte samenvattende tekst over deze ambtenaar bedoelt ter introductie. <br /><b>Schema:</b> <a href="https://schema.org/description">https://schema.org/description</a>
 	 *
 	 * @var string
 	 *
@@ -414,7 +414,7 @@ class Ambtenaar implements StringableInterface
 	public $samenvatting;
 		
 	/**
-	 * Een uitgebreidende beschrijvende tekst over deze Ambtenaar bedoeld ter verdere verduidelijking  <br /><b>Schema:</b> <a href="https://schema.org/description">https://schema.org/description</a>
+	 * Een uitgebreidende beschrijvende tekst over deze Ambtenaar bedoelt ter verdere verduidelijking.  <br /><b>Schema:</b> <a href="https://schema.org/description">https://schema.org/description</a>
 	 *
 	 * @var string
 	 *
