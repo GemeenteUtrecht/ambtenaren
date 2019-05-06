@@ -42,7 +42,7 @@ use ActivityLogBundle\Entity\Interfaces\StringableInterface;
  *      	"path"="/ambtenaren",
  *  		"openapi_context" = {
  * 				"summary" = "Collectie",
- *         		"description" = "Haal een verzameling van Ambtenaren op, het is mogelijk om deze resultaten te filteren aan de hand van query parameters. <br><br>Lees meer over het filteren van resulaten onder [filteren](/#section/Filteren).",                   
+ *         		"description" = "Haal een verzameling van Ambtenaren op, het is mogelijk om deze resultaten te filteren aan de hand van query parameters. <br><br>Lees meer over het filteren van resultaten onder [filteren](/#section/Filteren).",                   
  *  		}
  *  	},
  *  	"post"={
@@ -51,7 +51,7 @@ use ActivityLogBundle\Entity\Interfaces\StringableInterface;
  *      	"path"="/ambtenaren",
  *  		"openapi_context" = {
  * 				"summary" = "Maak aan",
- *         		"description" = "Maak een specifieke ambtenaar aan"
+ *         		"description" = "Maak een specifieke ambtenaar aan."
  *  		}
  *  	}
  *  },
@@ -62,7 +62,7 @@ use ActivityLogBundle\Entity\Interfaces\StringableInterface;
  *      	"path"="/ambtenaren/{id}",
  *  		"openapi_context" = {
  * 				"summary" = "Bekijk",
- *         		"description" = "Bekijk een specifieke ambtenaar"
+ *         		"description" = "Bekijk een specifieke ambtenaar."
  *  		}
  *  	},
  *     "put"={
@@ -71,7 +71,7 @@ use ActivityLogBundle\Entity\Interfaces\StringableInterface;
  *      	"path"="/ambtenaren/{id}",
  *  		"openapi_context" = {
  * 				"summary" = "Vervang",
- *         		"description" = "Vervang een specifieke ambtenaar"
+ *         		"description" = "Vervang een specifieke ambtenaar."
  *  		}
  *  	},
  *     "delete"={
@@ -80,7 +80,7 @@ use ActivityLogBundle\Entity\Interfaces\StringableInterface;
  *      	"path"="/ambtenaren/{id}",
  *  		"openapi_context" = {
  * 				"summary" = "Verwijder",
- *         		"description" = "Verwijder een specifieke ambtenaar"
+ *         		"description" = "Verwijder een specifieke ambtenaar."
  *  		}
  *  	},
  *     "log"={
@@ -91,7 +91,7 @@ use ActivityLogBundle\Entity\Interfaces\StringableInterface;
  *     		"denormalization_context"={"groups"={"write"}},
  *         	"openapi_context" = {
  *         		"summary" = "Logboek",
- *         		"description" = "Geeft een lijst van eerdere versies en wijzigingen van dit Ambtenaren object"
+ *         		"description" = "Geeft een lijst van eerdere versies en wijzigingen van dit Ambtenaren object."
  *         }
  *     },
  *     "revert"={
@@ -102,7 +102,7 @@ use ActivityLogBundle\Entity\Interfaces\StringableInterface;
  *     		"denormalization_context"={"groups"={"herstel"}},
  *         	"openapi_context" = {
  *         		"summary" = "Herstel",
- *         		"description" = "Herstel een eerdere versie van dit Ambtenaren object. Dit is een destructieve actie die niet ongedaan kan worden gemaakt"
+ *         		"description" = "Herstel een eerdere versie van dit Ambtenaren object. Dit is een destructieve actie die niet ongedaan kan worden gemaakt."
  *         }
  *     }
  *  }
@@ -135,7 +135,7 @@ class Ambtenaar implements StringableInterface
 	private $id;
 	
 	/**
-	 * De unieke identificatie van dit Ambtenaren object binnen de organisatie die dit Ambtenaren object heeft gecreeerd. <br /><b>Schema:</b> <a href="https://schema.org/identifier">https://schema.org/identifier</a>
+	 * De unieke identificatie van dit Ambtenaren object binnen de organisatie die dit Ambtenaren object heeft gecreëerd. <br /><b>Schema:</b> <a href="https://schema.org/identifier">https://schema.org/identifier</a>
 	 *
 	 * @var string
 	 * @ORM\Column(
@@ -153,7 +153,7 @@ class Ambtenaar implements StringableInterface
 	 *         "openapi_context"={
 	 *             "type"="string",
 	 *             "example"="6a36c2c4-213e-4348-a467-dfa3a30f64aa",
-	 *             "description"="De unieke identificatie van dit Ambtenaren object de organisatie die dit Ambtenaren object heeft gecreeerd.",
+	 *             "description"="De unieke identificatie van dit Ambtenaren object de organisatie die dit Ambtenaren object heeft gecreëerd.",
 	 *             "maxLength"=40
 	 *         }
 	 *     }
@@ -163,7 +163,7 @@ class Ambtenaar implements StringableInterface
 	public $identificatie;
 	
 	/**
-	 * Het RSIN van de organisatie waartoe deze Ambtenaar behoord. Dit moet een geldig RSIN zijn van 9 nummers en voldoen aan https://nl.wikipedia.org/wiki/Burgerservicenummer#11-proef. <br> Het RSIN word bepaald aan de hand van de gauthenticeerde applicatie en kan niet worden overschreven
+	 * Het RSIN van de organisatie waartoe deze Ambtenaar behoort. Dit moet een geldig RSIN zijn van 9 nummers en voldoen aan https://nl.wikipedia.org/wiki/Burgerservicenummer#11-proef. <br> Het RSIN wordt bepaald aan de hand van de geauthenticeerde applicatie en kan niet worden overschreven
 	 *
 	 * @var integer
 	 * @ORM\Column(
@@ -195,7 +195,7 @@ class Ambtenaar implements StringableInterface
 	public $bronOrganisatie;	
 	
 	/**
-	 * URL-referentie naar het afbeeldings document.
+	 * URL-referentie naar het afbeelding document
 	 *
 	 * @ORM\Column(
 	 *     type     = "string",
@@ -332,7 +332,7 @@ class Ambtenaar implements StringableInterface
 	public $geslachtsnaam;
 	
 	/**	 * 
-	 * De aanhef van deze Ambtenaar <br /> Moet altijd Dhr. of Mvr. zijn.
+	 * De aanhef van deze Ambtenaar <br /> Moet altijd Dhr. of Mevr. zijn.
 	 * 
 	 * @var string
 	 * 
@@ -416,7 +416,7 @@ class Ambtenaar implements StringableInterface
      *             "type"="string",
 	 *             "minLength"=25,
 	 *             "maxLength"=2000,
-     *             "example"="John is de leukste trouw ambtenaar uit uw gemeente en omstreken"
+     *             "example"="John is de leukste trouwambtenaar uit uw gemeente en omstreken"
      *         }
      *     }
 	 * )
@@ -474,7 +474,7 @@ class Ambtenaar implements StringableInterface
 	public $wijzigingsdatum;
 	
 	/**
-	 * Het contact persoon voor deze ambtenaar
+	 * Het contactpersoon voor deze ambtenaar
 	 *
 	 * @ORM\Column(
 	 *     type     = "string",
@@ -511,7 +511,7 @@ class Ambtenaar implements StringableInterface
 	/**
 	 * API Specifieke parameters
 	 *
-	 * De onderstaande parameters worden alleen gebruikt bij api specifieke calls en hebben geen context tot het overige datamodel
+	 * De onderstaande parameters worden alleen gebruikt bij api specifieke calls en hebben geen context tot het overige datamodel.
 	 */
 	
 	/**

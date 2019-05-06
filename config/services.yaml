@@ -62,7 +62,7 @@ parameters:
                 
                 JWT Tokens kunnen zowel worden verlengd, als opnieuw worden aangevraagd, dit aan de hand van de applicatie id en sleutel.
                 
-                Let er bij het meegeven van JWT tokens op dat deze voorafgegaan moeten worden door een Bearer en een spatie, onder de header Authorization. De volledig naam wordt daarmee: 'Authorization: Bearer [TOKEN]'
+                Let er bij het meegeven van JWT tokens op dat deze moet worden voorafgegaan door een Bearer en een spatie, onder de header Authorization. De volledig naam wordt daarmee: 'Authorization: Bearer [TOKEN]'.
 
             version: 0.0.1
             title: 'Ambtenaren API'
@@ -83,7 +83,7 @@ parameters:
         tags:
               # The general endpoints  
             - name: Ambtenaar
-              description: "De ambtenaar is de actor binnen de gemeente die zaken behandeld."
+              description: "De ambtenaar is de actor binnen de gemeente die zaken behandelt."
             - name: Applicatie
               description: "Een software applicatie binnen een organisatie die gebruik maakt van een component voor het creëren, ophalen, bijwerken of verwijderen van gegevens. Applicaties kunnen worden geregistreerd om namens een organisatie te handelen op een component. In deze zin zijn applicaties dan ook onderdeel van het beheerproces, infrastructuur en configuratie van een component in plaats van het datamodel dat door het component wordt geleverd."  
             # Grouping the endpoint  
