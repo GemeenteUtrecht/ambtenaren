@@ -40,7 +40,7 @@ use App\Controller\UserController;
  *      	"path"="/applicaties",
  *  		"openapi_context" = {
  * 				"summary" = "Verzameling",
- *         		"description" = "Haal een verzameling van Applicaties op, het is mogelijk om deze resultaten te filteren aan de hand van query parameters. <br><br>Lees meer over het filteren van resulaten onder [filteren](/#section/Filteren)."            
+ *         		"description" = "Haal een verzameling van Applicaties op, het is mogelijk om deze resultaten te filteren aan de hand van query parameters. <br><br>Lees meer over het filteren van resultaten onder [filteren](/#section/Filteren)."            
  *  		}
  *  	},
  *     "register"={

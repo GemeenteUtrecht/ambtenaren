@@ -217,7 +217,7 @@ class Ambtenaar implements StringableInterface
 	public $bronOrganisatie;	
 	
 	/**
-	 * URL-referentie naar het afbeelding document
+	 * URL-referentie naar het afbeelding resource
 	 *
 	 * @ORM\Column(
 	 *     type     = "string",
@@ -242,7 +242,7 @@ class Ambtenaar implements StringableInterface
 	public $afbeelding;
 	
 	/**
-	 * URL-referentie naar het film document
+	 * URL-referentie naar het film resource
 	 *
 	 * @ORM\Column(
 	 *     type     = "string",
@@ -298,7 +298,7 @@ class Ambtenaar implements StringableInterface
 	public $voornamen;
 	
 	/**
-	 * Voorvoegsel van de achternaam <br /><b>Schema:</b> <a href="https://schema.org/additionalName>https://schema.org/additionalName</a>
+	 * Voorvoegsel van de achternaam <br /><b>Schema:</b> <a href="https://schema.org/additionalName">https://schema.org/additionalName</a>
 	 *
 	 * @var string
 	 *
@@ -382,7 +382,7 @@ class Ambtenaar implements StringableInterface
 	public $aanhef;
 	
 	/**
-	 * Een korte samenvattende tekst over deze ambtenaar bedoelt ter introductie. <br /><b>Schema:</b> <a href="https://schema.org/description">https://schema.org/description</a>
+	 * Een korte samenvattende tekst over deze ambtenaar bedoeld ter introductie. <br /><b>Schema:</b> <a href="https://schema.org/description">https://schema.org/description</a>
 	 *
 	 * @var string
 	 *
@@ -414,7 +414,7 @@ class Ambtenaar implements StringableInterface
 	public $samenvatting;
 		
 	/**
-	 * Een uitgebreidende beschrijvende tekst over deze Ambtenaar bedoelt ter verdere verduidelijking.  <br /><b>Schema:</b> <a href="https://schema.org/description">https://schema.org/description</a>
+	 * Een uitgebreide beschrijvende tekst over deze Ambtenaar bedoeld ter verdere verduidelijking.  <br /><b>Schema:</b> <a href="https://schema.org/description">https://schema.org/description</a>
 	 *
 	 * @var string
 	 *
