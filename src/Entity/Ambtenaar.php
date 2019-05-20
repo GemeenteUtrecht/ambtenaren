@@ -558,28 +558,208 @@ class Ambtenaar implements StringableInterface
 	 * @return string
 	 */
 	public function toString(){
-		// If there is a voorvoegselGeslachtsnaam we want to add a save between voorvoegselGeslachtsnaam and geslachtsnaam;
-		$voorvoegselGeslachtsnaam = $this->voorvoegselGeslachtsnaam;
-		if($voorvoegselGeslachtsnaam){$voorvoegselGeslachtsnaam=$voorvoegselGeslachtsnaam.' ';}
-		// Lets render the name
-		return "{$this->voornamen} {$voorvoegselGeslachtsnaam}{$this->geslachtsnaam}";
-	}
+                                                                                             		// If there is a voorvoegselGeslachtsnaam we want to add a save between voorvoegselGeslachtsnaam and geslachtsnaam;
+                                                                                             		$voorvoegselGeslachtsnaam = $this->voorvoegselGeslachtsnaam;
+                                                                                             		if($voorvoegselGeslachtsnaam){$voorvoegselGeslachtsnaam=$voorvoegselGeslachtsnaam.' ';}
+                                                                                             		// Lets render the name
+                                                                                             		return "{$this->voornamen} {$voorvoegselGeslachtsnaam}{$this->geslachtsnaam}";
+                                                                                             	}
 	
 	/**
 	 * Vanuit rendering perspectief (voor bijvoorbeeld logging of berichten) is het belangrijk dat we een entiteit altijd naar string kunnen omzetten.
 	 */
 	public function __toString()
-	{
-		return $this->toString();
-	}
-		
-	public function getId(): ?int
-	{
-		return $this->id;
-	}	
+                                                                                             	{
+                                                                                             		return $this->toString();
+                                                                                             	}
+
+    public function getId(): ?int
+    {
+        return $this->id;
+    }	
 	
 	public function getUrl()
-	{
-		return 'http://ambtenaren.demo.zaakonline.nl/ambtenaren/'.$this->id;
-	}
+                                                                                             	{
+                                                                                             		return 'http://ambtenaren.demo.zaakonline.nl/ambtenaren/'.$this->id;
+                                                                                             	}
+
+    public function getIdentificatie(): ?string
+    {
+        return $this->identificatie;
+    }
+
+    public function setIdentificatie(?string $identificatie): self
+    {
+        $this->identificatie = $identificatie;
+
+        return $this;
+    }
+
+    public function getBronOrganisatie(): ?int
+    {
+        return $this->bronOrganisatie;
+    }
+
+    public function setBronOrganisatie(int $bronOrganisatie): self
+    {
+        $this->bronOrganisatie = $bronOrganisatie;
+
+        return $this;
+    }
+
+    public function getAfbeelding(): ?string
+    {
+        return $this->afbeelding;
+    }
+
+    public function setAfbeelding(?string $afbeelding): self
+    {
+        $this->afbeelding = $afbeelding;
+
+        return $this;
+    }
+
+    public function getFilm(): ?string
+    {
+        return $this->film;
+    }
+
+    public function setFilm(?string $film): self
+    {
+        $this->film = $film;
+
+        return $this;
+    }
+
+    public function getVoornamen(): ?string
+    {
+        return $this->voornamen;
+    }
+
+    public function setVoornamen(string $voornamen): self
+    {
+        $this->voornamen = $voornamen;
+
+        return $this;
+    }
+
+    public function getVoorvoegselGeslachtsnaam(): ?string
+    {
+        return $this->voorvoegselGeslachtsnaam;
+    }
+
+    public function setVoorvoegselGeslachtsnaam(?string $voorvoegselGeslachtsnaam): self
+    {
+        $this->voorvoegselGeslachtsnaam = $voorvoegselGeslachtsnaam;
+
+        return $this;
+    }
+
+    public function getGeslachtsnaam(): ?string
+    {
+        return $this->geslachtsnaam;
+    }
+
+    public function setGeslachtsnaam(string $geslachtsnaam): self
+    {
+        $this->geslachtsnaam = $geslachtsnaam;
+
+        return $this;
+    }
+
+    public function getAanhef(): ?string
+    {
+        return $this->aanhef;
+    }
+
+    public function setAanhef(?string $aanhef): self
+    {
+        $this->aanhef = $aanhef;
+
+        return $this;
+    }
+
+    public function getSamenvatting(): ?string
+    {
+        return $this->samenvatting;
+    }
+
+    public function setSamenvatting(string $samenvatting): self
+    {
+        $this->samenvatting = $samenvatting;
+
+        return $this;
+    }
+
+    public function getBeschrijving(): ?string
+    {
+        return $this->beschrijving;
+    }
+
+    public function setBeschrijving(string $beschrijving): self
+    {
+        $this->beschrijving = $beschrijving;
+
+        return $this;
+    }
+
+    public function getTaal(): ?string
+    {
+        return $this->taal;
+    }
+
+    public function setTaal(string $taal): self
+    {
+        $this->taal = $taal;
+
+        return $this;
+    }
+
+    public function getRegistratiedatum(): ?\DateTimeInterface
+    {
+        return $this->registratiedatum;
+    }
+
+    public function setRegistratiedatum(\DateTimeInterface $registratiedatum): self
+    {
+        $this->registratiedatum = $registratiedatum;
+
+        return $this;
+    }
+
+    public function getWijzigingsdatum(): ?\DateTimeInterface
+    {
+        return $this->wijzigingsdatum;
+    }
+
+    public function setWijzigingsdatum(?\DateTimeInterface $wijzigingsdatum): self
+    {
+        $this->wijzigingsdatum = $wijzigingsdatum;
+
+        return $this;
+    }
+
+    public function getContactPersoon(): ?string
+    {
+        return $this->contactPersoon;
+    }
+
+    public function setContactPersoon(?string $contactPersoon): self
+    {
+        $this->contactPersoon = $contactPersoon;
+
+        return $this;
+    }
+
+    public function getBronApplicatie(): ?Applicatie
+    {
+        return $this->bronApplicatie;
+    }
+
+    public function setBronApplicatie(?Applicatie $bronApplicatie): self
+    {
+        $this->bronApplicatie = $bronApplicatie;
+
+        return $this;
+    }
 }
