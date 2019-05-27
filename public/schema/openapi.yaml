@@ -26,10 +26,10 @@ info:
     Voor het filteren op datum geldt dat er een weegmethode moet worden meegegeven. Voor deze waardes geldt dat elke door [PHP datetime](https://php.net/manual/en/datetime.construct.php) ondersteunde waarde kan worden gebruikt. Verschillende methoden kunnen worden gebruikt om een spreiding te selecteren bijvoorbeeld: */ambtenaren?wijzigingsdatum[after]=2019-01-01&wijzigingsdatum[before]=2019-02-01*, om alle ambtenaren gewijzigd in Januari 2019 te selecteren.
     
     De mogelijke weegmethoden voor datum vergelijking zijn:
-     - after -> Data groter en gelijk aan
-     - before -> Data kleiner en gelijk aan
-     - strictly_after -> Data groter dan
-     - strictly_before -> Data kleiner dan                                               
+     - after -> Datums groter en gelijk aan
+     - before -> Datums kleiner en gelijk aan
+     - strictly_after -> Datums groter dan
+     - strictly_before -> Datums kleiner dan                                               
     
     Daarnaast kunnen de resultaten ook worden gesorteerd, dit gaat aan de hand van de order parameter, gevolgd door desc (aflopend) of asc (oplopend). Er kunnen meerdere order parameters op volgorde van toepassing worden meegegeven (bijvoorbeeld: https://ambtenaren.demo.zaakonline.nl/ambtenaren?order[bronOrganisatie]=desc&order[identificatie]=asc)
     
@@ -69,8 +69,8 @@ info:
 paths:
   /ambtenaren:
     get:
-      summary: Collectie
-      description: 'Haal een verzameling van Ambtenaren op, het is mogelijk om deze resultaten te filteren aan de hand van query parameters. <br><br>Lees meer over het filteren van resultaten onder [filteren](/#section/Filteren).'
+      summary: 'Haal een verzameling van Ambtenaren op.'
+      description: 'Het is mogelijk om deze resultaten te filteren aan de hand van query parameters. <br><br>Lees meer over het filteren van resultaten onder [filteren](/#section/Filteren).'
       tags:
         - Ambtenaar
       operationId: getAmbtenaarCollection
@@ -209,8 +209,8 @@ paths:
           style: form
           explode: true
     post:
-      summary: 'Maak aan'
-      description: 'Maak een specifieke ambtenaar aan.'
+      summary: 'Maak een Ambtenaar aan.'
+      description: ''
       tags:
         - Ambtenaar
       operationId: postAmbtenaarCollection
@@ -251,8 +251,8 @@ paths:
         description: 'The new Ambtenaar resource'
   '/ambtenaren/{id}':
     get:
-      summary: Bekijk
-      description: 'Bekijk een specifieke ambtenaar.'
+      summary: 'Bekijk een specifieke Ambtenaar.'
+      description: ''
       tags:
         - Ambtenaar
       operationId: getAmbtenaarItem
@@ -279,8 +279,8 @@ paths:
         404:
           description: 'Resource not found'
     put:
-      summary: Vervang
-      description: 'Vervang een specifieke ambtenaar.'
+      summary: 'Vervang een specifieke Ambtenaar.'
+      description: ''
       tags:
         - Ambtenaar
       operationId: putAmbtenaarItem
@@ -321,8 +321,8 @@ paths:
               $ref: '#/components/schemas/Ambtenaar'
         description: 'The updated Ambtenaar resource'
     delete:
-      summary: Verwijder
-      description: 'Verwijder een specifieke ambtenaar.'
+      summary: 'Verwijder een specifieke Ambtenaar.'
+      description: ''
       tags:
         - Ambtenaar
       operationId: deleteAmbtenaarItem
@@ -340,7 +340,7 @@ paths:
             type: string
   '/ambtenaren/{id}/herstel/{version}':
     post:
-      summary: Herstel
+      summary: 'Herstel Ambtenaar.'
       description: 'Herstel een eerdere versie van dit Ambtenaren object. Dit is een destructieve actie die niet ongedaan kan worden gemaakt.'
       tags:
         - Ambtenaar
@@ -382,7 +382,7 @@ paths:
         description: 'The new Ambtenaar resource'
   '/ambtenaren/{id}/log':
     get:
-      summary: Logboek
+      summary: 'Logboek inzien.'
       description: 'Geeft een lijst van eerdere versies en wijzigingen van dit Ambtenaren object.'
       tags:
         - Ambtenaar
@@ -844,7 +844,7 @@ components:
           minLength: 25
           maxLength: 2000
           example: 'Deze prachtige locatie is zeker het aanbevelen waard'
-          description: 'Een korte samenvattende tekst over deze ambtenaar bedoeld ter introductie. <br /><b>Schema:</b> <a href="https://schema.org/description">https://schema.org/description</a>'
+          description: 'Een korte samenvattende tekst over deze Ambtenaar bedoeld ter introductie. <br /><b>Schema:</b> <a href="https://schema.org/description">https://schema.org/description</a>'
         beschrijving:
           type: string
           minLength: 25
@@ -869,7 +869,7 @@ components:
           required: 'true'
           maxLength: 255
           format: uri
-          description: 'Het contactpersoon voor deze ambtenaar'
+          description: 'De contactpersoon voor deze Ambtenaar'
         bronApplicatie:
           description: 'De applicatie die verantwoordelijk is voor het object, en daarvoor de rechten beheerd en uitgeeft, en het eindoordeel heeft met betrekking tot waarheidsvinding.'
           type: string
@@ -966,7 +966,7 @@ components:
           minLength: 25
           maxLength: 2000
           example: 'Deze prachtige locatie is zeker het aanbevelen waard'
-          description: 'Een korte samenvattende tekst over deze ambtenaar bedoeld ter introductie. <br /><b>Schema:</b> <a href="https://schema.org/description">https://schema.org/description</a>'
+          description: 'Een korte samenvattende tekst over deze Ambtenaar bedoeld ter introductie. <br /><b>Schema:</b> <a href="https://schema.org/description">https://schema.org/description</a>'
         beschrijving:
           type: string
           minLength: 25
@@ -991,7 +991,7 @@ components:
           required: 'true'
           maxLength: 255
           format: uri
-          description: 'Het contactpersoon voor deze ambtenaar'
+          description: 'De contactpersoon voor deze Ambtenaar'
         bronApplicatie:
           description: 'De applicatie die verantwoordelijk is voor het object, en daarvoor de rechten beheerd en uitgeeft, en het eindoordeel heeft met betrekking tot waarheidsvinding.'
           type: string

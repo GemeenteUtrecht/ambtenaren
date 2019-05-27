@@ -41,8 +41,8 @@ use ActivityLogBundle\Entity\Interfaces\StringableInterface;
  *  		"denormalizationContext"={"groups"={"write"}},
  *      	"path"="/ambtenaren",
  *  		"openapi_context" = {
- * 				"summary" = "Collectie",
- *         		"description" = "Haal een verzameling van Ambtenaren op, het is mogelijk om deze resultaten te filteren aan de hand van query parameters. <br><br>Lees meer over het filteren van resultaten onder [filteren](/#section/Filteren).",                   
+ * 				"summary" = "Haal een verzameling van Ambtenaren op.",
+ *         		"description" = "Het is mogelijk om deze resultaten te filteren aan de hand van query parameters. <br><br>Lees meer over het filteren van resultaten onder [filteren](/#section/Filteren).",                   
  *  		}
  *  	},
  *  	"post"={
@@ -50,8 +50,8 @@ use ActivityLogBundle\Entity\Interfaces\StringableInterface;
  *  		"denormalizationContext"={"groups"={"write"}},
  *      	"path"="/ambtenaren",
  *  		"openapi_context" = {
- * 				"summary" = "Maak aan",
- *         		"description" = "Maak een specifieke ambtenaar aan."
+ * 				"summary" = "Maak een Ambtenaar aan.",
+ *         		"description" = ""
  *  		}
  *  	}
  *  },
@@ -61,8 +61,8 @@ use ActivityLogBundle\Entity\Interfaces\StringableInterface;
  *  		"denormalizationContext"={"groups"={"write"}},
  *      	"path"="/ambtenaren/{id}",
  *  		"openapi_context" = {
- * 				"summary" = "Bekijk",
- *         		"description" = "Bekijk een specifieke ambtenaar."
+ * 				"summary" = "Bekijk een specifieke Ambtenaar.",
+ *         		"description" = ""
  *  		}
  *  	},
  *     "put"={
@@ -70,8 +70,8 @@ use ActivityLogBundle\Entity\Interfaces\StringableInterface;
  *  		"denormalizationContext"={"groups"={"write"}},
  *      	"path"="/ambtenaren/{id}",
  *  		"openapi_context" = {
- * 				"summary" = "Vervang",
- *         		"description" = "Vervang een specifieke ambtenaar."
+ * 				"summary" = "Vervang een specifieke Ambtenaar.",
+ *         		"description" = ""
  *  		}
  *  	},
  *     "delete"={
@@ -79,8 +79,8 @@ use ActivityLogBundle\Entity\Interfaces\StringableInterface;
  *  		"denormalizationContext"={"groups"={"write"}},
  *      	"path"="/ambtenaren/{id}",
  *  		"openapi_context" = {
- * 				"summary" = "Verwijder",
- *         		"description" = "Verwijder een specifieke ambtenaar."
+ * 				"summary" = "Verwijder een specifieke Ambtenaar.",
+ *         		"description" = ""
  *  		}
  *  	},
  *     "log"={
@@ -90,7 +90,7 @@ use ActivityLogBundle\Entity\Interfaces\StringableInterface;
  *     		"normalization_context"={"groups"={"read"}},
  *     		"denormalization_context"={"groups"={"write"}},
  *         	"openapi_context" = {
- *         		"summary" = "Logboek",
+ *         		"summary" = "Logboek inzien.",
  *         		"description" = "Geeft een lijst van eerdere versies en wijzigingen van dit Ambtenaren object."
  *         }
  *     },
@@ -101,7 +101,7 @@ use ActivityLogBundle\Entity\Interfaces\StringableInterface;
  *     		"normalization_context"={"groups"={"read"}},
  *     		"denormalization_context"={"groups"={"herstel"}},
  *         	"openapi_context" = {
- *         		"summary" = "Herstel",
+ *         		"summary" = "Herstel Ambtenaar.",
  *         		"description" = "Herstel een eerdere versie van dit Ambtenaren object. Dit is een destructieve actie die niet ongedaan kan worden gemaakt."
  *         }
  *     }
@@ -382,7 +382,7 @@ class Ambtenaar implements StringableInterface
 	public $aanhef;
 	
 	/**
-	 * Een korte samenvattende tekst over deze ambtenaar bedoeld ter introductie. <br /><b>Schema:</b> <a href="https://schema.org/description">https://schema.org/description</a>
+	 * Een korte samenvattende tekst over deze Ambtenaar bedoeld ter introductie. <br /><b>Schema:</b> <a href="https://schema.org/description">https://schema.org/description</a>
 	 *
 	 * @var string
 	 *
@@ -496,7 +496,7 @@ class Ambtenaar implements StringableInterface
 	public $wijzigingsdatum;
 	
 	/**
-	 * Het contactpersoon voor deze ambtenaar
+	 * De contactpersoon voor deze Ambtenaar
 	 *
 	 * @ORM\Column(
 	 *     type     = "string",
