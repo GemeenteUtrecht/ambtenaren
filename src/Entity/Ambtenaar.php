@@ -184,7 +184,7 @@ class Ambtenaar implements StringableInterface
 	public $identificatie;
 	
 	/**
-	 * Het RSIN van de organisatie waartoe deze Ambtenaar behoort. Dit moet een geldig RSIN zijn van 9 nummers en voldoen aan https://nl.wikipedia.org/wiki/Burgerservicenummer#11-proef. <br> Het RSIN wordt bepaald aan de hand van de geauthenticeerde applicatie en kan niet worden overschreven
+	 * Het RSIN van de organisatie waartoe deze Ambtenaar behoort. Dit moet een geldig RSIN zijn van 9 nummers en voldoen aan https://nl.wikipedia.org/wiki/Burgerservicenummer#11-proef. <br> Het RSIN wordt bepaald aan de hand van de geauthenticeerde applicatie en kan niet worden overschreven.
 	 *
 	 * @var integer
 	 * @ORM\Column(
@@ -217,7 +217,7 @@ class Ambtenaar implements StringableInterface
 	public $bronOrganisatie;	
 	
 	/**
-	 * URL-referentie naar het afbeelding resource
+	 * URL-referentie naar het afbeelding resource.
 	 *
 	 * @ORM\Column(
 	 *     type     = "string",
@@ -242,7 +242,7 @@ class Ambtenaar implements StringableInterface
 	public $afbeelding;
 	
 	/**
-	 * URL-referentie naar het film resource
+	 * URL-referentie naar het film resource.
 	 *
 	 * @ORM\Column(
 	 *     type     = "string",
@@ -258,7 +258,7 @@ class Ambtenaar implements StringableInterface
 	 *             "required"="true",
 	 *             "maxLength"=255,
 	 *             "format"="uri",
-	 *             "description"="URL-referentie naar de BRP inschrijving van dit persoon"
+	 *             "description"="URL-referentie naar de BRP inschrijving van deze persoon."
 	 *         }
 	 *     }
 	 * )
@@ -446,7 +446,7 @@ class Ambtenaar implements StringableInterface
 	public $beschrijving;
 		
 	/**
-	 * De taal waarin de informatie van deze Ambtenaar is opgesteld <br /><b>Schema:</b> <a href="https://www.ietf.org/rfc/rfc3066.txt">https://www.ietf.org/rfc/rfc3066.txt</a>
+	 * De taal waarin de informatie van deze Ambtenaar is opgesteld. <br /><b>Schema:</b> <a href="https://www.ietf.org/rfc/rfc3066.txt">https://www.ietf.org/rfc/rfc3066.txt</a>
 	 *
 	 * @var string Een Unicode language identifier, ofwel RFC 3066 taalcode.
 	 *
@@ -469,7 +469,7 @@ class Ambtenaar implements StringableInterface
 	public $taal = 'nl';	
 			
 	/**
-	 * Het tijdstip waarop dit Ambtenaren object is aangemaakt
+	 * Het tijdstip waarop dit Ambtenaren object is aangemaakt.
 	 *
 	 * @var string Een "Y-m-d H:i:s" waarde bijvoorbeeld "2018-12-31 13:33:05" ofwel "Jaar-dag-maand uur:minuut:seconde"
 	 * @Gedmo\Timestampable(on="create")
@@ -496,7 +496,7 @@ class Ambtenaar implements StringableInterface
 	public $wijzigingsdatum;
 	
 	/**
-	 * De contactpersoon voor deze Ambtenaar
+	 * De contactpersoon voor deze Ambtenaar.
 	 *
 	 * @ORM\Column(
 	 *     type     = "string",
@@ -520,7 +520,7 @@ class Ambtenaar implements StringableInterface
 	public $contactPersoon;
 	
 	/**
-	 * De applicatie die verantwoordelijk is voor het object, en daarvoor de rechten beheerd en uitgeeft, en het eindoordeel heeft met betrekking tot waarheidsvinding.. Een model nuancering waarbij we niet alleen moeten weten welke organisatie over een object gaat, maar ook welke applicatie binnen de organisatie.
+	 * De applicatie die verantwoordelijk is voor het object, daarvoor de rechten beheerd, uitgeeft en het eindoordeel heeft met betrekking tot waarheidsvinding.
 	 * 
 	 * @var App\Entity\Applicatie $bronApplicatie
 	 *
